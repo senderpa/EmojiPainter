@@ -1,8 +1,9 @@
 # What's Open Source, and What Isn't
 
-EmojiPainter's **source code** is open source. Its **marketing/brand assets and production
-infrastructure** are not included in this repository. This page is the honest, specific answer to
-"what did you actually open source."
+EmojiPainter's **source code** is open source. Its full **marketing/media asset library and
+production infrastructure** are not included in this repository; a few small project previews are
+included under `.github/images/` so the README can show the app and gallery. This page is the
+honest, specific answer to "what did you actually open source."
 
 ## Included (Apache-2.0, this repository)
 
@@ -34,7 +35,7 @@ infrastructure** are not included in this repository. This page is the honest, s
 
 | Excluded | Why |
 |---|---|
-| `assets/` (icons, fonts, in-app art, 100+ marketing/UI videos) | Not source code; some assets have unclear or non-redistributable rights (system emoji artwork, licensed fonts); keeping the repo small and code-focused. See `THIRD_PARTY_NOTICES.md`. |
+| `assets/` (fonts, in-app art, 100+ marketing/UI videos) | Not source code; some assets have unclear or non-redistributable rights (system emoji artwork, licensed fonts); keeping the repo small and code-focused. Selected project-owned previews for the README live under `.github/images/`. See `THIRD_PARTY_NOTICES.md`. |
 | Production secrets (`DAILY_PAINT_SECRET`, backend tokens) | Real credentials for the live `emojipainter.com` backend — never belong in a public repo. Placeholders + setup instructions are included instead; see `SECURITY_AUDIT.md`. |
 | Apple signing/provisioning material | Never existed in version control to begin with — nothing to strip. |
 | `src.backup.*/`, `ios.backup.*/`, `coverage/`, `.xcodebuild-release-lite/`, build outputs | Accidental snapshots and generated artifacts in the working repo, not source. |

@@ -12,7 +12,7 @@
 ## Install
 
 ```bash
-git clone <this-repo-url>
+git clone https://github.com/senderpa/EmojiPainter.git
 cd EmojiPainter
 npm install
 ```
@@ -70,5 +70,6 @@ npm run lint         # eslint
 npm test             # jest
 ```
 
-See `AUDIT_REPORTS/PUBLIC_RELEASE_GATE.md` (in the private application package, not this repo) for
-the actual PASS/FAIL results of these checks against this exact codebase.
+The GitHub Actions page runs the repository's configured checks for pushes and pull requests. Check
+the latest workflow run there for the current result; local build requirements and backend setup are
+described above.

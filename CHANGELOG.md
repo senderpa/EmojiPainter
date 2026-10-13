@@ -10,10 +10,12 @@ This public changelog starts fresh at the open-source release — it does not ca
 history isn't meaningful to public users and included things like internal diagnostics and
 work-in-progress fixes not relevant outside the original team).
 
-## [1.0.0] — Unreleased
+## [1.0.0] — 2026-10-13
 
 ### Added
 - First public open-source release of EmojiPainter's source code.
 - 2D painting engine, AR/spatial painting (including native RoomPlan 3D room inspector), vector
   mode, frame animator, and the reference community backend — see `docs/OPEN_SOURCE_BOUNDARY.md`
   for the full breakdown.
+- README previews for the animated brand and community gallery, with direct web and App Store links.
+- Public build and release instructions for contributors.

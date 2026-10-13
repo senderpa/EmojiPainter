@@ -13,6 +13,11 @@ benefits from outside eyes.
 
 See `docs/BUILDING.md`.
 
+## Releases
+
+Source release tags use semantic versioning. See [`docs/RELEASING.md`](docs/RELEASING.md) for the
+release checklist and how source releases relate to the separately distributed App Store apps.
+
 ## Making a change
 
 1. Fork + branch from `main`.

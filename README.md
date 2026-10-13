@@ -7,12 +7,20 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue.svg"></a>
+  <a href="https://github.com/senderpa/EmojiPainter/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/senderpa/EmojiPainter"></a>
   <img alt="Platform" src="https://img.shields.io/badge/platform-iOS%20%7C%20Android-lightgrey">
   <img alt="Built with Expo" src="https://img.shields.io/badge/built%20with-Expo%20%2F%20React%20Native-000000">
 </p>
 
 <p align="center">
-  🌐 <a href="https://emojipainter.com">emojipainter.com</a> — the live app, video demos, and gallery
+  <a href="https://emojipainter.com/">🌐 Try it online</a> ·
+  <a href="https://emojipainter.com/public/gallery.html">🖼️ Community gallery</a> ·
+  <a href="https://apps.apple.com/us/app/emoji-painter/id6753342820">📱 iPhone / iPad — Free</a> ·
+  <a href="https://apps.apple.com/us/app/emoji-paint/id6753338528">💻 Mac — Free</a>
+</p>
+
+<p align="center">
+  <a href="https://emojipainter.com/"><img src=".github/images/brand-animation.gif" width="320" alt="EmojiPainter animated HELLO logo" /></a>
 </p>
 
 ---
@@ -27,14 +35,21 @@ inspector.
 It's built and maintained by one person — [see the creator note](#creator-note) — using modern
 agentic coding tools to build further than a solo self-taught developer could otherwise reach.
 
-> GitHub strips `<iframe>` embeds from README rendering, and this repo intentionally ships without
-> its ~100 marketing/demo video files (see [`docs/OPEN_SOURCE_BOUNDARY.md`](docs/OPEN_SOURCE_BOUNDARY.md))
-> to stay small — so the best way to actually *see* EmojiPainter in motion is the live site above.
+> GitHub doesn't render embedded iframes in README files. Use the links above to open the live
+> painter and gallery; click the gallery screenshot below to open the live community gallery.
 
-<p align="center">
-  <img src=".github/images/example-artwork.jpg" width="260" alt="Example artwork painted in EmojiPainter" />
-  <br/><sub>Painted in EmojiPainter — emoji as brush strokes, not stickers.</sub>
-</p>
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html"><img src=".github/images/community-gallery.jpg" width="250" alt="A painting in the EmojiPainter community gallery" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html">Open the live community gallery ↗</a></sub>
+    </td>
+    <td align="center" width="50%">
+      <img src=".github/images/example-artwork.jpg" width="250" alt="Example artwork painted in EmojiPainter" /><br/>
+      <sub>Emoji art made with brush strokes, not stickers.</sub>
+    </td>
+  </tr>
+</table>
 
 ## What's actually in this repository
 
