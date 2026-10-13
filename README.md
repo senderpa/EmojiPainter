@@ -13,7 +13,12 @@
 </p>
 
 <p align="center">
-  <a href="https://emojipainter.com/">🌐 Try it online</a> ·
+  <a href="https://emojipainter.com/emoji_paint/index.html"><strong>🎨 Open the online test painter ↗</strong></a><br/>
+  <sub>A lightweight browser pilot with painting and timelapse replay. It shares core functions with the iOS and Mac apps, but is not the full native app.</sub>
+</p>
+
+<p align="center">
+  <a href="https://emojipainter.com/">🌐 Website</a> ·
   <a href="https://emojipainter.com/public/gallery.html">🖼️ Community gallery</a> ·
   <a href="https://apps.apple.com/us/app/emoji-painter/id6753342820">📱 iPhone / iPad — Free</a> ·
   <a href="https://apps.apple.com/us/app/emoji-paint/id6753338528">💻 Mac — Free</a>
@@ -35,8 +40,8 @@ inspector.
 It's built and maintained by one person — [see the creator note](#creator-note) — using modern
 agentic coding tools to build further than a solo self-taught developer could otherwise reach.
 
-> GitHub doesn't render embedded iframes in README files. Use the links above to open the live
-> painter and gallery, or click any artwork below to open its gallery post.
+> The browser pilot is the quickest way to try painting and timelapse replay. Click a painting
+> below to open its community gallery post.
 
 ### 2026 community gallery highlights
 
@@ -71,9 +76,19 @@ agentic coding tools to build further than a solo self-taught developer could ot
       <sub><a href="https://emojipainter.com/public/gallery.html?post=79">Adrift, pleasantly · GIF · by Kakaduuu ↗</a></sub>
     </td>
   </tr>
+</table>
+
+### 2025 community gallery archive
+
+<table>
   <tr>
-    <td align="center" colspan="2">
-      <img src=".github/images/example-artwork.jpg" width="240" alt="Example artwork painted in EmojiPainter" />
+    <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html?post=29"><img src=".github/images/community-molten-umbrella.jpg" width="240" alt="Molten Umbrella, painted by digitaldoodler39 on December 17, 2025" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=29">Dec 17, 2025 · Molten Umbrella · digitaldoodler39 · 17 min · 1 like ↗</a></sub>
+    </td>
+    <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html?post=28"><img src=".github/images/community-mechanical-canister.jpg" width="240" alt="Mechanical Canister, painted by an anonymous artist on December 14, 2025" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=28">Dec 14, 2025 · Mechanical Canister · anonymous · 16 min · 2 likes ↗</a></sub>
     </td>
   </tr>
 </table>
