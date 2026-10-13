@@ -1,7 +1,3 @@
-<p align="center">
-  <img src=".github/images/icon.png" width="96" alt="EmojiPainter icon" />
-</p>
-
 <h1 align="center">EmojiPainter</h1>
 <p align="center"><strong>A creative painting platform, not just an emoji app.</strong></p>
 
@@ -19,10 +15,6 @@
   <a href="https://apps.apple.com/us/app/emoji-paint/id6753338528">💻 Mac — Free</a>
 </p>
 
-<p align="center">
-  <a href="https://emojipainter.com/"><img src=".github/images/brand-animation.gif" width="320" alt="EmojiPainter animated HELLO logo" /></a>
-</p>
-
 ---
 
 EmojiPainter is a real-time mobile painting engine, reimagined around emoji as a brush medium
@@ -36,7 +28,9 @@ It's built and maintained by one person — [see the creator note](#creator-note
 agentic coding tools to build further than a solo self-taught developer could otherwise reach.
 
 > GitHub doesn't render embedded iframes in README files. Use the links above to open the live
-> painter and gallery; click the gallery screenshot below to open the live community gallery.
+> painter and gallery, or click any artwork below to open its gallery post.
+
+### 2026 community gallery highlights
 
 <table>
   <tr>
@@ -51,10 +45,26 @@ agentic coding tools to build further than a solo self-taught developer could ot
   </tr>
   <tr>
     <td align="center" width="50%">
-      <a href="https://emojipainter.com/public/gallery.html"><img src=".github/images/community-gallery.jpg" width="240" alt="A painting in the EmojiPainter community gallery" /></a><br/>
-      <sub><a href="https://emojipainter.com/public/gallery.html">Browse the live community gallery ↗</a></sub>
+      <a href="https://emojipainter.com/public/gallery.html?post=92"><img src=".github/images/community-whispering-cliffs.jpg" width="240" alt="Community gallery artwork: Whispering Cliffs" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=92">Whispering Cliffs · community gallery ↗</a></sub>
     </td>
     <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html?post=89"><img src=".github/images/community-rockpool-snail.jpg" width="240" alt="Community gallery artwork: Rockpool Snail" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=89">Rockpool Snail · community gallery ↗</a></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html?post=87"><img src=".github/images/gallery-disco-wizard.gif" width="240" alt="Animated community gallery painting: Disco Wizard, by Kakaduuu" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=87">Disco Wizard · GIF · by Kakaduuu ↗</a></sub>
+    </td>
+    <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html?post=79"><img src=".github/images/gallery-adrift.gif" width="240" alt="Animated community gallery painting: Adrift, pleasantly, by Kakaduuu" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=79">Adrift, pleasantly · GIF · by Kakaduuu ↗</a></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
       <img src=".github/images/example-artwork.jpg" width="240" alt="Example artwork painted in EmojiPainter" />
     </td>
   </tr>
