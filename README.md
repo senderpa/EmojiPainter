@@ -1,0 +1,121 @@
+<p align="center">
+  <img src=".github/images/icon.png" width="96" alt="EmojiPainter icon" />
+</p>
+
+<h1 align="center">EmojiPainter</h1>
+<p align="center"><strong>A creative painting platform, not just an emoji app.</strong></p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue.svg"></a>
+  <img alt="Platform" src="https://img.shields.io/badge/platform-iOS%20%7C%20Android-lightgrey">
+  <img alt="Built with Expo" src="https://img.shields.io/badge/built%20with-Expo%20%2F%20React%20Native-000000">
+</p>
+
+<p align="center">
+  🌐 <a href="https://emojipainter.com">emojipainter.com</a> — the live app, video demos, and gallery
+</p>
+
+---
+
+EmojiPainter is a real-time mobile painting engine, reimagined around emoji as a brush medium
+instead of flat color. It's a working reference implementation for several things that don't
+usually live in one open-source project: a tile-cached GPU 2D canvas, touch/stylus smudge and
+compositing, an infinite vector canvas, frame-based animation, and genuine spatial painting —
+painting directly onto real walls and rooms in AR, including a native RoomPlan-driven 3D room
+inspector.
+
+It's built and maintained by one person — [see the creator note](#creator-note) — using modern
+agentic coding tools to build further than a solo self-taught developer could otherwise reach.
+
+> GitHub strips `<iframe>` embeds from README rendering, and this repo intentionally ships without
+> its ~100 marketing/demo video files (see [`docs/OPEN_SOURCE_BOUNDARY.md`](docs/OPEN_SOURCE_BOUNDARY.md))
+> to stay small — so the best way to actually *see* EmojiPainter in motion is the live site above.
+
+<p align="center">
+  <img src=".github/images/example-artwork.jpg" width="260" alt="Example artwork painted in EmojiPainter" />
+  <br/><sub>Painted in EmojiPainter — emoji as brush strokes, not stickers.</sub>
+</p>
+
+## What's actually in this repository
+
+Everything below is verified against the source in this repo — nothing here is aspirational.
+
+- **2D painting engine** — tile-cached GPU canvas (`src/engine/`, `src/workspace/`), built for
+  real-time high-density stamping without frame drops.
+- **AR / spatial painting** (`modules/emoji-ar/`) — paint directly onto real walls and surfaces via
+  ARKit + RealityKit; on LiDAR devices, Apple RoomPlan captures the room and a native SceneKit
+  "dollhouse" inspector lets you orbit the captured room with your painted strokes rendered on it
+  at true scale, with shadow-casting lighting.
+- **Vector mode** (`src/vector/`, `VectorDocumentCore/`) — an infinite Skia vector canvas backed by
+  a dedicated Swift Package document core.
+- **Frame animator** (`src/animation/`, `src/animator/`, `src/framer/`) — timeline-based animation
+  over painted strokes.
+- **Smudge/compositing brush engine** — CPU pixel smudging that carries real canvas color, not a
+  filter.
+- **Front-camera face painting** (`modules/emoji-ar/` face module) — on-device ARKit face tracking;
+  no camera frames or face geometry ever leave the device.
+- **Daily/mystery painting challenges + gallery** (`src/gesser/`, `backend/`, `.website_work/`) —
+  a human-authored daily topic system (plus a "mystery" surprise-topic mode) with a public gallery
+  and social/profile features, backed by the included PHP reference server.
+- **Export** — finished paintings export as images/GIFs/video from the actual stroke data (not a
+  fragile screen capture), so exports stay correct even for the native Metal/AR canvases.
+- **Collaborative multiplayer canvas** (`src/multiplayer/`, `multi/`) — a standalone Node.js server
+  for shared real-time canvases.
+
+Full breakdown of what's included vs. intentionally excluded (and why):
+[`docs/OPEN_SOURCE_BOUNDARY.md`](docs/OPEN_SOURCE_BOUNDARY.md).
+
+## Architecture
+
+```mermaid
+flowchart TB
+  App["React Native / Expo app (src/)"]
+
+  App --> Canvas["2D Painting Engine<br/>Skia + GPU tile cache"]
+  App --> AR["AR / Spatial Painting<br/>modules/emoji-ar (ARKit + RealityKit + RoomPlan)"]
+  App --> Vector["Vector Mode<br/>VectorDocumentCore (Swift Package)"]
+  App --> Animator["Frame Animator"]
+  App --> Community["Community client<br/>src/gesser, src/social, src/multiplayer"]
+
+  AR --> RoomInspector["Native SceneKit<br/>3D Room Inspector"]
+  Community --> Backend["Reference PHP backend<br/>backend/, .website_work/"]
+  Community --> MultiServer["Collaborative canvas server<br/>multi/ (Node.js)"]
+```
+
+More detail: [`ARCHITECTURE.md`](ARCHITECTURE.md).
+
+## Getting started
+
+```bash
+git clone https://github.com/senderpa/EmojiPainter.git
+cd EmojiPainter
+npm install
+npx expo run:ios      # or: npx expo run:android
+```
+
+Full setup (Xcode/Android Studio requirements, native module notes, backend setup for the
+community features): [`docs/BUILDING.md`](docs/BUILDING.md).
+
+## Status & roadmap
+
+This is a young open-source release of a ~1.5-year-old production app. See
+[`ROADMAP.md`](ROADMAP.md) for what's next and [`CHANGELOG.md`](CHANGELOG.md) for release history.
+
+## Contributing
+
+Contributions are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md) and
+[`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md). Security issues: see [`SECURITY.md`](SECURITY.md)
+rather than filing a public issue.
+
+## Creator note
+
+EmojiPainter is built by Pascal Sender, a Swiss visual artist whose practice has long combined
+physical painting, augmented reality, and hand-built software — previously hand-coding AR software
+connected to his
+painting practice, and now building this as a public, open creative tool rather than a closed
+production app. Modern agentic coding tools materially expanded what was buildable solo.
+
+## License
+
+Apache License 2.0 — see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE). Third-party dependency
+licenses: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).

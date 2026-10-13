@@ -1,0 +1,4101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- ====== META / SEO ====== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>DailySpitPaint GallerY — Live</title>
+  <meta name="description" content="Emoji Painter - The Most Contemporary Brush for Digital Art." />
+  <link rel="canonical" href="https://emojipainter.com/">
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hit the AI!" />
+  <meta property="og:description" content="heal by hit!" />
+  <!-- Social preview (points to your PHP OG image generator) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="DailySpitPaint" />
+  <meta property="og:title" content="Hit the AI!" />
+  <meta property="og:description" content="heal by hit!" />
+  <meta property="og:url" content="https://emojipainter.com/public/gallery.html" />
+  <meta property="og:image" content="https://emojipainter.com/public/emojipr.png4" />
+  <meta property="og:image:secure_url" content="https://emojipainter.com/public/emojipr.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:image:alt" content="Newest Emoji Painter submission" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hit the AI!" />
+  <meta name="twitter:description" content="heal by hit!" />
+  <meta name="twitter:image" content="https://emojipainter.com/public/emojipr.png" />
+
+  <!-- Favicon (animated/transparent via JS) + static fallback -->
+  <link id="fav-animated" rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB" sizes="any" />
+  <link rel="icon" type="image/png" href="/daily-spit-paint/favicon.png" />
+
+  <!-- Custom font -->
+  <style>
+    @font-face{
+      font-family:"VrtlFinale";
+      font-style:normal;
+      font-weight:400;
+      font-display:swap;
+      src:
+        url("/emoji_paint/font/vrtlfinale1-webfont.woff2") format("woff2"),
+        url("/emoji_paint/font/vrtlfinale1-webfont.woff") format("woff"),
+        url("/emoji_paint/font/vrtlfinale1.ttf") format("truetype");
+    }
+
+    :root{
+      --bg:#0e1116;
+      --card:#171a24;
+      --card-2:#1e2230;
+      --text:#ffffff;
+      --body:#e7e9ee;
+      --muted:#a3a7b3;
+      --brand:#3b82f6;
+      --stroke:#2a2f3c;
+      --radius:16px;
+
+      --image-h:56vh;
+      --gap:14px;
+      --card-max:780px;
+
+      --panel-bg:rgba(20,22,30,.98);
+      --shadow:0 8px 24px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.03) inset;
+    }
+    @media (max-width:768px){
+      :root{
+        --image-h:340px;
+        --card-max:100%;
+      }
+    }
+    @media (max-width:640px){
+      :root{ --gap:12px; --card-max:100%; }
+    }
+    @media (max-width:480px){
+      :root{
+        --image-h:280px;
+      }
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{color-scheme:dark}
+    body{
+      margin:0; display:flex; flex-direction:column; min-height:100dvh;
+      background:var(--bg); color:var(--body);
+      font-family:"VrtlFinale", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      overflow-y:auto; overscroll-behavior:contain;
+    }
+
+    /* ===== Header ===== */
+    header{
+      position:sticky; top:0; z-index:50;
+      display:flex; align-items:center; justify-content:center;
+      padding:12px clamp(12px,4vw,18px);
+      background:rgba(10,12,18,.92);
+      backdrop-filter:blur(14px) saturate(140%);
+      border-bottom:1px solid var(--stroke);
+      gap:10px;
+      transform:translateY(0);
+      transition:transform 0.3s ease-in-out;
+    }
+    header.header--hidden{
+      transform:translateY(-100%);
+    }
+    .header__inner{
+      width:100%; max-width:var(--card-max);
+      display:flex; align-items:center; gap:10px;
+    }
+
+    /* ===== TITLE ===== */
+    #title{
+      margin:0;
+      font-size:clamp(16px,2.6vw,22px);
+      letter-spacing:.08em; text-transform:uppercase;
+      color:var(--text);
+      display:flex; align-items:center; gap:10px; white-space:nowrap;
+      text-shadow:0 0 0 rgba(255,255,255,0.0);
+      will-change:transform;
+      flex:1 1 auto;
+      min-width:0;
+    }
+    #title.glow{ text-shadow:0 0 6px rgba(255,255,255,.45), 0 0 14px rgba(59,130,246,.28); }
+    #title-link{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none; color:inherit;
+      transition:opacity 0.2s ease;
+    }
+    #title-link:hover{
+      opacity:0.8;
+    }
+    .title-emoji{display:inline-block; min-width:1.2em; color:var(--text)}
+    .title-word{display:inline-flex; gap:.5px; min-width:0}
+    .title-letter{
+      display:inline-block; transform-origin:center;
+      color:var(--text) !important; white-space:pre;
+      will-change:transform,opacity;
+    }
+
+    /* ===== Trophy Button ===== */
+    .trophy-btn{
+      width:44px; height:44px; border-radius:999px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, rgba(255,215,0,.15), rgba(255,165,0,.08));
+      cursor:pointer; font-size:22px; line-height:1; user-select:none;
+      transition:transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
+      margin:0 auto;
+      animation:trophyFloat 3s ease-in-out infinite;
+    }
+    .trophy-btn:hover{
+      transform:translateY(-2px) scale(1.05);
+      border-color:rgba(255,215,0,0.6);
+      box-shadow:0 4px 12px rgba(255,215,0,0.3);
+    }
+    @keyframes trophyFloat {
+      0%, 100% { transform:translateY(0px); }
+      50% { transform:translateY(-3px); }
+    }
+
+    /* ===== Language (single flag + panel) ===== */
+    .langbar{
+      position:relative;
+      display:flex; align-items:center; justify-content:flex-end;
+      flex:0 0 auto;
+      margin-left:auto;
+    }
+    #lang-toggle.flag-btn{
+      width:38px; height:38px;
+    }
+    .flag-btn{
+      width:34px; height:34px; border-radius:999px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.08));
+      cursor:pointer; font-size:18px; line-height:1; user-select:none;
+      transition:transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
+    }
+    .flag-btn:hover{ transform:translateY(-1px); border-color:#3a3a44; }
+    .flag-btn[aria-expanded="true"]{
+      box-shadow:0 0 0 2px color-mix(in oklab, var(--brand) 60%, transparent);
+      border-color:color-mix(in oklab, var(--brand) 60%, var(--stroke));
+    }
+
+    .lang-panel{
+      position:absolute; right:0; top:calc(100% + 8px);
+      min-width:200px; padding:8px;
+      display:flex; flex-direction:column; gap:6px;
+      background:var(--panel-bg);
+      border:1px solid var(--stroke);
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px) saturate(140%);
+    }
+    .lang-panel[hidden]{ display:none; }
+
+    .lang-opt{
+      width:100%;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; padding:10px 12px;
+      border-radius:10px; border:1px solid transparent;
+      background:transparent; color:var(--body); font-weight:800; cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .lang-opt .left{ display:flex; align-items:center; gap:10px; }
+    .lang-opt .flag{ font-size:18px; }
+    .lang-opt[aria-checked="true"]{
+      background:color-mix(in oklab, var(--brand) 18%, #000);
+      border-color:color-mix(in oklab, var(--brand) 50%, var(--stroke));
+    }
+    .lang-opt:hover{ transform:translateY(-1px); background:#24242b; border-color:#3a3a44; }
+
+    /* ===== Sort bar ===== */
+    .sortbar{
+      position:sticky; top:calc(env(safe-area-inset-top) + 48px); z-index:40;
+      background:rgba(10,12,18,.85);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--stroke);
+    }
+    .sortbar__inner{
+      max-width:var(--card-max); margin:0 auto; padding:10px clamp(12px,4vw,18px);
+      display:flex; gap:10px; align-items:center; justify-content:flex-start;
+    }
+    .sortbar label{ font-size:12px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase }
+    #sort-select{
+      background:#222636; color:#fff; border:1px solid var(--stroke); border-radius:999px;
+      padding:10px 14px; font-weight:800; font-size:14px; cursor:pointer;
+    }
+    @media (max-width:480px){ #sort-select{ padding:8px 12px; font-size:13px; } }
+
+    .layout-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:38px; height:38px; border-radius:999px;
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.08));
+      font-size:20px; line-height:1; cursor:pointer;
+      transition:transform .12s ease, border-color .12s ease, background .12s ease;
+      color:var(--body);
+    }
+    .layout-btn:hover{ transform:translateY(-1px); border-color:#3a3a44; }
+    .layout-btn:focus-visible{ outline:2px solid var(--brand); outline-offset:2px; }
+    .layout-btn[data-layout="grid"] .layout-icon{ content:"☰"; }
+
+    /* Grid columns slider */
+    .grid-slider-wrapper{
+      display:flex; align-items:center; gap:10px;
+      opacity:1; transition:opacity .2s ease;
+    }
+    .grid-slider-wrapper[hidden]{ display:none; }
+    .grid-slider-wrapper label{ font-size:11px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+    .grid-slider{
+      width:120px; height:6px; border-radius:999px;
+      background:var(--stroke); outline:none; cursor:pointer;
+      appearance:none; -webkit-appearance:none;
+    }
+    .grid-slider::-webkit-slider-thumb{
+      appearance:none; width:18px; height:18px; border-radius:999px;
+      background:var(--brand); cursor:pointer;
+      transition:transform .12s ease, background .12s ease;
+    }
+    .grid-slider::-webkit-slider-thumb:hover{ transform:scale(1.15); }
+    .grid-slider::-moz-range-thumb{
+      width:18px; height:18px; border-radius:999px; border:0;
+      background:var(--brand); cursor:pointer;
+      transition:transform .12s ease, background .12s ease;
+    }
+    .grid-slider::-moz-range-thumb:hover{ transform:scale(1.15); }
+    .grid-count{ font-size:13px; font-weight:800; color:var(--text); min-width:20px; text-align:center; }
+    @media (max-width:640px){ .grid-slider-wrapper{ display:none; } }
+
+    .back-btn{
+      margin-left:auto;
+      display:inline-flex; align-items:center; justify-content:center;
+      width:38px; height:38px; border-radius:999px;
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.08));
+      text-decoration:none; font-size:20px; line-height:1;
+      transition:transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    .back-btn:hover{ transform:translateY(-1px); border-color:#3a3a44; }
+    .back-btn:focus-visible{ outline:2px solid var(--brand); outline-offset:2px; }
+
+    main{flex:1; width:100%; margin:0 auto; padding:0 clamp(10px,3vw,18px) 64px}
+    @media (max-width:768px){
+      main{ padding:0 8px 64px; }
+    }
+
+    /* Pull-to-refresh indicator */
+    .ptr{
+      max-width:var(--card-max); margin:0 auto; height:0; overflow:hidden;
+      display:flex; align-items:center; justify-content:center; color:var(--muted);
+      transition:height .18s ease;
+    }
+    .ptr--active{height:44px}
+
+    /* Intro + CTA */
+    .intro{
+      max-width:var(--card-max);
+      margin:12px auto 6px;
+      font-size:12px; line-height:1.6; color:var(--muted);
+      text-wrap:balance;
+    }
+    .cta{
+      max-width:var(--card-max);
+      margin:6px auto 16px;
+      display:flex; gap:8px; align-items:center; justify-content:flex-start; flex-wrap:wrap;
+      color:var(--muted);
+    }
+    .cta .btn{
+      background:transparent; color:var(--body);
+      border:1px solid var(--stroke); border-radius:10px;
+      padding:6px 10px; font-weight:800; font-size:12px; cursor:pointer; text-decoration:none;
+      transition:transform .12s ease, border-color .12s ease; line-height:1; display:inline-flex; align-items:center; gap:8px;
+    }
+    .cta .btn:hover{ transform:translateY(-1px); border-color:#3a3a44 }
+    .cta .icon{ width:24px; height:24px; border-radius:6px; border:1px solid var(--stroke); object-fit:cover; }
+
+    /* Topics chips */
+    .topics{
+      max-width:var(--card-max); margin:10px auto 16px; padding:10px 14px;
+      display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
+      background:rgba(32,32,38,.65); backdrop-filter:blur(10px) saturate(140%);
+      border:1px solid var(--stroke); border-radius:999px;
+    }
+    .topics__date{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:999px; background:var(--card); border:1px solid var(--stroke);
+      font-weight:900; cursor:pointer; user-select:none; transition:transform .14s ease, background .14s ease, border-color .14s ease;
+    }
+    .chip:hover{ transform:translateY(-1px); background:#24242b; border-color:#3a3a44; }
+
+    .status-bar{max-width:var(--card-max); margin:8px auto 12px; font-size:14px; color:var(--muted)}
+    .status-bar[data-kind="error"]{color:#fca5a5}
+
+    /* Day banner */
+    .day-banner{
+      max-width:var(--card-max);
+      margin:28px auto 6px; padding:4px 10px;
+      display:flex; flex-wrap:wrap; gap:1px 1px; align-items:center;
+      color:var(--muted);
+      font-size:10px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      opacity:0.7;
+      border-left:2px solid rgba(59,130,246,0.3);
+      background:transparent;
+      border-radius:6px;
+      will-change:transform;
+    }
+    /* Hide day banners in grid and desktop modes - posts flow continuously */
+    .grid[data-layout="grid"] .day-banner,
+    .grid[data-layout="desktop"] .day-banner{
+      display:none;
+    }
+    .day-letter{ display:inline-block; color:var(--muted) !important; transform-origin:center; will-change:transform,opacity; white-space:pre; }
+
+    /* Gallery */
+    .grid{ display:grid; gap:var(--gap); grid-template-columns:1fr; justify-items:center; }
+
+    /* Grid layout mode */
+    .grid[data-layout="grid"]{
+      grid-template-columns:repeat(var(--grid-cols, 4), 1fr);
+      gap:16px;
+      width:100%;
+      max-width:100%;
+      justify-items:stretch;
+    }
+
+    /* Card adjustments for grid mode */
+    .grid[data-layout="grid"] .card{
+      width:100%;
+      max-width:none;
+      transition:transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+    }
+    .grid[data-layout="grid"] .card:hover{
+      transform:translateY(-4px) scale(1.02);
+      box-shadow:0 12px 32px rgba(0,0,0,0.5), 0 2px 0 rgba(59,130,246,0.1) inset;
+    }
+    .grid[data-layout="grid"] .card__image{
+      height:240px;
+      transition:transform 0.3s ease;
+    }
+    .grid[data-layout="grid"] .card:hover .card__image{
+      transform:scale(1.05);
+    }
+    @media (max-width:768px){
+      .grid[data-layout="grid"]{
+        grid-template-columns:repeat(2, 1fr) !important;
+      }
+      .grid[data-layout="grid"] .card__image{ height:180px; }
+      .grid[data-layout="grid"] .card__body{ padding:10px; }
+      .grid[data-layout="grid"] .card__title{ font-size:13px; }
+    }
+    @media (max-width:480px){
+      .grid[data-layout="grid"] .card__image{ height:150px; }
+      .grid[data-layout="grid"] .card__body{ padding:8px; }
+      .grid[data-layout="grid"] .card__title{ font-size:12px; }
+    }
+
+    /* Desktop layout mode - random scattered cards */
+    .grid[data-layout="desktop"]{
+      display:block;
+      position:relative;
+      min-height:200vh;
+      width:100%;
+      max-width:100%;
+    }
+    .grid[data-layout="desktop"] .card{
+      position:absolute;
+      width:180px;
+      max-width:180px;
+      cursor:move;
+      cursor:grab;
+      transition:box-shadow 0.2s ease, transform 0.1s ease;
+      user-select:none;
+    }
+    .grid[data-layout="desktop"] .card:active{
+      cursor:grabbing;
+      z-index:100;
+      transform:rotate(0deg) !important;
+    }
+    .grid[data-layout="desktop"] .card:hover{
+      box-shadow:0 8px 24px rgba(0,0,0,0.6);
+      z-index:50;
+    }
+    .grid[data-layout="desktop"] .card__image{
+      height:180px;
+      object-fit:cover;
+    }
+    .grid[data-layout="desktop"] .card__body{
+      padding:8px;
+      background:var(--card);
+    }
+    .grid[data-layout="desktop"] .card__title{
+      font-size:11px;
+      font-weight:700;
+      text-align:center;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .grid[data-layout="desktop"] .card__meta,
+    .grid[data-layout="desktop"] .card__time,
+    .grid[data-layout="desktop"] .card__traveler-row,
+    .grid[data-layout="desktop"] .votes{
+      display:none;
+    }
+    @media (max-width:768px){
+      .grid[data-layout="desktop"] .card{ width:140px; max-width:140px; }
+      .grid[data-layout="desktop"] .card__image{ height:140px; }
+    }
+
+    .card{
+      width:min(100%, var(--card-max));
+      background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius);
+      overflow:hidden; transform-origin:center;
+    }
+    .card__image{
+      width:100%; height:var(--image-h); object-fit:contain; background:var(--card-2); display:block;
+      opacity:0; transition:opacity .24s ease; position:relative;
+    }
+    .card__image[data-loaded="true"]{ opacity:1 }
+    .card__image-wrapper{position:relative;}
+    .grid[data-layout="grid"] .card__image-wrapper{cursor:pointer;}
+    .grid[data-layout="grid"] .card__image{object-fit:cover;}
+    .grid[data-layout="desktop"] .card__image-wrapper{cursor:inherit;}
+
+    /* Mobile-specific list layout adjustments */
+    @media (max-width:768px){
+      .grid[data-layout="list"] .card{
+        max-width:100%;
+        margin:0 auto;
+      }
+      .grid[data-layout="list"] .card__image{
+        object-fit:cover;
+      }
+      .grid[data-layout="list"] .card__body{
+        padding:12px;
+      }
+      .grid[data-layout="list"] .card__title{
+        font-size:16px;
+      }
+      .grid[data-layout="list"] .card__meta{
+        font-size:11px;
+      }
+    }
+    .frame-badge{
+      position:absolute; top:12px; right:12px; z-index:10;
+      background:rgba(0,0,0,0.85); backdrop-filter:blur(8px);
+      color:var(--text); padding:8px 14px; border-radius:14px;
+      font-size:12px; font-weight:800; letter-spacing:0.05em;
+      display:flex; align-items:center; gap:6px;
+      border:1px solid rgba(255,255,255,0.15);
+      box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    }
+    /* Mystery card styles */
+    .mystery-badge{
+      position:absolute; top:10px; left:10px; z-index:15;
+      background:rgba(0,0,0,0.88); backdrop-filter:blur(10px);
+      color:#0ff; padding:5px 10px; border-radius:10px;
+      font-size:11px; font-weight:900; letter-spacing:0.08em;
+      display:flex; align-items:center; gap:5px;
+      border:1.5px solid rgba(0,255,255,0.5);
+      box-shadow:0 0 12px rgba(0,255,255,0.3), 0 3px 8px rgba(0,0,0,0.5);
+      animation:mystery-pulse 2.4s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes mystery-pulse{
+      0%,100%{box-shadow:0 0 10px rgba(0,255,255,0.25), 0 3px 8px rgba(0,0,0,0.5);}
+      50%{box-shadow:0 0 22px rgba(0,255,255,0.6), 0 3px 8px rgba(0,0,0,0.5);}
+    }
+    .mystery-title{
+      font-weight:900; color:#0ff; letter-spacing:0.15em; font-family:monospace;
+    }
+    .mystery-btn-row{
+      display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:6px;
+    }
+    .mystery-guess-btn{
+      padding:8px 14px; background:linear-gradient(135deg,#0ff,#00c4e8);
+      color:#000; border:none; border-radius:9px; font-weight:900;
+      font-size:12px; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
+      white-space:nowrap; flex-shrink:0;
+    }
+    .mystery-guess-btn:hover:not(:disabled){
+      transform:scale(1.06); box-shadow:0 4px 14px rgba(0,255,255,0.45);
+    }
+    .mystery-guess-btn:disabled{
+      background:#1a2a2a; color:#0a8; border:1px solid #0a8; cursor:default;
+    }
+    .mystery-solvers{
+      font-size:11px; color:#888; flex-shrink:0;
+    }
+    /* In desktop compact mode hide most body but keep mystery row visible */
+    .grid[data-layout="desktop"] .mystery-btn-row{ display:flex !important; }
+    .grid[data-layout="desktop"] .mystery-title{ white-space:normal; overflow:visible; }
+    /* Grid compact: scale down mystery btn slightly */
+    .grid[data-layout="grid"] .mystery-guess-btn{ font-size:11px; padding:6px 10px; }
+    /* Post-viewer mystery section */
+    .post-viewer__mystery{
+      margin-top:12px; padding:12px 14px; background:rgba(0,255,255,0.06);
+      border:1.5px solid rgba(0,255,255,0.25); border-radius:12px;
+    }
+    .post-viewer__mystery-label{ font-size:11px; color:#888; margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em; }
+    .post-viewer__mystery-masked{ font-size:22px; font-weight:900; color:#0ff; letter-spacing:.18em; font-family:monospace; margin-bottom:10px; }
+    .post-viewer__mystery-btn{
+      display:inline-block; padding:9px 18px; background:linear-gradient(135deg,#0ff,#00c4e8);
+      color:#000; border:none; border-radius:10px; font-weight:900; font-size:13px;
+      cursor:pointer; transition:transform .15s ease; width:100%;
+    }
+    .post-viewer__mystery-btn:hover{ transform:scale(1.03); }
+    .post-viewer__mystery-solved{ font-size:13px; color:#0f3; font-weight:700; }
+    .card__body{
+      padding:14px; display:flex; flex-direction:column; gap:8px;
+      background:linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, #000), var(--card));
+    }
+    .card__title{font-weight:800; font-size:18px}
+    .card__meta{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+    .card__time{font-size:13px; opacity:.95}
+    .card__traveler-row{display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:12px;}
+    .card__traveler{font-size:14px; color:var(--body); font-weight:600; min-width:0; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+    .card__passport{width:54px; height:54px; border-radius:14px; border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:transform .12s ease, border-color .12s ease, background .12s ease; padding:0;}
+    .card__passport span{font-size:24px;}
+    .card__passport img{width:100%; height:100%; object-fit:cover; border-radius:inherit;}
+    .card__passport[aria-disabled="true"]{cursor:default; opacity:0.6; pointer-events:none;}
+    .card__passport[hidden]{display:none;}
+    .card__passport:not([aria-disabled="true"]):hover{transform:translateY(-1px); border-color:rgba(255,159,107,0.6); background:rgba(255,159,107,0.14);}
+
+    .votes{display:flex; gap:10px; margin-top:2px}
+    .vote-button{
+      display:inline-flex; align-items:center; gap:6px;
+      border-radius:999px; border:1px solid var(--stroke);
+      padding:8px 12px; background:transparent; color:inherit; cursor:pointer; font-weight:700;
+      transition:transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .vote-button[data-active="true"], .vote-button:hover{ background:color-mix(in oklab, var(--brand) 24%, #000); border-color:color-mix(in oklab, var(--brand) 60%, var(--stroke)); transform:translateY(-1px); }
+    .passport-viewer{position:fixed; inset:0; background:rgba(0,0,0,0.9); display:none; align-items:center; justify-content:center; padding:clamp(24px,6vw,60px); z-index:120;}
+    .passport-viewer.active{display:flex;}
+    .passport-viewer__inner{position:relative; max-width:90vw; max-height:90vh; border-radius:24px; overflow:hidden; background:#05070d; border:1px solid rgba(255,255,255,0.12); box-shadow:0 22px 60px rgba(0,0,0,0.6);}
+    .passport-viewer__img{width:100%; height:100%; object-fit:contain; background:#000; display:block;}
+    .passport-viewer__close{position:absolute; top:12px; right:12px; border:0; border-radius:999px; background:rgba(0,0,0,0.65); color:var(--text); width:46px; height:46px; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;}
+    .passport-viewer__close:hover{background:rgba(0,0,0,0.8);}
+
+    /* Post viewer (for grid mode) */
+    .post-viewer{position:fixed; inset:0; background:rgba(0,0,0,0.92); display:none; overflow-y:auto; padding:60px 20px 40px; z-index:125; backdrop-filter:blur(10px);}
+    .post-viewer.active{display:block;}
+    .post-viewer__inner{position:relative; width:100%; max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:14px;}
+    .post-viewer__close{position:fixed; top:12px; right:20px; border:0; border-radius:999px; background:rgba(20,20,25,0.8); color:var(--text); width:50px; height:50px; font-size:28px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:200; transition:all .15s ease; border:2px solid rgba(255,255,255,0.1); user-select:none;}
+    .post-viewer__close::before{content:'❎';}
+    .post-viewer__close:hover{background:rgba(40,40,50,0.9); border-color:rgba(255,255,255,0.2); transform:scale(1.08);}
+    .post-viewer__close:hover::before{content:'✳️';}
+    .post-viewer__close:active{transform:scale(0.95);}
+    .post-viewer__close:active::before{content:'🙅';}
+    .post-viewer__media-wrapper{position:relative; flex-shrink:0; height:min(62vh,640px); display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--card-2); border-radius:14px; border:1px solid var(--stroke);}
+    .post-viewer__media{max-width:100%; max-height:100%; object-fit:contain; display:block; cursor:zoom-in; transition:transform 0.3s ease; transform-origin:center center;}
+    .post-viewer__media.zoomed{cursor:move; transform:scale(3); transition:none;}
+    .post-viewer__info{background:var(--card); border:1px solid var(--stroke); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:10px;}
+    .post-viewer__title{font-size:18px; font-weight:800; color:var(--text);}
+    .post-viewer__meta{display:flex; gap:14px; flex-wrap:wrap; font-size:12px; color:var(--muted);}
+    .post-viewer__meta-item{display:flex; align-items:center; gap:6px;}
+    .post-viewer__zoom-hint{position:absolute; bottom:12px; right:12px; background:rgba(0,0,0,0.7); color:var(--text); padding:6px 12px; border-radius:999px; font-size:11px; opacity:0.6; pointer-events:none;}
+    .post-viewer__media.zoomed ~ .post-viewer__zoom-hint{opacity:0;}
+    @media (max-width:768px){
+      .post-viewer{padding:50px 12px 30px;}
+      .post-viewer__close{top:8px; right:12px; width:46px; height:46px; font-size:26px;}
+      .post-viewer__media-wrapper{height:min(52vh,420px);}
+    }
+
+    /* ===== Leaderboard Overlay ===== */
+    .leaderboard-overlay{position:fixed; inset:0; background:rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center; z-index:130; backdrop-filter:blur(8px);}
+    .leaderboard-overlay.active{display:flex;}
+    .leaderboard-overlay__inner{position:relative; width:60%; height:100%; background:var(--card); border-left:1px solid var(--stroke); border-right:1px solid var(--stroke); box-shadow:0 0 60px rgba(0,0,0,0.8); display:flex; flex-direction:column;}
+    .leaderboard-overlay__header{display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:rgba(10,12,18,.95); border-bottom:1px solid var(--stroke);}
+    .leaderboard-overlay__title{font-size:20px; font-weight:800; color:var(--text); display:flex; align-items:center; gap:10px;}
+    .leaderboard-overlay__close{border:0; border-radius:999px; background:rgba(255,255,255,0.1); color:var(--text); width:40px; height:40px; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .12s ease;}
+    .leaderboard-overlay__close:hover{background:rgba(255,255,255,0.2);}
+    .leaderboard-overlay__content{flex:1; overflow:hidden;}
+    .leaderboard-overlay__iframe{width:100%; height:100%; border:0; background:var(--bg);}
+    @media (max-width:768px){
+      .leaderboard-overlay__inner{width:90%;}
+    }
+
+    @keyframes bounceIn { 0%{ transform:scale(.96); opacity:.0 } 60%{ transform:scale(1.03); opacity:1 } 100%{ transform:scale(1) } }
+    .is-new { animation:bounceIn .6s cubic-bezier(.34,1.56,.64,1) }
+
+    /* Vote animations */
+    @keyframes voteUp { 0%{ transform:scale(1) } 50%{ transform:scale(1.3) translateY(-4px) } 100%{ transform:scale(1) } }
+    @keyframes voteDown { 0%{ transform:scale(1) } 50%{ transform:scale(1.3) translateY(4px) } 100%{ transform:scale(1) } }
+    .vote-anim-up { animation:voteUp .4s cubic-bezier(.34,1.56,.64,1) }
+    .vote-anim-down { animation:voteDown .4s cubic-bezier(.34,1.56,.64,1) }
+
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+    /* ===== Guess Overlay ===== */
+    #guess-overlay{
+      position:fixed;inset:0;z-index:9999;
+      background:#050505;
+      display:none;flex-direction:column;
+    }
+    #guess-overlay.active{display:flex;}
+
+    .guess-topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 16px 12px;
+      background:rgba(5,5,5,0.98);
+      border-bottom:1px solid rgba(0,255,255,0.2);
+      flex-shrink:0;gap:10px;
+    }
+    .guess-topbar__title{
+      font-size:16px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+      color:#0ff;flex:1;
+    }
+    .guess-topbar__counter{
+      font-size:12px;color:rgba(255,255,255,0.4);font-weight:600;
+      flex-shrink:0;
+    }
+    .guess-topbar__close{
+      background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+      border-radius:10px;font-size:20px;cursor:pointer;color:#fff;
+      width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+      line-height:1;flex-shrink:0;
+      transition:background .12s ease,border-color .12s ease;
+    }
+    .guess-topbar__close:hover{background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.3);}
+
+    .guess-media-area{
+      flex:1;display:flex;align-items:center;justify-content:center;
+      background:#000;position:relative;overflow:hidden;min-height:0;
+    }
+    .guess-media-area img,.guess-media-area video{
+      max-width:100%;max-height:100%;object-fit:contain;display:block;
+    }
+
+    .guess-nav-btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      background:rgba(0,0,0,0.55);border:1px solid rgba(0,255,255,0.5);color:#0ff;
+      font-size:22px;font-weight:900;
+      width:40px;height:66px;border-radius:20px;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:background .15s ease,transform .15s ease;
+      user-select:none;z-index:2;
+    }
+    .guess-nav-btn:hover{background:rgba(0,255,255,0.15);transform:translateY(-50%) scale(1.05);}
+    .guess-nav-btn.prev{left:10px;}
+    .guess-nav-btn.next{right:10px;}
+    .guess-nav-btn[hidden]{display:none;}
+
+    .guess-bottom{
+      flex-shrink:0;
+      background:rgba(6,8,14,0.99);
+      border-top:2px solid rgba(0,255,255,0.7);
+      padding:18px 16px 22px;
+      display:flex;flex-direction:column;align-items:center;gap:14px;
+    }
+
+    /* Character boxes */
+    .guess-char-row{
+      display:flex;flex-wrap:wrap;gap:5px 7px;
+      justify-content:center;align-items:center;
+    }
+    .guess-word-gap{width:14px;flex-shrink:0;}
+    .guess-char-box{
+      width:34px;height:38px;border-radius:7px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:17px;font-weight:800;letter-spacing:0;
+      transition:border-color .1s ease,background .1s ease;
+      position:relative;
+    }
+    .guess-char-box.revealed{
+      background:rgba(0,255,255,0.15);
+      border:1.5px solid #0ff;
+      color:#0ff;
+    }
+    .guess-char-box.blank{
+      border:1.5px solid rgba(255,255,255,0.35);
+      color:transparent;
+    }
+    .guess-char-box.blank.active{
+      border-color:#fff;
+      box-shadow:0 0 0 2px rgba(255,255,255,0.25);
+    }
+    .guess-char-box.blank.filled{
+      color:#fff;
+      border-color:rgba(255,255,255,0.65);
+    }
+    .guess-char-box.punct{
+      border:none;background:none;
+      color:rgba(255,255,255,0.45);
+      width:14px;
+    }
+
+    /* Hidden keyboard trap */
+    #guess-keyboard-trap{
+      position:absolute;opacity:0;width:1px;height:1px;
+      left:-9999px;top:-9999px;
+    }
+
+    .guess-feedback{
+      text-align:center;font-size:15px;font-weight:800;
+      min-height:20px;
+      transition:opacity .2s ease;
+    }
+    .guess-feedback.correct{color:#0f9;}
+    .guess-feedback.wrong{color:#f55;}
+
+    .guess-submit-row{
+      display:flex;align-items:center;justify-content:center;
+      width:100%;
+    }
+    #guess-submit-btn{
+      padding:13px 32px;border-radius:12px;border:none;
+      font-weight:800;font-size:15px;cursor:pointer;
+      transition:background .15s ease,transform .15s ease,box-shadow .15s ease;
+      width:100%;max-width:340px;
+    }
+    #guess-submit-btn:disabled{
+      background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);cursor:default;
+    }
+    #guess-submit-btn:not(:disabled){
+      background:linear-gradient(135deg,#0ff,#00c4e8);color:#000;
+    }
+    #guess-submit-btn:not(:disabled):hover{
+      transform:scale(1.03);box-shadow:0 4px 18px rgba(0,255,255,0.45);
+    }
+
+    .guess-hint{
+      text-align:center;font-size:11px;color:rgba(255,255,255,0.28);
+      letter-spacing:.05em;
+    }
+
+    /* ===== Win Animations ===== */
+    .win-particle{
+      position:fixed;pointer-events:none;z-index:10000;
+      font-size:22px;line-height:1;
+      will-change:transform,opacity;
+    }
+
+    /* Style 0: coin burst upward arc */
+    @keyframes winS0{
+      0%  {transform:translate(0,0) scale(1);opacity:1;}
+      100%{transform:translate(var(--tx),var(--ty)) scale(0.4) rotate(720deg);opacity:0;}
+    }
+    /* Style 1: star radial explosion */
+    @keyframes winS1{
+      0%  {transform:translate(0,0) scale(0.5);opacity:1;}
+      60% {transform:translate(var(--tx),var(--ty)) scale(1.2);opacity:1;}
+      100%{transform:translate(var(--tx),var(--ty)) scale(0.8);opacity:0;}
+    }
+    /* Style 2: square confetti fall */
+    @keyframes winS2{
+      0%  {transform:translateY(0) rotate(0deg);opacity:1;}
+      100%{transform:translateY(var(--ty)) rotate(var(--rot));opacity:0;}
+    }
+    /* Style 3: emoji fountain */
+    @keyframes winS3{
+      0%  {transform:translate(0,0) scale(1);opacity:1;}
+      50% {transform:translate(var(--tx),var(--ty2)) scale(1.3);opacity:1;}
+      100%{transform:translate(var(--tx),var(--ty)) scale(0.6);opacity:0;}
+    }
+    /* Style 4: spiral outward */
+    @keyframes winS4{
+      0%  {transform:translate(0,0) rotate(0deg) scale(1);opacity:1;}
+      100%{transform:translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(0.3);opacity:0;}
+    }
+    /* Style 5: heart shower from top */
+    @keyframes winS5{
+      0%  {transform:translateY(-40px) scale(0.8);opacity:0;}
+      15% {opacity:1;}
+      100%{transform:translateY(var(--ty)) scale(1.1);opacity:0;}
+    }
+    /* Style 6: fast burst all directions */
+    @keyframes winS6{
+      0%  {transform:translate(0,0) scale(1.2);opacity:1;}
+      40% {opacity:1;}
+      100%{transform:translate(var(--tx),var(--ty)) scale(0.2);opacity:0;}
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header with Title + Language (single-flag picker) ===== -->
+  <header id="main-header">
+    <div class="header__inner">
+      <h1 id="title">
+        <a href="https://emojipainter.com/" id="title-link" aria-label="Go to Emoji Painter home">
+          <span class="title-emoji" id="title-emoji">🤚</span>
+          <span class="title-word" id="title-word"></span>
+        </a>
+      </h1>
+
+      <!-- Trophy Button -->
+      <button id="trophy-btn" class="trophy-btn" type="button" aria-label="View Leaderboard" title="View Leaderboard">
+        <span id="trophy-emoji">🏆</span>
+      </button>
+
+      <!-- Suggestions Button -->
+      <button id="suggestions-btn" class="trophy-btn" type="button" aria-label="Topic Suggestions" title="Topic Suggestions">
+        <span id="suggestions-emoji">💡</span>
+      </button>
+
+      <!-- Single-flag toggle + dropdown panel (hidden by default) -->
+      <nav class="langbar" aria-label="Language">
+        <button id="lang-toggle" class="flag-btn" aria-haspopup="menu" aria-expanded="false" title="Change language">
+          <span id="lang-flag" aria-hidden="true">🇬🇧</span>
+          <span id="lang-name" class="sr-only">English</span>
+        </button>
+        <div id="lang-panel" class="lang-panel" role="menu" aria-labelledby="lang-toggle" hidden></div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sort picker + back -->
+  <div class="sortbar">
+    <div class="sortbar__inner">
+      <label for="sort-select" class="sr-only" id="orderLabel">Order</label>
+      <select id="sort-select" aria-labelledby="orderLabel">
+        <option value="new">⏳</option>
+        <option value="top">🏆</option>
+        <option value="hot">🔥</option>
+      </select>
+      <button id="layout-toggle" class="layout-btn" aria-label="Toggle layout" title="Toggle layout">
+        <span class="layout-icon">⊞</span>
+      </button>
+      <div id="grid-slider-wrapper" class="grid-slider-wrapper" hidden>
+        <label for="grid-slider">Columns</label>
+        <input type="range" id="grid-slider" class="grid-slider" min="1" max="6" value="4" step="1" aria-label="Grid columns">
+        <span id="grid-count" class="grid-count">4</span>
+      </div>
+      <a class="back-btn" href="https://emojipainter.com" aria-label="Back to Emoji Painter">🔙</a>
+    </div>
+  </div>
+
+  <div id="ptr" class="ptr"><div id="ptr-text">Release to refresh…</div></div>
+
+  <p id="intro" class="intro">
+    <strong>Emoji Painter</strong> is a super-simple art app for desktop & phones — like a kid-friendly Photoshop.
+    Every day brings <strong>three topics</strong>. Pick a <strong>timer</strong>, paint within that time, and upload if you love it.
+    This gallery lists everything by day & topic — always the <strong>newest first</strong>. Big date banners mark each new day as you scroll.
+  </p>
+
+  <section id="how-it-works" style="max-width:760px;margin:14px auto 6px;padding:0 16px">
+    <details style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:14px 18px;color:#cfd8e3">
+      <summary style="cursor:pointer;font-weight:800;font-size:15px;color:#7fd4ff">ℹ️ How topics &amp; mystery paintings work</summary>
+      <div style="margin-top:12px;font-size:13.5px;line-height:1.75">
+        <p style="margin:0 0 10px"><strong>🗓️ Daily Topics.</strong> Every day the app serves <strong>three fresh topics</strong>, the same for everyone worldwide. You pick one, a sprint timer starts (a few minutes only!), you paint it with emoji brushes and — if you love the result — upload it here. The time pressure is the point: no overthinking, no polishing, just honest fast painting. The gallery sorts everything by day and topic, newest first.</p>
+        <p style="margin:0 0 10px"><strong>🎲 Mystery Topics.</strong> The fourth challenge is different: you get a <strong>secret topic</strong> drawn from a pool of <strong>999+ curated topics</strong> (plus community-suggested ones). You paint it so clearly that strangers can guess it — but in the gallery the topic stays <strong>hidden behind masked letters</strong>. Other players hit <em>Guess</em>, type their answer letter by letter, and when someone solves it the painting is revealed and the solver counts up. Painting a mystery is a test of how much meaning you can pack into emojis; guessing one is a test of how well you can read another human's encoding.</p>
+        <p style="margin:0 0 10px"><strong>💡 Suggest topics.</strong> Tap the 💡 button up top to suggest your own topics and vote on others — approved suggestions join the mystery pool for everyone.</p>
+        <p style="margin:0"><strong>🛡️ The philosophy.</strong> Everything here is <strong>anti-AI image making</strong>. Each painting is made by a human, under time pressure, out of emojis — symbols that carry meaning in every language. That makes these images a human encoding: <em>translatable but not scrapeable</em>. An AI can generate pixels; it cannot fake hundreds of deliberate symbol choices racing a clock — and it cannot guess a mystery painting the way you can. Human eyes only. <a href="https://emojipainter.com/about.html" style="color:#7fd4ff">Read more →</a></p>
+      </div>
+    </details>
+  </section>
+
+  <div class="cta">
+    <img class="icon" src="./icon.png" alt="Emoji Painter icon" />
+    <a id="cta-btn" class="btn" href="#" rel="noopener">Get the App</a>
+  </div>
+
+  <!-- Today's topics -->
+  <section id="topics" class="topics" hidden>
+    <span class="topics__date" id="topics-date"></span>
+    <span class="chip" id="chip-1"></span>
+    <span class="chip" id="chip-2"></span>
+    <span class="chip" id="chip-3"></span>
+  </section>
+
+  <main>
+    <div id="status" class="status-bar" hidden></div>
+    <div id="gallery" class="grid" role="list" aria-live="polite"></div>
+  </main>
+
+  <!-- Card template -->
+  <template id="card-template">
+    <article class="card" role="listitem" itemscope itemtype="https://schema.org/CreativeWork">
+      <div class="card__image-wrapper">
+        <img class="card__image" loading="lazy" decoding="async" itemprop="image" />
+      </div>
+      <div class="card__body">
+        <div class="card__title" itemprop="name"></div>
+        <div class="card__meta" itemprop="datePublished"></div>
+        <div class="card__time"></div>
+        <div class="card__traveler-row">
+          <div class="card__traveler" data-traveler></div>
+          <button class="card__passport" type="button" data-passport aria-disabled="true" hidden>
+            <span>🪪</span>
+          </button>
+        </div>
+        <div class="votes">
+          <button class="vote-button" data-direction="up" type="button" aria-label="Upvote">▲ <span class="count"></span></button>
+          <button class="vote-button" data-direction="down" type="button" aria-label="Downvote">▼ <span class="count"></span></button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <!-- Day banner template -->
+  <template id="day-template">
+    <h2 class="day-banner" role="heading" aria-level="2"></h2>
+  </template>
+
+  <div class="passport-viewer" id="passport-viewer" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="passport-viewer__inner">
+      <button type="button" class="passport-viewer__close" aria-label="Close passport preview">✕</button>
+      <img src="" alt="Passport portrait" class="passport-viewer__img" />
+    </div>
+  </div>
+
+  <!-- Post Viewer (for grid mode) -->
+  <div class="post-viewer" id="post-viewer" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="post-viewer__inner">
+      <button type="button" class="post-viewer__close" aria-label="Close post preview"></button>
+      <div class="post-viewer__media-wrapper">
+        <img src="" alt="" class="post-viewer__media" id="post-viewer-media" />
+        <div class="post-viewer__zoom-hint">Click to zoom • Drag to pan</div>
+      </div>
+      <div class="post-viewer__info">
+        <div class="post-viewer__title" id="post-viewer-title"></div>
+        <div class="post-viewer__meta" id="post-viewer-meta"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaderboard Overlay -->
+  <div class="leaderboard-overlay" id="leaderboard-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="leaderboard-overlay__inner">
+      <div class="leaderboard-overlay__header">
+        <div class="leaderboard-overlay__title">
+          <span>🏆</span>
+          <span>Leaderboard</span>
+        </div>
+        <button type="button" class="leaderboard-overlay__close" aria-label="Close leaderboard">✕</button>
+      </div>
+      <div class="leaderboard-overlay__content">
+        <iframe id="leaderboard-iframe" src="https://emojipainter.com/leaderboard/index.html" class="leaderboard-overlay__iframe" title="Emoji Painter Leaderboard"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic Suggestions Overlay -->
+  <div class="leaderboard-overlay" id="suggestions-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="leaderboard-overlay__inner">
+      <div class="leaderboard-overlay__header">
+        <div class="leaderboard-overlay__title">
+          <span>💡</span>
+          <span>Topic Suggestions</span>
+        </div>
+        <button type="button" class="leaderboard-overlay__close" id="suggestions-close" aria-label="Close suggestions">❎</button>
+      </div>
+      <div class="leaderboard-overlay__content" style="padding:20px; overflow-y:auto;">
+        <!-- Submit Form -->
+        <div style="background:var(--card-2); border-radius:12px; padding:20px; margin-bottom:24px; border:1px solid var(--stroke);">
+          <h3 style="margin:0 0 12px 0; color:var(--text); font-size:16px;">Submit New Topic</h3>
+          <input type="text" id="suggestion-input" placeholder="Enter your topic idea..."
+                 style="width:100%; padding:12px; background:var(--bg); border:1px solid var(--stroke); border-radius:8px; color:var(--text); font-family:inherit; font-size:14px; margin-bottom:12px;">
+          <button id="submit-suggestion-btn"
+                  style="background:var(--brand); color:white; border:0; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:600; font-family:inherit;">
+            Submit Topic
+          </button>
+          <div id="submit-status" style="margin-top:10px; font-size:13px;"></div>
+        </div>
+
+        <!-- Sort Selector -->
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding:12px; background:var(--card-2); border-radius:8px; border:1px solid var(--stroke);">
+          <label style="color:var(--text); font-size:14px; font-weight:600;">Sort by:</label>
+          <select id="suggestions-sort" style="background:var(--bg); border:1px solid var(--stroke); border-radius:6px; color:var(--text); padding:6px 12px; font-family:inherit; cursor:pointer;">
+            <option value="newest">Newest First</option>
+            <option value="mostLikes">Most Likes First</option>
+          </select>
+        </div>
+
+        <!-- Suggestions List -->
+        <div id="suggestions-list" style="display:flex; flex-direction:column; gap:12px;">
+          <div style="text-align:center; padding:40px; color:var(--muted);">Loading...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Guess Overlay ===== -->
+  <div id="guess-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Guess the Mystery Topic">
+    <div class="guess-topbar">
+      <span class="guess-topbar__title">🎲 Guess the Topic</span>
+      <span class="guess-topbar__counter" id="guess-counter"></span>
+      <button class="guess-topbar__close" id="guess-close" aria-label="Close">✕</button>
+    </div>
+    <div class="guess-media-area" id="guess-media-area">
+      <button class="guess-nav-btn prev" id="guess-prev" aria-label="Previous mystery" hidden>&#8249;</button>
+      <button class="guess-nav-btn next" id="guess-next" aria-label="Next mystery" hidden>&#8250;</button>
+    </div>
+    <div class="guess-bottom">
+      <div class="guess-char-row" id="guess-char-row"></div>
+      <input id="guess-keyboard-trap" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-hidden="true" tabindex="-1" />
+      <div id="guess-feedback" class="guess-feedback"></div>
+      <div id="guess-tries" style="color:#888;font-size:11px;text-align:center;"></div>
+      <div class="guess-submit-row">
+        <button id="guess-submit-btn" disabled>Fill in the blanks to submit</button>
+      </div>
+      <div class="guess-hint">1 guess per painting per session</div>
+    </div>
+  </div>
+
+  <!-- Win particles container -->
+  <div id="win-particles" style="position:fixed;inset:0;pointer-events:none;z-index:10000;overflow:hidden;"></div>
+
+  <script>
+    const API_BASE = 'https://emojipainter.com/api';
+    // Public repo: real value intentionally omitted (upload-auth credential for
+    // the live backend). Set your own generated value here — see
+    // src/lib/dailyPaintSecrets.ts for how the app side generates its token.
+    const DAILY_PAINT_SHARED_SECRET = 'REPLACE_WITH_YOUR_OWN_SECRET';
+    // ✅ FIX: Prioritize local leaderboard endpoint for reliability
+    // Determine the base path depending on where this file is served from
+    const getLeaderboardEndpoints = () => {
+      const currentPath = window.location.pathname;
+      const endpoints = [];
+
+      // If served from /public/gallery.html, local leaderboard is at ../leaderboard/
+      if(currentPath.includes('/public/')) {
+        endpoints.push('../leaderboard/leaderboard_feed.php');
+      } else if(currentPath.includes('/Downloads/')) {
+        // If served locally from Downloads, leaderboard is sibling folder
+        endpoints.push('../leaderboard/leaderboard_feed.php');
+      } else {
+        // For web servers, assume standard structure
+        endpoints.push('/leaderboard/leaderboard_feed.php');
+      }
+
+      // Add remote fallbacks
+      endpoints.push('https://emojipainter.com/leaderboard/leaderboard_feed.php');
+      endpoints.push('https://emojipaint.com/leaderboard_feed.php');
+
+      console.log('[Leaderboard] Trying endpoints:', endpoints);
+      return endpoints;
+    };
+
+    let LEADERBOARD_ENDPOINTS = getLeaderboardEndpoints();
+    const PLACEHOLDER_EMOJI = '🪪';
+
+    /* ===== i18n ===== */
+    const LOCALES = { en:'en', de:'de-DE', fr:'fr-FR', it:'it-IT', ja:'ja-JP', ko:'ko-KR', zh:'zh-CN' };
+    const I18N = {
+      en:{ titleText:"SpitPaint GallerY",
+        intro:`<strong>Emoji Painter</strong> is a super-simple art app for desktop & phones — like a kid-friendly Photoshop.
+        Every day brings <strong>three topics</strong>. Pick a <strong>timer</strong>, paint within that time, and upload if you love it.
+        This gallery lists everything by day & topic — always the <strong>newest first</strong>. Big date banners mark each new day as you scroll.`,
+        ptr:"Release to refresh…", ctaDesktop:"Download Now", ctaMobile:"Download Now",
+        usedTime:(s)=>`⏱ ${s}`, noEntries:(q)=>`No entries for "${q}" yet today.` },
+      de:{ titleText:"SpitPaint Galerie",
+        intro:`<strong>Emoji Painter</strong> ist eine super einfache Mal-App für Desktop & Handy — wie Photoshop für Kinder.
+        Jeden Tag gibt es <strong>drei Themen</strong>. Wähle einen <strong>Timer</strong>, male in dieser Zeit und lade hoch, wenn du magst.
+        Diese Galerie listet alles nach Tag & Thema — immer das <strong>Neueste zuerst</strong>. Große Datumsbanner markieren beim Scrollen jeden neuen Tag.`,
+        ptr:"Loslassen zum Aktualisieren…", ctaDesktop:"Jetzt herunterladen", ctaMobile:"Jetzt herunterladen",
+        usedTime:(s)=>`⏱ ${s}`, noEntries:(q)=>`Noch keine Einträge für „${q}" heute.` },
+      fr:{ titleText:"Galerie SpitPaint",
+        intro:`<strong>Emoji Painter</strong> est une appli de dessin ultra simple pour ordinateur et téléphone — façon Photoshop pour enfants.
+        Chaque jour apporte <strong>trois thèmes</strong>. Choisis un <strong>minuteur</strong>, peins dans ce temps et envoie si tu aimes.
+        Cette galerie affiche tout par jour & thème — toujours le <strong>plus récent en premier</strong>. De grands bandeaux de date marquent chaque nouveau jour.`,
+        ptr:"Relâcher pour actualiser…", ctaDesktop:"Télécharger maintenant", ctaMobile:"Télécharger maintenant",
+        usedTime:(s)=>`⏱ ${s}`, noEntries:(q)=>`Aucune entrée pour « ${q} » aujourd’hui.` },
+      it:{ titleText:"Galleria SpitPaint",
+        intro:`<strong>Emoji Painter</strong> è un’app di disegno super semplice per desktop e telefoni — come un Photoshop per bambini.
+        Ogni giorno ci sono <strong>tre temi</strong>. Scegli un <strong>timer</strong>, dipingi in quel tempo e carica se ti piace.
+        Questa galleria elenca tutto per giorno & tema — sempre il <strong>più recente</strong> per primo. Grandi banner data segnano ogni nuovo giorno.`,
+        ptr:"Rilascia per aggiornare…", ctaDesktop:"Scarica ora", ctaMobile:"Scarica ora",
+        usedTime:(s)=>`⏱ ${s}`, noEntries:(q)=>`Nessuna voce per "${q}" oggi.` },
+      ja:{ titleText:"SpitPaint ギャラリー",
+        intro:`<strong>Emoji Painter</strong> はデスクトップとスマホ向けの、とてもシンプルなお絵かきアプリです。
+        毎日<strong>3つのトピック</strong>が出ます。<strong>タイマー</strong>を選び、その時間内に描いて、気に入ったら投稿。
+        このギャラリーは日付とトピックごとに、いつも<strong>新しい順</strong>で表示します。大きな日付バナーで新しい日が分かります。`,
+        ptr:"離して更新…", ctaDesktop:"今すぐダウンロード", ctaMobile:"今すぐダウンロード",
+        usedTime:(s)=>`⏱ ${s}`, noEntries:(q)=>`今日は「${q}」の投稿はまだありません。` },
+      ko:{ titleText:"SpitPaint 갤러리",
+        intro:`<strong>Emoji Painter</strong> 는 데스크톱과 폰에서 쓰는 초간단 그림 앱입니다.
+        매일 <strong>3개 주제</strong>가 나오고, <strong>타이머</strong>를 정해 그 시간 안에 그린 뒤 마음에 들면 업로드하세요.
+        갤러리는 날짜·주제별로 <strong>최신순</strong>으로 보여줍니다. 큰 날짜 배너가 새 날을 표시해요.`,
+        ptr:"놓으면 새로고침…", ctaDesktop:"지금 다운로드", ctaMobile:"지금 다운로드",
+        usedTime:(s)=>`⏱ ${s}`, noEntries:(q)=>`오늘은 "${q}" 게시물이 아직 없습니다.` },
+      zh:{ titleText:"SpitPaint 画廊",
+        intro:`<strong>Emoji Painter</strong> 是一款超简单的绘画应用，支持电脑和手机。
+        每天都有<strong>三个主题</strong>。先选<strong>计时</strong>，在时间内完成，喜欢就上传。
+        画廊按日期与主题展示，始终<strong>最新优先</strong>。滚动时会看到醒目的日期横幅。`,
+        ptr:"松手刷新…", ctaDesktop:"立即下载", ctaMobile:"立即下载",
+        usedTime:(s)=>`⏱ ${s}`, noEntries:(q)=>`今天还没有 "${q}" 的作品。` }
+    };
+
+    /* Language metadata for flags/names */
+    const LANGUAGE_META = {
+      en:{ flag:'🇬🇧', name:'English'  },
+      de:{ flag:'🇩🇪', name:'Deutsch'  },
+      fr:{ flag:'🇫🇷', name:'Français' },
+      it:{ flag:'🇮🇹', name:'Italiano' },
+      ja:{ flag:'🇯🇵', name:'日本語'     },
+      ko:{ flag:'🇰🇷', name:'한국어'     },
+      zh:{ flag:'🇨🇳', name:'中文'       },
+    };
+
+    /* ===== ELEMENTS ===== */
+    const statusEl   = document.getElementById('status');
+    const galleryEl  = document.getElementById('gallery');
+    const cardTpl    = document.getElementById('card-template');
+    const passportViewer = document.getElementById('passport-viewer');
+    const passportViewerImg = passportViewer.querySelector('.passport-viewer__img');
+    const passportViewerClose = passportViewer.querySelector('.passport-viewer__close');
+    const dayTpl     = document.getElementById('day-template');
+    const sortSelect = document.getElementById('sort-select');
+    const layoutToggle = document.getElementById('layout-toggle');
+    const gridSliderWrapper = document.getElementById('grid-slider-wrapper');
+    const gridSlider = document.getElementById('grid-slider');
+    const gridCount = document.getElementById('grid-count');
+    const postViewer = document.getElementById('post-viewer');
+    const postViewerMedia = document.getElementById('post-viewer-media');
+    const postViewerTitle = document.getElementById('post-viewer-title');
+    const postViewerMeta = document.getElementById('post-viewer-meta');
+    const postViewerClose = postViewer.querySelector('.post-viewer__close');
+    const titleEmoji = document.getElementById('title-emoji');
+    const favLink    = document.getElementById('fav-animated');
+    const titleWord  = document.getElementById('title-word');
+    const titleEl    = document.getElementById('title');
+    const topicsSection = document.getElementById('topics');
+    const topicsDateEl  = document.getElementById('topics-date');
+    const chipEls       = [document.getElementById('chip-1'), document.getElementById('chip-2'), document.getElementById('chip-3')];
+    const ctaBtn        = document.getElementById('cta-btn');
+    const ptrText       = document.getElementById('ptr-text');
+
+    /* New language UI elements */
+    const langToggleBtn = document.getElementById('lang-toggle');
+    const langFlagEl    = document.getElementById('lang-flag');
+    const langNameEl    = document.getElementById('lang-name');
+    const langPanel     = document.getElementById('lang-panel');
+
+    /* ===== HELPERS ===== */
+    const toYMD = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const localeOf = (lang)=> LOCALES[lang] || 'en';
+    const norm = s => String(s||'').toLowerCase().normalize('NFKC').replace(/\s+/g,' ').trim();
+
+    function toBannerText(d, lang){
+      const opt = { weekday:'long', year:'numeric', month:'2-digit', day:'2-digit' };
+      return d.toLocaleDateString(localeOf(lang), opt);
+    }
+    function getOrCreateDeviceId(){
+      const key='daily-paint-device-id'; const ex = localStorage.getItem(key);
+      if(ex) return ex;
+      const v = crypto.randomUUID?crypto.randomUUID():`device-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      localStorage.setItem(key,v); return v;
+    }
+    const deviceId = getOrCreateDeviceId();
+    const voteMemoryKey='daily-paint-votes';
+    const getVoteMemory=()=>{ try{return JSON.parse(localStorage.getItem(voteMemoryKey))||{};}catch{return{}} };
+    const setVoteMemory=(m)=>localStorage.setItem(voteMemoryKey, JSON.stringify(m));
+    function showPassportViewer(src, alt){
+      passportViewerImg.src = src;
+      passportViewerImg.alt = alt || 'Passport portrait';
+      passportViewer.classList.add('active');
+      passportViewer.setAttribute('aria-hidden','false');
+    }
+    function hidePassportViewer(){
+      passportViewer.classList.remove('active');
+      passportViewer.setAttribute('aria-hidden','true');
+      passportViewerImg.src = '';
+    }
+    passportViewer.addEventListener('click', (event)=>{
+      if(event.target === passportViewer || event.target === passportViewerClose){
+        hidePassportViewer();
+      }
+    });
+    passportViewerClose.addEventListener('click', (event)=>{
+      event.stopPropagation();
+      hidePassportViewer();
+    });
+
+    /* ===== POST VIEWER (for grid mode) ===== */
+    let currentPostData = null;
+    function showPostViewer(item){
+      currentPostData = item;
+      const isVideo = item.media_type === 'video';
+
+      // Always replace media element fresh to avoid stale reference bugs
+      const mediaWrapper = postViewer.querySelector('.post-viewer__media-wrapper');
+      const oldMedia = document.getElementById('post-viewer-media');
+      if(oldMedia){
+        if(oldMedia.tagName === 'VIDEO') oldMedia.pause();
+        oldMedia.parentNode.removeChild(oldMedia);
+      }
+      let newMedia;
+      if(isVideo){
+        newMedia = document.createElement('video');
+        newMedia.src = item.raw_url || item.image_url;
+        newMedia.autoplay = true;
+        newMedia.loop = true;
+        newMedia.muted = true;
+        newMedia.playsInline = true;
+      } else {
+        newMedia = document.createElement('img');
+        newMedia.src = item.raw_url || item.image_url;
+        newMedia.alt = item.topic || 'Post image';
+      }
+      newMedia.className = 'post-viewer__media';
+      newMedia.id = 'post-viewer-media';
+      newMedia.addEventListener('click', toggleZoom);
+      const zoomHint = mediaWrapper.querySelector('.post-viewer__zoom-hint');
+      if(zoomHint) mediaWrapper.insertBefore(newMedia, zoomHint);
+      else mediaWrapper.appendChild(newMedia);
+
+      // Set title
+      const isMysteryPost = !!(item.is_mystery_paint && item.is_mystery_paint != '0') || !!(item.mystery_painting_id);
+      if(isMysteryPost){
+        const mtText = item.mystery_topic_text || item.topic || '';
+        const { masked: mtMasked } = maskTopic(mtText, item.mystery_topic_id ?? 0);
+        postViewerTitle.innerHTML = `<span style="color:#0ff;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:900;">🎲 Mystery</span><br><span style="font-family:monospace;letter-spacing:0.18em;color:#0ff;">${escapeHtml(mtMasked)}</span>`;
+      } else {
+        postViewerTitle.textContent = item.topic || 'Untitled';
+      }
+
+      // Set meta info
+      const created = new Date((item.created_at || 0) * 1000);
+      const dateStr = created.toLocaleDateString(LOCALES[CURRENT_LANG] || 'en', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      const timeStr = item.duration_sec ? `⏱ ${formatPaintTime(item.duration_sec)}` : '';
+      const sizeStr = item.width && item.height ? `📐 ${item.width}×${item.height}` : '';
+      const votesStr = `▲ ${item.upvotes || 0} ▼ ${item.downvotes || 0}`;
+
+      postViewerMeta.innerHTML = `
+        <span class="post-viewer__meta-item">📅 ${dateStr}</span>
+        ${timeStr ? `<span class="post-viewer__meta-item">${timeStr}</span>` : ''}
+        ${sizeStr ? `<span class="post-viewer__meta-item">${sizeStr}</span>` : ''}
+        <span class="post-viewer__meta-item">${votesStr}</span>
+      `;
+
+      // Inject mystery guess section into post-viewer info
+      const pvInfo = postViewer.querySelector('.post-viewer__info');
+      const oldMystery = pvInfo?.querySelector('.post-viewer__mystery');
+      if(oldMystery) oldMystery.remove();
+      if(isMysteryPost && pvInfo){
+        const topicText = getMysteryTopicForGuess(item);
+        const guessResult = getItemGuess(item.id);
+        const solveCount = item.solve_count || 0;
+        const mystDiv = document.createElement('div');
+        mystDiv.className = 'post-viewer__mystery';
+        if(guessResult === 'correct'){
+          mystDiv.innerHTML = `
+            <div class="post-viewer__mystery-label">🎲 Mystery Topic</div>
+            <div class="post-viewer__mystery-solved">✓ You guessed it: ${escapeHtml(topicText)}</div>
+            <div style="font-size:11px;color:#666;margin-top:4px;">${solveCount} people solved this</div>`;
+        } else {
+          const { masked } = maskTopic(topicText, item.mystery_topic_id ?? 0);
+          const attempts = getItemAttempts(item.id);
+          mystDiv.innerHTML = `
+            <div class="post-viewer__mystery-label">🎲 Guess the hidden topic (${solveCount} solved)</div>
+            <div class="post-viewer__mystery-masked">${escapeHtml(masked)}</div>`;
+          const guessBtn = document.createElement('button');
+          guessBtn.className = 'post-viewer__mystery-btn';
+          guessBtn.textContent = guessResult === 'wrong'
+            ? `🔍 Try Again (${attempts} attempt${attempts!==1?'s':''})`
+            : '🔍 Guess the Topic!';
+          guessBtn.onclick = (e) => { e.stopPropagation(); hidePostViewer(); openGuessOverlay(item); };
+          mystDiv.appendChild(guessBtn);
+        }
+        pvInfo.appendChild(mystDiv);
+      }
+
+      postViewer.classList.add('active');
+      postViewer.setAttribute('aria-hidden','false');
+      postViewer.scrollTop = 0;
+    }
+
+    function hidePostViewer(){
+      postViewer.classList.remove('active');
+      postViewer.setAttribute('aria-hidden','true');
+      const media = document.getElementById('post-viewer-media');
+      if(media){
+        media.classList.remove('zoomed');
+        media.style.transform = '';
+        if(media.tagName === 'VIDEO') media.pause();
+      }
+      // Reset zoom state
+      isZoomed = false;
+      isPanning = false;
+      panX = 0;
+      panY = 0;
+      currentPostData = null;
+    }
+
+    /* Enhanced zoom with panning */
+    let isZoomed = false;
+    let isPanning = false;
+    let panStartX = 0;
+    let panStartY = 0;
+    let panX = 0;
+    let panY = 0;
+
+    function toggleZoom(e){
+      e.stopPropagation();
+      const media = document.getElementById('post-viewer-media');
+      if(!media) return;
+
+      if(!isZoomed){
+        // Zoom in
+        isZoomed = true;
+        panX = 0;
+        panY = 0;
+        media.classList.add('zoomed');
+        updateMediaTransform(media);
+      } else {
+        // Zoom out
+        isZoomed = false;
+        isPanning = false;
+        panX = 0;
+        panY = 0;
+        media.classList.remove('zoomed');
+        media.style.transform = '';
+      }
+    }
+
+    function updateMediaTransform(media){
+      if(isZoomed){
+        media.style.transform = `scale(3) translate(${panX}px, ${panY}px)`;
+      }
+    }
+
+    function handleMediaMouseDown(e){
+      const media = document.getElementById('post-viewer-media');
+      if(!media || !isZoomed) return;
+
+      isPanning = true;
+      panStartX = e.clientX - panX;
+      panStartY = e.clientY - panY;
+      e.preventDefault();
+    }
+
+    function handleMediaMouseMove(e){
+      if(!isPanning) return;
+
+      const media = document.getElementById('post-viewer-media');
+      if(!media) return;
+
+      panX = e.clientX - panStartX;
+      panY = e.clientY - panStartY;
+
+      // Limit panning to keep image somewhat centered
+      const maxPan = 300;
+      panX = Math.max(-maxPan, Math.min(maxPan, panX));
+      panY = Math.max(-maxPan, Math.min(maxPan, panY));
+
+      updateMediaTransform(media);
+      e.preventDefault();
+    }
+
+    function handleMediaMouseUp(e){
+      isPanning = false;
+    }
+
+    // Touch support for panning
+    function handleMediaTouchStart(e){
+      const media = document.getElementById('post-viewer-media');
+      if(!media || !isZoomed) return;
+
+      isPanning = true;
+      const touch = e.touches[0];
+      panStartX = touch.clientX - panX;
+      panStartY = touch.clientY - panY;
+      e.preventDefault();
+    }
+
+    function handleMediaTouchMove(e){
+      if(!isPanning) return;
+
+      const media = document.getElementById('post-viewer-media');
+      if(!media) return;
+
+      const touch = e.touches[0];
+      panX = touch.clientX - panStartX;
+      panY = touch.clientY - panStartY;
+
+      // Limit panning to keep image somewhat centered
+      const maxPan = 300;
+      panX = Math.max(-maxPan, Math.min(maxPan, panX));
+      panY = Math.max(-maxPan, Math.min(maxPan, panY));
+
+      updateMediaTransform(media);
+      e.preventDefault();
+    }
+
+    function handleMediaTouchEnd(e){
+      isPanning = false;
+    }
+
+    // Add global listeners for panning (mouse and touch)
+    document.addEventListener('mousedown', (e) => {
+      if(e.target.id === 'post-viewer-media'){
+        handleMediaMouseDown(e);
+      }
+    });
+    document.addEventListener('mousemove', handleMediaMouseMove);
+    document.addEventListener('mouseup', handleMediaMouseUp);
+
+    document.addEventListener('touchstart', (e) => {
+      if(e.target.id === 'post-viewer-media'){
+        handleMediaTouchStart(e);
+      }
+    }, {passive: false});
+    document.addEventListener('touchmove', handleMediaTouchMove, {passive: false});
+    document.addEventListener('touchend', handleMediaTouchEnd);
+
+    postViewer.addEventListener('click', (event)=>{
+      if(event.target === postViewer || event.target.closest('.post-viewer__close')){
+        hidePostViewer();
+      }
+    });
+
+    postViewerClose.addEventListener('click', (event)=>{
+      event.stopPropagation();
+      hidePostViewer();
+    });
+
+    // Keyboard support for post viewer
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && postViewer.classList.contains('active')){
+        hidePostViewer();
+      }
+    });
+
+    function showStatus(message, kind='info'){ if(!message){ statusEl.hidden=true; statusEl.textContent=''; return; } statusEl.textContent=message; statusEl.dataset.kind=kind; statusEl.hidden=false; }
+
+    async function fetchJSON(url, options={}){
+      try{
+        const res = await fetch(url, options);
+        const text = await res.text();
+        let payload=null;
+        try{ payload = text ? JSON.parse(text) : null; } catch{ throw new Error('Invalid JSON from server'); }
+        if(!res.ok) throw new Error(payload?.error || res.statusText || 'Request failed');
+        return payload;
+      }catch(err){ throw err instanceof Error ? err : new Error(String(err)); }
+    }
+
+    /* ===== CTA link ===== */
+    function setCTAForDevice(lang){
+      // Always link to iOS App Store for downloads
+      const appStoreURL = "https://apps.apple.com/de/app/emoji-painter/id6753342820";
+      ctaBtn.href = appStoreURL;
+      const t = I18N[lang] || I18N.en;
+      ctaBtn.textContent = t.ctaDesktop; // Use same text for all devices
+    }
+
+    /* ===== TITLE animation ===== */
+    let CURRENT_LANG = (localStorage.getItem('lang') || detectDefaultLang());
+    const hands = ['🤚','✋','🖐️','🖖','👌','🤌','🤏','✌️','🤟','🤘','🤙','👊','🤛','🤜','👍','👎','👏','🫶','🙌','🫱','🫲','🫳','🫴'];
+    function rand(min,max){ return min + Math.random()*(max-min); }
+    function pick(arr){ return arr[Math.floor(Math.random()*Math.max(arr.length,1))] }
+
+    function mountTitleLetters(text){
+      const titleText = text ?? (I18N[CURRENT_LANG]?.titleText || I18N.en.titleText);
+      const titleWord = document.getElementById('title-word');
+      titleWord.innerHTML = "";
+      for(const ch of titleText){
+        const s = document.createElement('span');
+        s.className = 'title-letter';
+        s.textContent = ch;
+        s.style.color = 'var(--text)';
+        titleWord.appendChild(s);
+      }
+      const titleEl = document.getElementById('title');
+      if(Math.random()<0.6) titleEl.classList.add('glow'); else titleEl.classList.remove('glow');
+    }
+
+    function animateLettersIn(letters){
+      const dirs = [
+        {tx:[60,0], ty:[-30,0], r:[-20,0], s:[0.9,1], t:rand(450,800)},
+        {tx:[-60,0],ty:[-10,0], r:[ 18,0], s:[0.92,1],t:rand(450,800)},
+        {tx:[30,0], ty:[40,0],  r:[-12,0], s:[0.95,1],t:rand(500,900)},
+        {tx:[-40,0],ty:[30,0],  r:[ 10,0], s:[0.97,1],t:rand(520,880)},
+        {tx:[0,0],  ty:[-60,0], r:[-25,0], s:[0.9,1], t:rand(500,900)},
+        {tx:[0,0],  ty:[60,0],  r:[ 25,0], s:[0.9,1], t:rand(500,900)},
+        {tx:[70,0], ty:[0,0],   r:[-35,0], s:[0.88,1],t:rand(520,920)}
+      ];
+      const baseDelay = rand(8,22);
+      letters.forEach((el,i)=>{
+        const d = pick(dirs);
+        el.animate([
+          { transform:`translate(${d.tx[0]}px,${d.ty[0]}px) rotate(${d.r[0]}deg) scale(${d.s[0]})`, opacity:0.001 },
+          { transform:`translate(0,0) rotate(0deg) scale(1)`, opacity:1 }
+        ], {
+          duration: d.t,
+          delay: Math.max(0, i*baseDelay + rand(-8,12)),
+          easing: 'cubic-bezier(.2,.8,.2,1)',
+          fill: 'forwards'
+        });
+      });
+    }
+
+    function setupTitleWobble(){
+      const st=new WeakMap(); let px=-9999,py=-9999,active=false;
+      const upd=(x,y)=>{px=x;py=y;active=true;};
+      addEventListener('mousemove',e=>upd(e.clientX, e.clientY));
+      addEventListener('touchstart',e=>{const t=e.touches[0];upd(t.clientX,t.clientY);},{passive:true});
+      addEventListener('touchmove', e=>{const t=e.touches[0];upd(t.clientX,t.clientY);},{passive:true});
+      addEventListener('mouseleave',()=>active=false);
+      addEventListener('touchend', ()=>active=false);
+      const loop=()=>{
+        const letters=[...document.querySelectorAll('#title-word .title-letter')];
+        letters.forEach(el=>{
+          let s=st.get(el); if(!s){s={tx:0,ty:0,rot:0,vx:0,vy:0,vr:0}; st.set(el,s);}
+          const r=el.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2;
+          let fx=0,fy=0,fr=0;
+          if(active){ const dx=cx-px, dy=cy-py, dist=Math.hypot(dx,dy)||1; const inf=Math.max(0,120-dist)/120; const str=14*inf; fx=(dx/dist)*str; fy=(dy/dist)*str; fr=(dx+dy)/800*str; }
+          const k=0.12, d=0.12; s.vx+=(-s.tx*k)+fx; s.vy+=(-s.ty*k)+fy; s.vr+=(-s.rot*k)+fr;
+          s.vx*=(1-d); s.vy*=(1-d); s.vr*=(1-d); s.tx+=s.vx; s.ty+=s.vy; s.rot+=s.vr;
+          el.style.transform=`translate(${s.tx.toFixed(2)}px,${s.ty.toFixed(2)}px) rotate(${s.rot.toFixed(2)}rad)`;
+        });
+        requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    }
+
+    /* ===== emoji favicon ===== */
+    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+    const favCanvas = document.createElement('canvas'); favCanvas.width=favCanvas.height=64;
+    const favCtx = favCanvas.getContext('2d');
+    function updateFaviconTransparent(emoji){
+      try{
+        const dpr = devicePixelRatio || 1;
+        const size = 64 * dpr;
+        favCanvas.width=favCanvas.height=size;
+        favCtx.clearRect(0,0,size,size);
+        favCtx.textBaseline='middle'; favCtx.textAlign='center';
+        favCtx.font = `${Math.floor(size*0.8)}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",system-ui,sans-serif`;
+        favCtx.fillText(emoji, size/2, size/2);
+        const url = favCanvas.toDataURL('image/png');
+        document.getElementById('fav-animated').href=url;
+      }catch(_){}
+    }
+    function runEmojiSpinner(){
+      const seq = shuffle([...hands]); let i=0;
+      const tick = () => {
+        const ch = seq[i % seq.length];
+        document.getElementById('title-emoji').textContent = ch;
+        updateFaviconTransparent(ch);
+        const next = 60 + Math.floor(Math.random()*80);
+        i++;
+        document.getElementById('title-emoji')._timer = setTimeout(tick, next);
+      };
+      if(document.getElementById('title-emoji')._timer) clearTimeout(document.getElementById('title-emoji')._timer);
+      tick();
+    }
+
+    /* ===== Topics JSON & robust translation maps ===== */
+    const topicsMap = new Map();            // dateStr -> { topics, time }
+    const baseToTranslations = new Map();   // baseKey -> translations object {en,de,...}
+    const anyToBase = new Map();            // normalized any string -> baseKey
+    const baseToEmoji = new Map();          // baseKey -> emoji
+    let fallbackMinutes = 30;
+    const leaderboardCache = new Map();     // deviceId(lowercase) -> leaderboard entry
+    let leaderboardData = new Map();
+    const TOPICS_BASE_URL = 'https://emojipainter.com/json/topics';
+    const TOPICS_VERSIONS_URL = 'https://emojipainter.com/json/versions.json';
+
+    function createTopicCollector(){
+      const seen = new Set();
+      const primary = [];
+      const fallback = [];
+      const addTo = (bucket, value) => {
+        if(!value || typeof value !== 'string') return;
+        const trimmed = value.trim();
+        if(!trimmed || seen.has(trimmed)) return;
+        seen.add(trimmed);
+        bucket.push(trimmed);
+      };
+      return {
+        addPreferred: (value) => addTo(primary, value),
+        addFallback: (value) => addTo(fallback, value),
+        ordered: () => [...primary, ...fallback]
+      };
+    }
+
+    async function gatherTopicFilenames(){
+      const collector = createTopicCollector();
+
+      try{
+        const versions = await fetchJSON(`${TOPICS_VERSIONS_URL}?_=${Date.now()}`);
+        const versionCandidates = [];
+        if(versions?.daily?.latest) versionCandidates.push(versions.daily.latest);
+        if(Array.isArray(versions?.daily?.versions)){
+          versionCandidates.push(...versions.daily.versions);
+        }
+        versionCandidates.forEach((name)=>{
+          if(typeof name === 'string' && /(_26_|2025)/.test(name)){
+            collector.addPreferred(name);
+          }else{
+            collector.addFallback(name);
+          }
+        });
+      }catch(error){
+        console.warn('[Gallery] Could not load versions.json for topics', error);
+      }
+
+      // Only try recent topics files (last 30 days)
+      for(let idx = 30; idx >= 1; idx--){
+        const suffix = String(idx).padStart(3,'0');
+        collector.addPreferred(`topics_26_${suffix}.json`);
+      }
+
+      [
+        'daily_topics.json',
+        'topics.json',
+        'target.json',
+        'daily_paint_topics_2025.json',
+        'topics_2025.json',
+        'daily_paint_topics.json',
+        'topics_26_000.json',
+        'latest.json',
+        'current.json'
+      ].forEach((name)=>collector.addFallback(name));
+
+      return collector.ordered();
+    }
+
+    // load topics + time for each day from server (try multiple filenames)
+    async function loadTopics(){
+      const baseURL = TOPICS_BASE_URL;
+      const possibleNames = await gatherTopicFilenames();
+      if(!possibleNames.length){
+        console.warn('[Gallery] No topic filenames available to query');
+        return;
+      }
+
+      let list = null;
+      for(const filename of possibleNames){
+        try{
+          const url = `${baseURL}/${filename}?_=${Date.now()}`;
+          list = await fetchJSON(url);
+          if(Array.isArray(list)){
+            console.log(`[Gallery] Loaded topics from ${filename}`);
+            break;
+          }
+        }catch(_){
+          continue;
+        }
+      }
+
+      if(!Array.isArray(list)) return;
+
+      for(const day of list){
+        if(!day?.date) continue;
+
+        // per-day time (this is the ONLY source of "used time")
+        let rawTime = day.time_minutes ?? day.timeMinutes ?? day.time ?? day.default_time ?? day.timer;
+        if(typeof rawTime === 'string') rawTime = parseInt(rawTime, 10);
+        const minutes = (typeof rawTime === 'number' && rawTime > 0) ? rawTime : fallbackMinutes;
+
+        const entry = {
+          topics: Array.isArray(day.topics) ? day.topics : [],
+          time: minutes
+        };
+        topicsMap.set(day.date, entry);
+
+        // Build translation + emoji maps
+        for(const t of entry.topics){
+          const base = (t.topic || t.translations?.en || '').trim();
+          if(!base) continue;
+          const baseKey = norm(base);
+          const tr = Object.assign({ en: base }, t.translations || {});
+          baseToTranslations.set(baseKey, tr);
+          baseToEmoji.set(baseKey, t.emoji || '');
+          const pool = new Set([base, ...Object.values(tr)]);
+          for(const s of pool){ anyToBase.set(norm(s), baseKey); }
+        }
+      }
+      updateTodayTopicsUI(false);
+    }
+
+    // Used time is taken ONLY from the day entry in topicsMap (target.json)
+    function getMinutesForItem(_item, dateStr){
+      const dayInfo = topicsMap.get(dateStr);
+      if(dayInfo && typeof dayInfo.time === 'number' && dayInfo.time > 0){
+        return dayInfo.time;
+      }
+      return fallbackMinutes;
+    }
+
+    // Format actual paint time — shows exact mm:ss for times under 10 min, else "X min"
+    function formatPaintTime(seconds){
+      if(!seconds || seconds <= 0) return null;
+      const s = Math.floor(seconds);
+      const mins = Math.floor(s / 60);
+      const secs = s % 60;
+      if(mins === 0) return `${secs}s`;
+      if(secs === 0) return `${mins} min`;
+      return `${mins}:${String(secs).padStart(2,'0')}`;
+    }
+
+    /* ===== Mystery Topic Masking (Guess Challenge) ===== */
+    function mysteryMaskSeed(topic, topicId){
+      const numericId = Number(topicId);
+      if(Number.isFinite(numericId) && numericId !== 0){
+        return Math.abs(Math.trunc(numericId)) >>> 0;
+      }
+      // FNV-1a matches src/gesser/utils/masking.ts. Text-backed/custom
+      // mysteries intentionally use topic_id=0, so their answer is the seed.
+      let hash = 2166136261;
+      for(const char of String(topic || '')){
+        hash ^= char.codePointAt(0) || 0;
+        hash = Math.imul(hash, 16777619) >>> 0;
+      }
+      return hash >>> 0;
+    }
+
+    function mysteryRevealCount(letterCount, seed){
+      if(!Number.isFinite(letterCount) || letterCount <= 0) return 0;
+      const count = Math.floor(letterCount);
+      if(count <= 8) return Math.min(2, count);
+      if(count <= 16) return Math.min(3, count);
+      return Math.min(count, 3 + (Math.abs(Math.trunc(seed)) % 2));
+    }
+
+    function maskTopic(topic, topicId){
+      if(!topic) return { masked: '___', revealedPositions: [] };
+      const chars = Array.from(topic);
+      const letterPositions = [];
+      chars.forEach((char, index) => {
+        if(/\p{L}/u.test(char)) letterPositions.push(index);
+      });
+      const letterCount = letterPositions.length;
+      if(letterCount === 0) return { masked: topic, revealedPositions: [] };
+      const seed = mysteryMaskSeed(topic, topicId);
+      const revealCount = mysteryRevealCount(letterCount, seed);
+      const remaining = [...letterPositions];
+      const revealedPositions = [];
+      let state = seed >>> 0;
+      while(revealedPositions.length < revealCount && remaining.length > 0){
+        state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+        const index = state % remaining.length;
+        revealedPositions.push(remaining.splice(index, 1)[0]);
+      }
+      revealedPositions.sort((a,b)=>a-b);
+      const masked = chars.map((char, index) => {
+        if(char === ' ') return ' ';
+        if(revealedPositions.includes(index)) return char.toLowerCase();
+        if(/\p{L}/u.test(char)) return '_';
+        return char;
+      }).join('');
+      return { masked, revealedPositions };
+    }
+
+    function topicsMatch(guess, actual){
+      const norm2 = s => s.trim().toLowerCase().replace(/\s+/g,' ');
+      return norm2(guess) === norm2(actual);
+    }
+
+    // Legacy wrapper for backwards compat in buildCard
+    function maskTopicForGuess(topic, topicId){
+      return maskTopic(topic, topicId || 0).masked;
+    }
+
+    /* ===== Guess State (localStorage) ===== */
+    const GUESS_KEY = 'ep_guesses_v3';
+    function getGuessState(){ try{ return JSON.parse(localStorage.getItem(GUESS_KEY))||{}; }catch{ return {}; } }
+    function setGuessState(s){ localStorage.setItem(GUESS_KEY, JSON.stringify(s)); }
+    // Returns 'correct'|'wrong'|null
+    function getItemGuessResult(itemId){
+      const v = getGuessState()[String(itemId)];
+      if(!v) return null;
+      if(typeof v === 'string') return v; // backward compat
+      return v.result || null;
+    }
+    function getItemAttempts(itemId){
+      const v = getGuessState()[String(itemId)];
+      if(!v) return 0;
+      if(typeof v === 'string') return 1; // backward compat: had at least 1 attempt
+      return v.attempts || 0;
+    }
+    // Keep old name as alias for backward compat in buildCard
+    function getItemGuess(itemId){ return getItemGuessResult(itemId); }
+
+    // escapeHtml is used in buildCard and elsewhere
+    function escapeHtml(text){
+      const div = document.createElement('div');
+      div.textContent = String(text||'');
+      return div.innerHTML;
+    }
+
+    /* ===== Translate helpers ===== */
+    const getBaseKeyFromAny = (s)=> anyToBase.get(norm(s)) || null;
+    const getLocalizedFromBase = (baseKey, lang)=> {
+      const tr = baseToTranslations.get(baseKey);
+      return tr ? (tr[lang] || tr.en || Object.values(tr)[0]) : null;
+    };
+
+    /* ===== Today chips (typewriter option) ===== */
+    function updateTodayTopicsUI(animate=false){
+      const todayStr = toYMD(new Date());
+      const info = topicsMap.get(todayStr);
+      if(info && info.topics.length >= 3){
+        document.getElementById('topics-date').textContent = todayStr;
+        const chipEls = [document.getElementById('chip-1'), document.getElementById('chip-2'), document.getElementById('chip-3')];
+        [0,1,2].forEach(i=>{
+          const topic = info.topics[i];
+          const base = topic.topic || topic.translations?.en || '';
+          const baseKey = getBaseKeyFromAny(base) || norm(base);
+          const localized = getLocalizedFromBase(baseKey, CURRENT_LANG) || (topic.translations?.[CURRENT_LANG]) || topic.topic || '';
+          const full = `${baseToEmoji.get(baseKey) || topic.emoji || ''} ${localized}`.trim();
+          chipEls[i].dataset.topickey = baseKey;
+          if(animate) typewriteTo(chipEls[i], full, 8);
+          else chipEls[i].textContent = full;
+        });
+        document.getElementById('topics').hidden = false;
+      }else{
+        document.getElementById('topics').hidden = true;
+      }
+    }
+
+    ['chip-1','chip-2','chip-3'].forEach(id=>{
+      const chip = document.getElementById(id);
+      chip.addEventListener('click', ()=>{
+        const key = chip.dataset.topickey || '';
+        if(!key) return;
+        const match = document.getElementById('gallery').querySelector(`.card[data-topic-base="${key}"]`);
+        if(match){
+          match.scrollIntoView({behavior:'smooth',block:'start'});
+          match.classList.add('is-new'); setTimeout(()=>match.classList.remove('is-new'),800);
+        }else{
+          const t = I18N[CURRENT_LANG] || I18N.en;
+          showStatus(t.noEntries(chip.textContent.trim()), 'info');
+          setTimeout(()=>showStatus('', 'info'), 2500);
+        }
+      });
+    });
+
+    async function loadLeaderboard(){
+      if(leaderboardCache.size){
+        console.log(`[Leaderboard] Using cached data (${leaderboardCache.size} entries)`);
+        leaderboardData = leaderboardCache;
+        return leaderboardCache;
+      }
+
+      console.log('[Leaderboard] Cache empty, fetching from endpoints...');
+
+      for(const url of LEADERBOARD_ENDPOINTS){
+        try{
+          console.log(`[Leaderboard] Trying endpoint: ${url}`);
+          const payload = await fetchJSON(`${url}?_=${Date.now()}`);
+
+          if(!payload){
+            console.warn(`[Leaderboard] Empty payload from ${url}`);
+            continue;
+          }
+
+          console.log(`[Leaderboard] ✅ Got response from ${url}:`, payload);
+
+          const rows = Array.isArray(payload)
+            ? payload
+            : Array.isArray(payload.entries)
+              ? payload.entries
+              : typeof payload === 'object' && payload !== null
+                ? Object.values(payload)
+                : [];
+
+          console.log(`[Leaderboard] Processing ${rows.length} entries`);
+
+          let loadedCount = 0;
+          rows.forEach((row, index)=>{
+            const deviceId = String(row.machineId || row.device_id || row.deviceId || row.id || `row-${index}`).trim().toLowerCase();
+            if(!deviceId) return;
+
+            const name = row.name && String(row.name).trim().length ? String(row.name).trim() : 'Passport Traveler';
+
+            // Check for portrait in multiple fields, prioritizing imageUrl
+            let portrait = null;
+            if(typeof row.imageUrl === 'string' && row.imageUrl.trim().length){
+              portrait = row.imageUrl.trim();
+            } else if(typeof row.image_url === 'string' && row.image_url.trim().length){
+              portrait = row.image_url.trim();
+            } else if(row.extra && typeof row.extra.imageUrl === 'string' && row.extra.imageUrl.trim().length){
+              portrait = row.extra.imageUrl.trim();
+            } else if(row.extra && typeof row.extra.portrait === 'string' && row.extra.portrait.trim().length){
+              portrait = row.extra.portrait.trim();
+            } else if(typeof row.portrait === 'string' && row.portrait.trim().length){
+              portrait = row.portrait.trim();
+            }
+
+            // Handle both absolute URLs (from API) and relative paths for web gallery
+            if(portrait){
+              // Skip conversion for base64 data URIs - keep them as-is
+              if(portrait.startsWith('data:image')){
+                console.log(`[Leaderboard] Using base64 image for device ${deviceId}`);
+              }
+              // If it's an absolute URL like https://emojipainter.com/leaderboard/data/passport_XXX.png
+              else if(portrait.startsWith('http')){
+                // Extract the path and convert to relative from gallery.html
+                const match = portrait.match(/\/(leaderboard\/data\/[^\/]+\.(?:png|jpg|jpeg))$/i);
+                if(match && match[1]){
+                  // Convert to relative path from public/gallery.html to leaderboard/data/
+                  portrait = `../${match[1]}`;
+                  console.log(`[Leaderboard] Converted absolute URL to relative: ${portrait}`);
+                }
+                // Handle uploads directory (user-uploaded passports)
+                else {
+                  const uploadsMatch = portrait.match(/\/(uploads\/passports\/[^\/]+\.(?:png|jpg|jpeg))$/i);
+                  if(uploadsMatch && uploadsMatch[1]){
+                    portrait = `../${uploadsMatch[1]}`;
+                    console.log(`[Leaderboard] Converted uploads URL to relative: ${portrait}`);
+                  }
+                }
+              }
+              // Already a relative path - just ensure it's relative to gallery.html in /public/
+              else if(!portrait.startsWith('/') && !portrait.startsWith('../')){
+                // Path like "leaderboard/data/passport_XXX.png" or "data/passport_XXX.png"
+                if(portrait.startsWith('leaderboard/')){
+                  portrait = `../${portrait}`;
+                } else if(portrait.startsWith('data/')){
+                  portrait = `../leaderboard/${portrait}`;
+                } else {
+                  // Assume it's in leaderboard/data/
+                  portrait = `../leaderboard/data/${portrait}`;
+                }
+                console.log(`[Leaderboard] Converted relative path: ${portrait}`);
+              }
+            }
+
+            leaderboardCache.set(deviceId, { name, portrait });
+            console.log(`[Leaderboard] Cached device ${deviceId}:`, { name, portrait });
+            loadedCount++;
+          });
+
+          console.log(`[Leaderboard] ✅ Loaded ${loadedCount} entries from ${url}`);
+          console.log(`[Leaderboard] All cached device IDs:`, Array.from(leaderboardCache.keys()));
+          leaderboardData = leaderboardCache;
+          return leaderboardCache;
+        }catch(err){
+          console.warn(`[Leaderboard] ❌ Fetch failed for ${url}:`, err.message);
+        }
+      }
+
+      console.warn('[Leaderboard] ❌ All endpoints failed, using empty cache');
+      leaderboardData = leaderboardCache;
+      return leaderboardCache;
+    }
+
+    const fallbackTravelerName = (deviceId)=>{
+      if(!deviceId) return 'Unknown traveler';
+      const trimmed = deviceId.replace(/[^a-z0-9]/gi,'').toUpperCase();
+      return trimmed ? `Traveler ${trimmed.slice(0,6)}` : 'Unknown traveler';
+    };
+
+    /**
+     * Normalize passport portrait URL for web gallery
+     * Handles base64 data URIs, absolute URLs, and relative paths
+     * @param {string|null} portrait - The portrait URL/path to normalize
+     * @returns {string|null} - Normalized portrait URL or null
+     */
+    const normalizePassportURL = (portrait) => {
+      if(!portrait || typeof portrait !== 'string') return null;
+      portrait = portrait.trim();
+      if(!portrait.length) return null;
+
+      // Keep base64 data URIs as-is
+      if(portrait.startsWith('data:image')){
+        return portrait;
+      }
+
+      // Convert absolute URLs to relative paths
+      if(portrait.startsWith('http')){
+        // Match leaderboard/data/passport_XXX.png
+        const leaderboardMatch = portrait.match(/\/(leaderboard\/data\/[^\/]+\.(?:png|jpg|jpeg))$/i);
+        if(leaderboardMatch && leaderboardMatch[1]){
+          return `../${leaderboardMatch[1]}`;
+        }
+        // Match uploads/passports/XXX.png (user-uploaded passports)
+        const uploadsMatch = portrait.match(/\/(uploads\/passports\/[^\/]+\.(?:png|jpg|jpeg))$/i);
+        if(uploadsMatch && uploadsMatch[1]){
+          return `../${uploadsMatch[1]}`;
+        }
+        // If no match, return as-is (external URL)
+        return portrait;
+      }
+
+      // Handle relative paths - make them relative to gallery.html in /public/
+      if(!portrait.startsWith('/') && !portrait.startsWith('../')){
+        if(portrait.startsWith('leaderboard/')){
+          return `../${portrait}`;
+        } else if(portrait.startsWith('data/')){
+          return `../leaderboard/${portrait}`;
+        } else if(portrait.startsWith('uploads/')){
+          return `../${portrait}`;
+        } else {
+          // Assume it's a filename in leaderboard/data/
+          return `../leaderboard/data/${portrait}`;
+        }
+      }
+
+      // Already properly formatted (starts with / or ../)
+      return portrait;
+    };
+
+    /* ===== Animated Frames Support (12 FPS) ===== */
+    const animatedFrameIndexes = new Map(); // entryId -> current frame index
+    const animatedFrameIntervals = new Map(); // entryId -> interval ID
+    function startFrameAnimation(entryId, frameUrls, imgElement){
+      if(!frameUrls || !Array.isArray(frameUrls) || frameUrls.length <= 1) return;
+      if(animatedFrameIntervals.has(entryId)) return; // Already animating
+
+      animatedFrameIndexes.set(entryId, 0);
+      const interval = setInterval(()=>{
+        const currentIndex = animatedFrameIndexes.get(entryId) || 0;
+        const nextIndex = (currentIndex + 1) % frameUrls.length;
+        animatedFrameIndexes.set(entryId, nextIndex);
+        if(imgElement && imgElement.isConnected){
+          imgElement.src = frameUrls[nextIndex];
+        } else {
+          // Element removed from DOM, stop animation
+          clearInterval(interval);
+          animatedFrameIntervals.delete(entryId);
+          animatedFrameIndexes.delete(entryId);
+        }
+      }, 83); // 1000ms / 12fps ≈ 83ms
+
+      animatedFrameIntervals.set(entryId, interval);
+    }
+    function stopFrameAnimation(entryId){
+      const interval = animatedFrameIntervals.get(entryId);
+      if(interval){
+        clearInterval(interval);
+        animatedFrameIntervals.delete(entryId);
+        animatedFrameIndexes.delete(entryId);
+      }
+    }
+
+    function bindPassportButton(btn, portrait, travelerName){
+      if(portrait){
+        console.log(`[Passport] Binding passport for ${travelerName}: ${portrait}`);
+        btn.hidden = false;
+        btn.setAttribute('aria-disabled','false');
+        btn.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = portrait;
+        img.alt = `${travelerName} passport portrait`;
+        // Add onerror handler to show emoji fallback if image fails to load
+        img.onerror = () => {
+          console.error(`[Passport] ❌ Image failed to load for ${travelerName}: ${portrait}`);
+          btn.innerHTML = `<span>${PLACEHOLDER_EMOJI}</span>`;
+          btn.setAttribute('aria-disabled','true');
+          btn.tabIndex = -1;
+          btn.onclick = null;
+        };
+        img.onload = () => {
+          console.log(`[Passport] ✅ Image loaded successfully for ${travelerName}`);
+        };
+        btn.appendChild(img);
+        btn.dataset.passportSrc = portrait;
+        btn.dataset.passportAlt = `${travelerName} passport portrait`;
+        btn.tabIndex = 0;
+        btn.onclick = ()=> showPassportViewer(portrait, `${travelerName} passport portrait`);
+      }else{
+        // no portrait — use emoji fallback silently
+        btn.hidden = false;
+        btn.setAttribute('aria-disabled','true');
+        btn.removeAttribute('data-passport-src');
+        btn.removeAttribute('data-passport-alt');
+        btn.tabIndex = -1;
+        btn.onclick = null;
+        btn.innerHTML = `<span>${PLACEHOLDER_EMOJI}</span>`;
+      }
+    }
+
+    function applyVoteMarkers(ref, direction){
+      if(!ref.upBtn || !ref.downBtn) return;
+      ref.upBtn.dataset.active = direction === 'up';
+      ref.downBtn.dataset.active = direction === 'down';
+      ref.upBtn.disabled = Boolean(direction);
+      ref.downBtn.disabled = Boolean(direction);
+    }
+
+    /* ===== Day banners ===== */
+    const dayNodes = new Map(); // dateStr -> banner element
+    function toBannerHeading(dateStr){
+      const d=new Date(dateStr);
+      const h = document.getElementById('day-template').content.firstElementChild.cloneNode(true);
+      const text = toBannerText(d, CURRENT_LANG);
+      h.innerHTML='';
+      for(const ch of text){
+        const s = document.createElement('span');
+        s.className='day-letter';
+        s.textContent = ch;
+        h.appendChild(s);
+      }
+      return h;
+    }
+    function rerenderDayBannerText(){
+      for(const [dateStr, el] of dayNodes){
+        const text = toBannerText(new Date(dateStr), CURRENT_LANG);
+        el.innerHTML='';
+        for(const ch of text){
+          const s = document.createElement('span');
+          s.className='day-letter';
+          s.textContent = ch;
+          el.appendChild(s);
+        }
+      }
+    }
+    function animateDayBanner(h){
+      const letters = [...h.querySelectorAll('.day-letter')];
+      animateLettersIn(letters);
+    }
+    const dayObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          animateDayBanner(entry.target);
+          dayObserver.unobserve(entry.target);
+        }
+      });
+    }, {root:null, rootMargin:'-10% 0px -20% 0px', threshold:0.2});
+
+    /* ===== Gallery build ===== */
+    const domIndex = new Map(); // id -> refs
+
+    // Keep the first screen responsive when the feed contains many large videos.
+    // Images still use native lazy loading; card videos/animated frames are only
+    // activated near the viewport. A generous margin keeps scrolling seamless
+    // without making all 160 entries compete for bandwidth on first paint.
+    function activateCardMedia(card, isIntersecting){
+      const video = card.querySelector('video.card__image');
+      if(video){
+        if(!video.src && video.dataset.src){
+          video.src = video.dataset.src;
+          video.load();
+        }
+        if(isIntersecting){
+          video.play().catch(()=>{});
+        }else if(!video.paused){
+          video.pause();
+        }
+      }
+
+      const ref = domIndex.get(card.dataset.id) || domIndex.get(Number(card.dataset.id));
+      if(!ref || !ref.frameUrls) return;
+      if(isIntersecting){
+        startFrameAnimation(card.dataset.id, ref.frameUrls, ref.imgEl);
+      }else{
+        stopFrameAnimation(card.dataset.id);
+      }
+    }
+    const galleryMediaObserver = typeof IntersectionObserver === 'function'
+      ? new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>activateCardMedia(entry.target, entry.isIntersecting));
+        }, {root:null, rootMargin:'500px 0px', threshold:0.01})
+      : null;
+
+    function ensureDayBanner(dateStr){
+      if(dayNodes.has(dateStr)) return dayNodes.get(dateStr);
+      const banner = toBannerHeading(dateStr);
+      const anchor = document.getElementById('gallery').querySelector(`.card[data-date="${dateStr}"]`);
+      if(anchor) document.getElementById('gallery').insertBefore(banner, anchor); else document.getElementById('gallery').appendChild(banner);
+      dayNodes.set(dateStr, banner);
+      dayObserver.observe(banner);
+      return banner;
+    }
+
+    function buildCard(item, isPriority=false){
+      const card = document.getElementById('card-template').content.firstElementChild.cloneNode(true);
+      const imgWrapper = card.querySelector('.card__image-wrapper');
+      const img   = card.querySelector('.card__image');
+      const title = card.querySelector('.card__title');
+      const meta  = card.querySelector('.card__meta');
+      const timeL = card.querySelector('.card__time');
+      const travelerEl = card.querySelector('[data-traveler]');
+      const passportBtn = card.querySelector('[data-passport]');
+      const upBtn   = card.querySelector('[data-direction="up"]');
+      const downBtn = card.querySelector('[data-direction="down"]');
+      const upCount   = upBtn.querySelector('.count');
+      const downCount = downBtn.querySelector('.count');
+
+      const created = new Date((item.created_at || 0) * 1000);
+      const dateStr = toYMD(created);
+
+      const baseKey = getBaseKeyFromAny(item.topic) || norm(item.topic || '');
+      // ✅ CRITICAL FIX: Match the same logic used in loadLeaderboard() to normalize device IDs
+      // Leaderboard uses: row.machineId || row.device_id || row.deviceId || row.id
+      // Gallery must use the same priority order to match device IDs
+      const normalizedDevice = String(item.machineId || item.device_id || item.deviceId || item.id || '').toString().trim().toLowerCase();
+      console.log(`[Gallery] Device ID normalized for item ${item.id}:`, {
+        machineId: item.machineId,
+        device_id: item.device_id,
+        deviceId: item.deviceId,
+        normalized: normalizedDevice
+      });
+      card.dataset.id = item.id;
+      card.dataset.topic = norm(item.topic || '');
+      card.dataset.topicBase = baseKey;
+      card.dataset.date = dateStr;
+      card.dataset.created = String(item.created_at || 0);
+      card.dataset.device = normalizedDevice;
+
+      ensureDayBanner(dateStr);
+
+      // VIDEO SUPPORT: Check if this is a video entry
+      const isVideo = item.media_type === 'video';
+
+      // Define hasFrames and frameCount for both video and image entries
+      let hasFrames = false;
+      let frameCount = 0;
+
+      if(isVideo){
+        // Replace <img> with <video> element for MOV/MP4 files
+        const video = document.createElement('video');
+        video.className = 'card__image';
+        video.style.cssText = img.style.cssText; // Copy any inline styles
+        const mediaUrl = item.raw_url || item.image_url || '';
+        // Metadata is enough to expose the first frame without downloading the
+        // whole movie. Non-priority cards keep their URL in data-src until they
+        // approach the viewport.
+        video.setAttribute('preload', 'metadata');
+        if(isPriority || !galleryMediaObserver){
+          video.src = mediaUrl;
+        }else{
+          video.dataset.src = mediaUrl;
+        }
+        const posterUrl = item.poster_url || item.thumbnail_url || item.preview_url || item.first_frame_url || item.image_preview_url || '';
+        if(posterUrl && posterUrl !== mediaUrl) video.poster = posterUrl;
+        video.autoplay = !galleryMediaObserver;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', ''); // For iOS Safari
+        video.addEventListener('loadeddata', ()=> video.dataset.loaded = "true", {once:true});
+
+        // Replace img with video
+        img.replaceWith(video);
+      } else {
+        // Existing image logic
+        // Check if this is an animated entry (has multiple frames)
+        hasFrames = item.frame_urls && Array.isArray(item.frame_urls) && item.frame_urls.length > 1;
+        frameCount = item.frame_count || (hasFrames ? item.frame_urls.length : 0);
+
+        // Set image source (use first frame if animated, otherwise main image)
+        // Only the first batch is intentionally eager; the observer activates
+        // later cards as they approach the viewport.
+        img.loading = isPriority ? 'eager' : 'lazy';
+        img.fetchPriority = isPriority ? 'high' : 'low';
+        img.src = hasFrames ? item.frame_urls[0] : (item.raw_url || item.image_url);
+        img.alt = item.topic || 'Daily Spit Paint';
+        img.addEventListener('load', ()=> img.dataset.loaded = "true", {once:true});
+
+        // Add frame badge; animation starts when the card enters the viewport.
+        if(hasFrames){
+          const badge = document.createElement('div');
+          badge.className = 'frame-badge';
+          badge.innerHTML = `<span>🎬</span><span>${frameCount} frames · 12 FPS</span>`;
+          imgWrapper.appendChild(badge);
+
+          if(!galleryMediaObserver) startFrameAnimation(item.id, item.frame_urls, img);
+
+        }
+      }
+
+      // Check if this is a mystery painting (guess challenge)
+      const isMystery = !!(item.is_mystery_paint && item.is_mystery_paint != '0') || !!(item.isMysteryPaint && item.isMysteryPaint != '0') || !!(item.mystery_painting_id);
+      if(isMystery) card.dataset.isMystery = '1';
+
+      if(isMystery){
+        const topicText = getMysteryTopicForGuess(item) || 'Untitled';
+        const guessResult = getItemGuess(item.id);
+        const solveCount = item.solve_count || item.solveCount || 0;
+
+        // ── Image overlay badge (always visible in every layout) ──
+        const badge = document.createElement('div');
+        badge.className = 'mystery-badge';
+        badge.innerHTML = '🎲 MYSTERY';
+        imgWrapper.appendChild(badge);
+
+        // ── Card body: title + button row ──
+        if(guessResult === 'correct'){
+          title.innerHTML = `<span style="color:#0f3;font-weight:900;">✓ ${escapeHtml(topicText)}</span>`;
+          const row = document.createElement('div');
+          row.className = 'mystery-btn-row';
+          const btn = document.createElement('button');
+          btn.className = 'mystery-guess-btn';
+          btn.innerHTML = '✓ Guessed it!';
+          btn.disabled = true;
+          row.appendChild(btn);
+          if(solveCount > 0){
+            const sc = document.createElement('span');
+            sc.className = 'mystery-solvers';
+            sc.textContent = `${solveCount} solved`;
+            row.appendChild(sc);
+          }
+          title.after(row);
+        } else {
+          const { masked } = maskTopic(topicText, item.mystery_topic_id ?? 0);
+          const titleSpan = document.createElement('span');
+          titleSpan.className = 'mystery-title';
+          titleSpan.textContent = masked;
+          title.innerHTML = '';
+          title.appendChild(titleSpan);
+
+          const row = document.createElement('div');
+          row.className = 'mystery-btn-row';
+          const btn = document.createElement('button');
+          btn.className = 'mystery-guess-btn';
+          btn.dataset.itemId = String(item.id);
+          if(guessResult === 'wrong'){
+            const attempts = getItemAttempts(item.id);
+            btn.innerHTML = `🔍 Try Again <span style="font-size:10px;opacity:.7;">(${attempts}×)</span>`;
+          } else {
+            btn.innerHTML = '🔍 Guess!';
+          }
+          btn.onclick = (e) => { e.stopPropagation(); openGuessOverlay(item); };
+          row.appendChild(btn);
+          const sc = document.createElement('span');
+          sc.className = 'mystery-solvers';
+          sc.textContent = `✅ ${solveCount} solved`;
+          row.appendChild(sc);
+          title.after(row);
+        }
+      } else if(item.is_solved || item.isSolved){
+        title.innerHTML = `✓ ${escapeHtml(item.topic || 'Untitled')}`;
+        title.style.color = '#0f3';
+      } else {
+        title.textContent = item.topic || 'Untitled';
+      }
+
+      meta.textContent  = `${created.toLocaleString(localeOf(CURRENT_LANG))} • ${dateStr}`;
+
+      // Show actual paint time if available, else fall back to topic's target time
+      const actualSec = item.duration_sec || null;
+      const displayTime = actualSec
+        ? formatPaintTime(actualSec)
+        : `${Math.round(getMinutesForItem(item, dateStr))} min`;
+      timeL.textContent = (I18N[CURRENT_LANG]?.usedTime||I18N.en.usedTime)(displayTime);
+
+      const leaderboardEntry = normalizedDevice ? leaderboardData.get(normalizedDevice) : undefined;
+      // leaderboard lookup is best-effort; no logging needed
+      // ✅ CRITICAL FIX: Prioritize leaderboard name (user's custom selected name)
+      const travelerName = (leaderboardEntry?.name && leaderboardEntry.name.trim().length && leaderboardEntry.name !== 'Passport Traveler')
+        ? leaderboardEntry.name.trim()
+        : (item.passport_name && item.passport_name.toString().trim().length)
+          ? item.passport_name.toString().trim()
+          : fallbackTravelerName(normalizedDevice);
+      travelerEl.textContent = travelerName;
+      // ✅ CRITICAL FIX: Prioritize leaderboard portrait (user's uploaded custom image) FIRST!
+      const rawPassportPortrait = (leaderboardEntry?.portrait && leaderboardEntry.portrait.toString().trim().length)
+        ? leaderboardEntry.portrait.toString().trim()
+        : (item.passport_portrait && item.passport_portrait.toString().trim().length)
+          ? item.passport_portrait.toString().trim()
+          : null;
+      // Normalize the passport URL for web gallery (handles base64, absolute URLs, and relative paths)
+      const passportPortrait = normalizePassportURL(rawPassportPortrait);
+      bindPassportButton(passportBtn, passportPortrait, travelerName);
+
+      upCount.textContent = item.upvotes ?? 0;
+      downCount.textContent = item.downvotes ?? 0;
+
+      const votes = getVoteMemory();
+      const mark = (direction)=>{
+        upBtn.dataset.active = direction === 'up';
+        downBtn.dataset.active = direction === 'down';
+        upBtn.disabled = Boolean(direction);
+        downBtn.disabled = Boolean(direction);
+      };
+      const prev = votes[item.id];
+      if(prev){
+        const direction = typeof prev === 'object' ? prev.direction : prev;
+        if(prev && typeof prev === 'object'){
+          if(typeof prev.upvotes === 'number') upCount.textContent = prev.upvotes;
+          if(typeof prev.downvotes === 'number') downCount.textContent = prev.downvotes;
+        }
+        mark(direction);
+      } else {
+        mark(null);
+      }
+
+      async function handleVote(e){
+        const direction = e.currentTarget.dataset.direction;
+        try{
+          // Generate vote token: hash_hmac('sha256', "{deviceId}|{imageId}|{direction}", secret)
+          const tokenPayload = `${deviceId}|${item.id}|${direction}`;
+          const encoder = new TextEncoder();
+          const keyData = encoder.encode(DAILY_PAINT_SHARED_SECRET);
+          const msgData = encoder.encode(tokenPayload);
+          const key = await crypto.subtle.importKey('raw', keyData, {name:'HMAC', hash:'SHA-256'}, false, ['sign']);
+          const signature = await crypto.subtle.sign('HMAC', key, msgData);
+          const token = Array.from(new Uint8Array(signature)).map(b=>b.toString(16).padStart(2,'0')).join('');
+
+          const data = new URLSearchParams();
+          data.set('image_id', item.id);
+          data.set('direction', direction);
+          data.set('device_id', deviceId);
+          data.set('token', token);
+          const result = await fetchJSON(`${API_BASE}/vote.php`, {
+            method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:data
+          });
+          if(typeof result.upvotes === 'number') upCount.textContent = result.upvotes;
+          if(typeof result.downvotes === 'number') downCount.textContent = result.downvotes;
+          const appliedDirection = typeof result.direction === 'string' ? result.direction : direction;
+          votes[item.id] = {
+            direction: appliedDirection,
+            upvotes: result.upvotes,
+            downvotes: result.downvotes
+          };
+          setVoteMemory(votes);
+          mark(appliedDirection);
+        }catch(err){ showStatus(err.message || 'Unable to vote', 'error'); }
+      }
+      upBtn.addEventListener('click', handleVote);
+      downBtn.addEventListener('click', handleVote);
+
+      let revertText = null;
+      title.addEventListener('mouseenter', ()=>{
+        const current = title.textContent || '';
+        const k = getBaseKeyFromAny(current);
+        const target = k ? getLocalizedFromBase(k, CURRENT_LANG) : null;
+        if(!target || target === current) return;
+        if(revertText === null) revertText = current;
+        typewriteTo(title, target, 10);
+      });
+      title.addEventListener('mouseleave', ()=>{
+        if(revertText !== null){ typewriteTo(title, revertText, 8); revertText = null; }
+      });
+
+      // Add click handler for grid mode to open post viewer (single click in grid, double click in desktop handled separately)
+      imgWrapper.addEventListener('click', (e) => {
+        // Only open viewer in grid mode (desktop mode uses double-click)
+        if(galleryEl.getAttribute('data-layout') === 'grid'){
+          e.preventDefault();
+          e.stopPropagation();
+          showPostViewer(item);
+        }
+      });
+
+      domIndex.set(item.id, {
+        node:card,
+        upEl:upCount,
+        downEl:downCount,
+        upBtn,
+        downBtn,
+        imgEl:img,
+        metaEl:meta,
+        timeEl:timeL,
+        titleEl:title,
+        travelerEl,
+        passportEl:passportBtn,
+        frameUrls:hasFrames ? item.frame_urls : null,
+        frameCount:frameCount,
+        _itemData: item   // store raw item for guess overlay
+      });
+      if(galleryMediaObserver) galleryMediaObserver.observe(card);
+      return card;
+    }
+
+    /* ===== Typewriter ===== */
+    function typewriteTo(el, text, speed=12, delay=0){
+      const run=()=>{
+        const current = el.textContent || '';
+        if(current === text) return;
+        el.textContent = '';
+        let i=0;
+        const step=()=>{ el.textContent = text.slice(0, ++i); if(i<text.length) setTimeout(step, speed); };
+        step();
+      };
+      if(delay>0) setTimeout(run, delay); else run();
+    }
+
+    /* ===== Translate ALL topics on page (chips + cards) ===== */
+    function retranslateAllTopics(animate=false){
+      updateTodayTopicsUI(animate);
+      let idx=0;
+      for(const [, ref] of domIndex){
+        // Skip mystery cards — their titles are masked blanks, not translatable topic text
+        if(ref.node.dataset.isMystery === '1') continue;
+        const baseKey = ref.node.dataset.topicBase || getBaseKeyFromAny(ref.titleEl.textContent || '');
+        if(!baseKey) continue;
+        ref.node.dataset.topicBase = baseKey;
+        const target = getLocalizedFromBase(baseKey, CURRENT_LANG);
+        if(!target) continue;
+        const now = ref.titleEl.textContent || '';
+        if(now === target) continue;
+        if(animate) typewriteTo(ref.titleEl, target, 8, Math.min(400, idx*18));
+        else ref.titleEl.textContent = target;
+        idx++;
+      }
+    }
+
+    /* ===== Insert helpers ===== */
+    function prependCards(cards){
+      if(cards.length===0) return;
+      const sc = document.scrollingElement;
+      const atTop = sc.scrollTop===0;
+      const firstBefore = document.getElementById('gallery').firstElementChild;
+      if(!atTop && firstBefore){
+        const rectBefore = firstBefore.getBoundingClientRect();
+        const frag = document.createDocumentFragment();
+        cards.forEach(c=>frag.appendChild(c));
+        document.getElementById('gallery').insertBefore(frag, document.getElementById('gallery').firstChild);
+        const rectAfter = firstBefore.getBoundingClientRect();
+        sc.scrollTop -= (rectAfter.top - rectBefore.top);
+      }else{
+        const frag = document.createDocumentFragment();
+        cards.forEach(c=>{ c.classList.add('is-new'); frag.appendChild(c); });
+        document.getElementById('gallery').insertBefore(frag, document.getElementById('gallery').firstChild);
+      }
+    }
+    function appendCards(cards){ const frag=document.createDocumentFragment(); cards.forEach(c=>frag.appendChild(c)); document.getElementById('gallery').appendChild(frag); }
+
+    function diffApply(items){
+      const seenDates = new Set();
+      for(const it of items){
+        const d = toYMD(new Date((it.created_at||0)*1000));
+        if(!seenDates.has(d)){ ensureDayBanner(d); seenDates.add(d); }
+      }
+      const sort = document.getElementById('sort-select').value;
+      const newItems = items.filter(i=>!domIndex.has(i.id));
+      const newCards = newItems.map((item, index)=>buildCard(item, sort==='new' && index < 8));
+      if(sort==='new') prependCards(newCards); else appendCards(newCards);
+      const votes = getVoteMemory();
+      for(const it of items){
+        const ref = domIndex.get(it.id);
+        if(!ref) continue;
+
+        const created = new Date((it.created_at||0)*1000);
+        const dateStr = toYMD(created);
+        ref.metaEl.textContent = `${created.toLocaleString(localeOf(CURRENT_LANG))} • ${dateStr}`;
+
+        // Show actual paint time if available, else fall back to topic's target time
+        const actualItSec = it.duration_sec || null;
+        const displayItTime = actualItSec
+          ? formatPaintTime(actualItSec)
+          : `${Math.round(getMinutesForItem(it, dateStr))} min`;
+        ref.timeEl.textContent = (I18N[CURRENT_LANG]?.usedTime||I18N.en.usedTime)(displayItTime);
+
+        if(typeof it.upvotes==='number') ref.upEl.textContent = it.upvotes;
+        if(typeof it.downvotes==='number') ref.downEl.textContent = it.downvotes;
+
+        const normalizedDevice = (it.device_id || '').toString().trim().toLowerCase();
+        if(ref.node) ref.node.dataset.device = normalizedDevice;
+        const leaderboardEntry = normalizedDevice ? leaderboardData.get(normalizedDevice) : undefined;
+        // ✅ CRITICAL FIX: Prioritize leaderboard name (user's custom selected name)
+        const travelerName = (leaderboardEntry?.name && leaderboardEntry.name.trim().length && leaderboardEntry.name !== 'Passport Traveler')
+          ? leaderboardEntry.name.trim()
+          : (it.passport_name && it.passport_name.toString().trim().length)
+            ? it.passport_name.toString().trim()
+            : fallbackTravelerName(normalizedDevice);
+        if(ref.travelerEl) ref.travelerEl.textContent = travelerName;
+        // ✅ CRITICAL FIX: Prioritize leaderboard portrait (user's uploaded custom image) FIRST!
+        const rawPassportPortrait = (leaderboardEntry?.portrait && leaderboardEntry.portrait.toString().trim().length)
+          ? leaderboardEntry.portrait.toString().trim()
+          : (it.passport_portrait && it.passport_portrait.toString().trim().length)
+            ? it.passport_portrait.toString().trim()
+            : null;
+        // Normalize the passport URL for web gallery
+        const passportPortrait = normalizePassportURL(rawPassportPortrait);
+        if(ref.passportEl) bindPassportButton(ref.passportEl, passportPortrait, travelerName);
+
+        const prevVote = votes[it.id];
+        const direction = typeof prevVote === 'object' ? prevVote.direction : prevVote;
+        if(prevVote && typeof prevVote === 'object'){
+          if(typeof prevVote.upvotes === 'number') ref.upEl.textContent = prevVote.upvotes;
+          if(typeof prevVote.downvotes === 'number') ref.downEl.textContent = prevVote.downvotes;
+        }
+        applyVoteMarkers(ref, direction);
+      }
+      retranslateAllTopics(false);
+    }
+
+    /* ===== Polling ===== */
+    async function refreshFull(){
+      try{
+        showStatus('Loading gallery...', 'info');
+        const sort = document.getElementById('sort-select').value;
+        // These requests are independent. Starting them together removes the
+        // extra serial wait users could notice immediately after an upload.
+        const [, payload] = await Promise.all([
+          loadLeaderboard(),
+          fetchJSON(`${API_BASE}/list.php?sort=${encodeURIComponent(sort)}&per_page=160`)
+        ]);
+        const items = Array.isArray(payload.items) ? payload.items : payload;
+        window.__galleryItems = items; // for deep links (?post=ID)
+        showStatus(''); // Hide loading message
+
+        if(domIndex.size===0){
+          // Progressive loading: render entries one by one
+          let lastDate = null;
+          const galleryEl = document.getElementById('gallery');
+
+          // Render first batch immediately (first 8 entries)
+          const firstBatch = items.slice(0, 8);
+          const restBatch = items.slice(8);
+
+          for(const it of firstBatch){
+            const created = new Date((it.created_at||0)*1000);
+            const dateStr = toYMD(created);
+            if(dateStr !== lastDate){
+              const banner = toBannerHeading(dateStr);
+              dayNodes.set(dateStr, banner);
+              dayObserver.observe(banner);
+              galleryEl.appendChild(banner);
+              lastDate = dateStr;
+            }
+            const card = buildCard(it, true);
+            galleryEl.appendChild(card);
+          }
+
+          // If in desktop mode and this is all we're rendering, randomize now
+          if(restBatch.length === 0 && galleryEl.getAttribute('data-layout') === 'desktop'){
+            setTimeout(randomizeCardPositions, 100);
+          }
+
+          // Render rest progressively (using setTimeout for smooth rendering)
+          let index = 0;
+          const renderNext = () => {
+            if(index >= restBatch.length) {
+              retranslateAllTopics(false);
+              // If in desktop mode, randomize positions after loading
+              if(galleryEl.getAttribute('data-layout') === 'desktop'){
+                setTimeout(randomizeCardPositions, 100);
+              }
+              return;
+            }
+
+            // Render 4 entries at a time for smooth loading
+            const batchSize = 4;
+            const batch = restBatch.slice(index, index + batchSize);
+
+            for(const it of batch){
+              const created = new Date((it.created_at||0)*1000);
+              const dateStr = toYMD(created);
+              if(dateStr !== lastDate){
+                const banner = toBannerHeading(dateStr);
+                dayNodes.set(dateStr, banner);
+                dayObserver.observe(banner);
+                galleryEl.appendChild(banner);
+                lastDate = dateStr;
+              }
+              const card = buildCard(it);
+              galleryEl.appendChild(card);
+            }
+
+            index += batchSize;
+            setTimeout(renderNext, 10); // Small delay for smooth rendering
+          };
+
+          // Start progressive rendering after first batch
+          setTimeout(renderNext, 10);
+        }else{
+          diffApply(items);
+        }
+      }catch(err){ showStatus(err.message || 'Failed to load gallery', 'error'); }
+    }
+
+    let votesRefreshInFlight = false;
+    async function refreshVotesOnly(){
+      // A slow list response must not create a second full 160-entry request.
+      // This matters most while storage-sql.php is still finalizing an upload.
+      if(votesRefreshInFlight) return;
+      votesRefreshInFlight = true;
+      try{
+        const sort = document.getElementById('sort-select').value;
+        const payload = await fetchJSON(`${API_BASE}/list.php?sort=${encodeURIComponent(sort)}&per_page=160`);
+        const items = Array.isArray(payload.items) ? payload.items : payload;
+        const votes = getVoteMemory();
+        items.forEach(i=>{
+          const ref = domIndex.get(i.id);
+          if(!ref) return;
+          if(typeof i.upvotes==='number') ref.upEl.textContent = i.upvotes;
+          if(typeof i.downvotes==='number') ref.downEl.textContent = i.downvotes;
+          const prev = votes[i.id];
+          const direction = typeof prev === 'object' ? prev.direction : prev;
+          if(prev && typeof prev === 'object'){
+            if(typeof prev.upvotes === 'number') ref.upEl.textContent = prev.upvotes;
+            if(typeof prev.downvotes === 'number') ref.downEl.textContent = prev.downvotes;
+          }
+          applyVoteMarkers(ref, direction);
+        });
+      }catch(_){}
+      finally{ votesRefreshInFlight = false; }
+    }
+
+    /* ===== Pull-to-refresh ===== */
+    function triggerRefresh(){ document.getElementById('ptr').classList.add('ptr--active'); refreshFull().finally(()=> setTimeout(()=>document.getElementById('ptr').classList.remove('ptr--active'), 250)); }
+    let pulling=false, pullStartY=0, pulled=0, ptrArmed=false;
+    const isPostViewerOpen = ()=> postViewer.classList.contains('active');
+    addEventListener('touchstart', (e)=>{ if(isPostViewerOpen()) return; if(document.scrollingElement.scrollTop<=0){ pulling=true; pullStartY=e.touches[0].clientY; pulled=0; ptrArmed=false; } }, {passive:true});
+    addEventListener('touchmove', (e)=>{ if(!pulling || isPostViewerOpen()) return; const dy=e.touches[0].clientY-pullStartY; pulled=Math.max(0,dy); if(pulled>60){ document.getElementById('ptr').classList.add('ptr--active'); ptrArmed=true; } else { document.getElementById('ptr').classList.remove('ptr--active'); ptrArmed=false; } }, {passive:true});
+    addEventListener('touchend', ()=>{ if(pulling && ptrArmed) triggerRefresh(); pulling=false; ptrArmed=false; pulled=0; });
+    addEventListener('wheel', (e)=>{ if(isPostViewerOpen()) return; if(e.deltaY<0 && document.scrollingElement.scrollTop<=0) triggerRefresh(); }, {passive:true});
+
+    /* ===== Timers ===== */
+    let fullTimer=null, votesTimer=null;
+    function startTimers(){
+      clearInterval(fullTimer);
+      clearInterval(votesTimer);
+      fullTimer=setInterval(refreshFull, 30_000);
+      // Vote badges do not need a request every second. Polling the complete
+      // 160-entry payload at 5s keeps updates responsive without competing
+      // with upload/list requests on the shared hosting worker.
+      votesTimer=setInterval(refreshVotesOnly, 5_000);
+    }
+
+    /* ===== Language detection & picker ===== */
+    function detectDefaultLang(){
+      const nav = (navigator.language||'en').toLowerCase();
+      if(nav.startsWith('de')) return 'de';
+      if(nav.startsWith('fr')) return 'fr';
+      if(nav.startsWith('it')) return 'it';
+      if(nav.startsWith('ja')) return 'ja';
+      if(nav.startsWith('ko')) return 'ko';
+      if(nav.startsWith('zh')) return 'zh';
+      return 'en';
+    }
+
+    function buildLanguagePanel(){
+      langPanel.innerHTML = '';
+      Object.keys(LANGUAGE_META).forEach(code=>{
+        const meta = LANGUAGE_META[code];
+        const btn = document.createElement('button');
+        btn.className = 'lang-opt';
+        btn.setAttribute('role','menuitemradio');
+        btn.setAttribute('data-lang', code);
+        btn.setAttribute('aria-checked', String(code===CURRENT_LANG));
+        btn.innerHTML = `
+          <span class="left"><span class="flag" aria-hidden="true">${meta.flag}</span> <span class="label">${meta.name}</span></span>
+          <span class="sr-only">${meta.name}</span>
+        `;
+        btn.addEventListener('click', ()=>{
+          if(code!==CURRENT_LANG) setLanguage(code);
+          closeLangPanel();
+          langToggleBtn.focus({preventScroll:true});
+        });
+        langPanel.appendChild(btn);
+      });
+    }
+
+    function updateLangUI(){
+      const meta = LANGUAGE_META[CURRENT_LANG] || LANGUAGE_META.en;
+      langFlagEl.textContent = meta.flag;
+      langNameEl.textContent = meta.name;
+      [...langPanel.querySelectorAll('.lang-opt')].forEach(el=>{
+        const isActive = el.getAttribute('data-lang') === CURRENT_LANG;
+        el.setAttribute('aria-checked', String(isActive));
+      });
+    }
+
+    function openLangPanel(){
+      if(!langPanel.hidden) return;
+      langPanel.hidden = false;
+      langToggleBtn.setAttribute('aria-expanded','true');
+      const active = langPanel.querySelector('.lang-opt[aria-checked="true"]') || langPanel.querySelector('.lang-opt');
+      if(active) active.focus({preventScroll:true});
+      document.addEventListener('mousedown', onDocDown, {capture:true});
+      document.addEventListener('touchstart', onDocDown, {capture:true, passive:true});
+      document.addEventListener('keydown', onKeyClose);
+    }
+    function closeLangPanel(){
+      if(langPanel.hidden) return;
+      langPanel.hidden = true;
+      langToggleBtn.setAttribute('aria-expanded','false');
+      document.removeEventListener('mousedown', onDocDown, {capture:true});
+      document.removeEventListener('touchstart', onDocDown, {capture:true});
+      document.removeEventListener('keydown', onKeyClose);
+    }
+    function toggleLangPanel(){ (langPanel.hidden ? openLangPanel : closeLangPanel)(); }
+    function onDocDown(e){
+      if(!langPanel.contains(e.target) && e.target!==langToggleBtn) closeLangPanel();
+    }
+    function onKeyClose(e){
+      if(e.key==='Escape'){ e.preventDefault(); closeLangPanel(); langToggleBtn.focus({preventScroll:true}); }
+      if((e.key==='ArrowDown' || e.key==='ArrowUp') && !langPanel.hidden){
+        const opts = [...langPanel.querySelectorAll('.lang-opt')];
+        const idx  = opts.indexOf(document.activeElement);
+        if(idx>=0){
+          e.preventDefault();
+          const next = (e.key==='ArrowDown') ? Math.min(opts.length-1, idx+1) : Math.max(0, idx-1);
+          opts[next].focus({preventScroll:true});
+        }
+      }
+    }
+    langToggleBtn.addEventListener('click', toggleLangPanel);
+
+    function setLanguage(lang){
+      if(!I18N[lang]) lang='en';
+      CURRENT_LANG = lang;
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+
+      const t = I18N[lang] || I18N.en;
+      document.getElementById('intro').innerHTML = t.intro;
+      document.getElementById('ptr-text').textContent = t.ptr;
+      setCTAForDevice(lang);
+
+      mountTitleLetters(t.titleText);
+      animateLettersIn([...document.querySelectorAll('#title-word .title-letter')]);
+
+      rerenderDayBannerText();
+      retranslateAllTopics(true);
+      updateLangUI();
+    }
+
+    /* ===== Header Scroll Behavior ===== */
+    let lastScrollY = 0;
+    let ticking = false;
+    const mainHeader = document.getElementById('main-header');
+
+    function updateHeaderVisibility(){
+      const currentScrollY = window.scrollY;
+
+      if(currentScrollY > lastScrollY && currentScrollY > 100){
+        // Scrolling down
+        mainHeader.classList.add('header--hidden');
+      } else {
+        // Scrolling up
+        mainHeader.classList.remove('header--hidden');
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    addEventListener('scroll', ()=>{
+      if(!ticking){
+        requestAnimationFrame(updateHeaderVisibility);
+        ticking = true;
+      }
+    }, {passive:true});
+
+    /* ===== Trophy Button Animation ===== */
+    const trophyBtn = document.getElementById('trophy-btn');
+    const trophyEmoji = document.getElementById('trophy-emoji');
+    const trophyEmojis = ['🥇','🥈','🥉','🏆'];
+    let trophyIndex = 3; // Start with 🏆
+
+    function rotateTrophyEmoji(){
+      trophyIndex = (trophyIndex + 1) % trophyEmojis.length;
+      trophyEmoji.textContent = trophyEmojis[trophyIndex];
+    }
+
+    setInterval(rotateTrophyEmoji, 2000);
+
+    /* ===== Leaderboard Overlay ===== */
+    const leaderboardOverlay = document.getElementById('leaderboard-overlay');
+    const leaderboardCloseBtn = leaderboardOverlay.querySelector('.leaderboard-overlay__close');
+
+    function showLeaderboard(){
+      // Pass current deviceId to leaderboard so it can highlight + scroll to own row
+      const lbIframe = document.getElementById('leaderboard-iframe');
+      if(lbIframe){
+        const me = getOrCreateDeviceId();
+        const base = 'https://emojipainter.com/leaderboard/index.html';
+        lbIframe.src = me ? `${base}?me=${encodeURIComponent(me)}` : base;
+      }
+      leaderboardOverlay.classList.add('active');
+      leaderboardOverlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideLeaderboard(){
+      leaderboardOverlay.classList.remove('active');
+      leaderboardOverlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    trophyBtn.addEventListener('click', showLeaderboard);
+    leaderboardCloseBtn.addEventListener('click', hideLeaderboard);
+
+    leaderboardOverlay.addEventListener('click', (event)=>{
+      if(event.target === leaderboardOverlay){
+        hideLeaderboard();
+      }
+    });
+
+    /* ===== Topic Suggestions Overlay ===== */
+    const suggestionsBtn = document.getElementById('suggestions-btn');
+    const suggestionsOverlay = document.getElementById('suggestions-overlay');
+    const suggestionsCloseBtn = document.getElementById('suggestions-close');
+    const suggestionsList = document.getElementById('suggestions-list');
+    const suggestionInput = document.getElementById('suggestion-input');
+    const submitSuggestionBtn = document.getElementById('submit-suggestion-btn');
+    const submitStatus = document.getElementById('submit-status');
+    const suggestionsSort = document.getElementById('suggestions-sort');
+
+    // Store suggestions data
+    let suggestionsData = [];
+    let currentSortMode = 'newest';
+    let myPassportUrl = null; // Current user's passport for display when voting
+
+    // Get device ID (create if doesn't exist)
+    function getDeviceId(){
+      let deviceId = localStorage.getItem('deviceId');
+      if(!deviceId){
+        deviceId = 'web_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+        localStorage.setItem('deviceId', deviceId);
+      }
+      return deviceId;
+    }
+
+    const DEVICE_ID = getDeviceId();
+
+    function showSuggestions(){
+      suggestionsOverlay.classList.add('active');
+      suggestionsOverlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      loadSuggestions();
+    }
+
+    function hideSuggestions(){
+      suggestionsOverlay.classList.remove('active');
+      suggestionsOverlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    function sortSuggestions(suggestions, mode){
+      const sorted = [...suggestions];
+      if(mode === 'mostLikes'){
+        sorted.sort((a, b) => b.score - a.score);
+      } else {
+        // newest first (default)
+        sorted.sort((a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
+      }
+      return sorted;
+    }
+
+    function renderSuggestions(){
+      if(suggestionsData.length === 0){
+        suggestionsList.innerHTML = '<div style="text-align:center; padding:40px; color:var(--muted);">No suggestions yet. Be the first!</div>';
+        return;
+      }
+
+      const sorted = sortSuggestions(suggestionsData, currentSortMode);
+
+      suggestionsList.innerHTML = '';
+      sorted.forEach(s => {
+        const item = document.createElement('div');
+        item.setAttribute('data-suggestion-id', s.id);
+        item.style.cssText = 'background:var(--card-2); border-radius:12px; padding:16px; border:1px solid var(--stroke);';
+
+        const statusColor = s.status === 'approved' ? '#10b981' : s.status === 'rejected' ? '#ef4444' : '#f59e0b';
+        const statusEmoji = s.status === 'approved' ? '✅' : s.status === 'rejected' ? '❌' : '⏳';
+
+        item.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px;">
+            <div style="flex:1;">
+              <div style="font-size:16px; font-weight:600; color:var(--text); margin-bottom:4px;">${escapeHtml(s.topic)}</div>
+              <div style="font-size:12px; color:var(--muted);">by ${escapeHtml(s.submittedBy)} • ${new Date(s.submittedAt).toLocaleDateString()}</div>
+            </div>
+            <div style="padding:4px 10px; border-radius:6px; background:${statusColor}22; color:${statusColor}; font-size:12px; white-space:nowrap;">
+              ${statusEmoji} ${s.status}
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <button class="vote-btn-up" data-id="${s.id}" style="width:28px; height:28px; display:flex; align-items:center; justify-content:center; border:0; background:${s.userVote === 'up' ? '#3b82f6' : 'var(--card-2)'}; color:white; border-radius:6px; cursor:pointer; transition:all 0.2s; font-size:16px; border:1px solid ${s.userVote === 'up' ? '#3b82f6' : 'var(--stroke)'};">👍</button>
+              <span class="vote-count-up" style="font-size:13px; font-weight:bold; color:var(--muted); min-width:20px;">${s.upvotes}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <button class="vote-btn-down" data-id="${s.id}" style="width:28px; height:28px; display:flex; align-items:center; justify-content:center; border:0; background:${s.userVote === 'down' ? '#3b82f6' : 'var(--card-2)'}; color:white; border-radius:6px; cursor:pointer; transition:all 0.2s; font-size:16px; border:1px solid ${s.userVote === 'down' ? '#3b82f6' : 'var(--stroke)'};">👎</button>
+              <span class="vote-count-down" style="font-size:13px; font-weight:bold; color:var(--muted); min-width:20px;">${s.downvotes}</span>
+            </div>
+            ${s.userVote && myPassportUrl ? `<img src="${myPassportUrl}" style="width:22px; height:22px; border-radius:11px; border:2px solid #3b82f6; margin-left:8px;" alt="Your passport">` : ''}
+            <div class="suggestion-score" style="margin-left:auto; color:var(--muted); font-weight:600; font-size:13px;">
+              Score: ${s.score}
+            </div>
+          </div>
+        `;
+
+        suggestionsList.appendChild(item);
+      });
+
+      // Add vote handlers
+      document.querySelectorAll('.vote-btn-up').forEach(btn => {
+        btn.addEventListener('click', () => vote(parseInt(btn.dataset.id), 'up', btn));
+      });
+      document.querySelectorAll('.vote-btn-down').forEach(btn => {
+        btn.addEventListener('click', () => vote(parseInt(btn.dataset.id), 'down', btn));
+      });
+    }
+
+    async function loadSuggestions(){
+      try {
+        suggestionsList.innerHTML = '<div style="text-align:center; padding:40px; color:var(--muted);">Loading...</div>';
+
+        const response = await fetch(`${API_BASE}/gesser/list-suggestions.php?device_id=${DEVICE_ID}&filter=pending&limit=100`);
+        const data = await response.json();
+
+        if(!data.ok){
+          throw new Error(data.error || 'Failed to load');
+        }
+
+        suggestionsData = data.suggestions || [];
+        myPassportUrl = data.myPassportUrl || null; // Store my passport for voting display
+        console.log('[Suggestions] My passport URL:', myPassportUrl);
+        renderSuggestions();
+
+      } catch(err){
+        console.error('Load suggestions error:', err);
+        suggestionsList.innerHTML = '<div style="text-align:center; padding:40px; color:#ef4444;">Failed to load suggestions</div>';
+      }
+    }
+
+    async function vote(suggestionId, voteType, buttonEl){
+      try {
+        // Optimistic update
+        const suggestion = suggestionsData.find(s => s.id === suggestionId);
+        if(!suggestion) return;
+
+        // Animate button
+        buttonEl.classList.add(voteType === 'up' ? 'vote-anim-up' : 'vote-anim-down');
+        setTimeout(() => {
+          buttonEl.classList.remove('vote-anim-up', 'vote-anim-down');
+        }, 400);
+
+        // Calculate optimistic changes
+        const wasUp = suggestion.userVote === 'up';
+        const wasDown = suggestion.userVote === 'down';
+        const isTogglingOff = suggestion.userVote === voteType;
+
+        let newUpvotes = suggestion.upvotes;
+        let newDownvotes = suggestion.downvotes;
+        let newUserVote = voteType;
+
+        if(isTogglingOff){
+          // Toggle off
+          if(voteType === 'up') newUpvotes--;
+          else newDownvotes--;
+          newUserVote = null;
+        } else {
+          // Switching or new vote
+          if(wasUp) newUpvotes--;
+          if(wasDown) newDownvotes--;
+          if(voteType === 'up') newUpvotes++;
+          else newDownvotes++;
+        }
+
+        // Update local data
+        suggestion.upvotes = newUpvotes;
+        suggestion.downvotes = newDownvotes;
+        suggestion.score = newUpvotes - newDownvotes;
+        suggestion.userVote = newUserVote;
+
+        // Update UI without full reload
+        const card = document.querySelector(`[data-suggestion-id="${suggestionId}"]`);
+        if(card){
+          const upBtn = card.querySelector('.vote-btn-up');
+          const downBtn = card.querySelector('.vote-btn-down');
+          const upCount = card.querySelector('.vote-count-up');
+          const downCount = card.querySelector('.vote-count-down');
+          const scoreEl = card.querySelector('.suggestion-score');
+
+          upBtn.style.background = newUserVote === 'up' ? '#3b82f6' : 'var(--card-2)';
+          upBtn.style.borderColor = newUserVote === 'up' ? '#3b82f6' : 'var(--stroke)';
+          downBtn.style.background = newUserVote === 'down' ? '#3b82f6' : 'var(--card-2)';
+          downBtn.style.borderColor = newUserVote === 'down' ? '#3b82f6' : 'var(--stroke)';
+          upCount.textContent = newUpvotes;
+          downCount.textContent = newDownvotes;
+          scoreEl.textContent = `Score: ${suggestion.score}`;
+        }
+
+        // Send vote to server
+        const response = await fetch(`${API_BASE}/gesser/vote-suggestion.php`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            device_id: DEVICE_ID,
+            suggestion_id: suggestionId,
+            vote: voteType
+          })
+        });
+
+        const data = await response.json();
+        if(!data.ok){
+          throw new Error(data.error || 'Failed to vote');
+        }
+
+        // Update with server response (in case of discrepancy)
+        suggestion.upvotes = data.upvotes;
+        suggestion.downvotes = data.downvotes;
+        suggestion.score = data.newScore;
+
+        if(card){
+          const upCount = card.querySelector('.vote-count-up');
+          const downCount = card.querySelector('.vote-count-down');
+          const scoreEl = card.querySelector('.suggestion-score');
+          upCount.textContent = data.upvotes;
+          downCount.textContent = data.downvotes;
+          scoreEl.textContent = `Score: ${data.newScore}`;
+        }
+
+      } catch(err){
+        console.error('Vote error:', err);
+        // Reload on error to reset state
+        loadSuggestions();
+      }
+    }
+
+    async function submitSuggestion(){
+      const topic = suggestionInput.value.trim();
+
+      if(!topic){
+        submitStatus.innerHTML = '<span style="color:#ef4444;">Please enter a topic</span>';
+        return;
+      }
+
+      try {
+        submitSuggestionBtn.disabled = true;
+        submitStatus.innerHTML = '<span style="color:var(--muted);">Submitting...</span>';
+
+        const response = await fetch(`${API_BASE}/gesser/suggest-topic.php`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            device_id: DEVICE_ID,
+            topic
+          })
+        });
+
+        const data = await response.json();
+
+        if(!data.ok){
+          throw new Error(data.error || 'Failed to submit');
+        }
+
+        submitStatus.innerHTML = '<span style="color:#10b981;">✓ Topic submitted!</span>';
+        suggestionInput.value = '';
+
+        // Reload list
+        setTimeout(() => {
+          submitStatus.innerHTML = '';
+          loadSuggestions();
+        }, 2000);
+
+      } catch(err){
+        console.error('Submit error:', err);
+        submitStatus.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
+      } finally {
+        submitSuggestionBtn.disabled = false;
+      }
+    }
+
+    // escapeHtml defined earlier (near maskTopic)
+
+    suggestionsBtn.addEventListener('click', showSuggestions);
+    suggestionsCloseBtn.addEventListener('click', () => {
+      suggestionsCloseBtn.textContent = '✳️';
+      setTimeout(() => {
+        suggestionsCloseBtn.textContent = '❎';
+      }, 300);
+      hideSuggestions();
+    });
+    submitSuggestionBtn.addEventListener('click', submitSuggestion);
+
+    suggestionInput.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter'){
+        submitSuggestion();
+      }
+    });
+
+    suggestionsSort.addEventListener('change', (e) => {
+      currentSortMode = e.target.value;
+      renderSuggestions();
+    });
+
+    suggestionsOverlay.addEventListener('click', (event)=>{
+      if(event.target === suggestionsOverlay){
+        hideSuggestions();
+      }
+    });
+
+    document.addEventListener('keydown', (event)=>{
+      if(event.key === 'Escape'){
+        if(leaderboardOverlay.classList.contains('active')){
+          hideLeaderboard();
+        }
+        if(suggestionsOverlay.classList.contains('active')){
+          hideSuggestions();
+        }
+      }
+    });
+
+    /* ===== Sort change handler ===== */
+    sortSelect.addEventListener('change', ()=>{
+      // Clear gallery and rebuild with new sort order
+      domIndex.clear();
+      dayNodes.clear();
+      document.getElementById('gallery').innerHTML = '';
+      refreshFull();
+    });
+
+    /* ===== Layout toggle handler ===== */
+    // Pick random layout on every page load (3 options: list, grid, desktop)
+    const layoutModes = ['list', 'grid', 'desktop'];
+    let currentLayout = layoutModes[Math.floor(Math.random() * layoutModes.length)];
+    // Pick random columns from 3 to 6 on every page load
+    let gridCols = Math.floor(Math.random() * 4) + 3; // Random: 3, 4, 5, or 6
+
+    const updateGridColumns = (cols) => {
+      gridCols = cols;
+      galleryEl.style.setProperty('--grid-cols', cols);
+      gridCount.textContent = cols;
+      gridSlider.value = cols;
+      localStorage.setItem('grid-cols', cols);
+    };
+
+    const updateLayout = () => {
+      const icon = layoutToggle.querySelector('.layout-icon');
+      if (currentLayout === 'list') {
+        galleryEl.setAttribute('data-layout', 'list');
+        layoutToggle.setAttribute('data-layout', 'list');
+        icon.textContent = '⊞';
+        layoutToggle.setAttribute('title', 'Switch to grid view');
+        gridSliderWrapper.hidden = true;
+        clearCardPositions();
+      } else if (currentLayout === 'grid') {
+        galleryEl.setAttribute('data-layout', 'grid');
+        layoutToggle.setAttribute('data-layout', 'grid');
+        icon.textContent = '☰';
+        layoutToggle.setAttribute('title', 'Switch to desktop view');
+        gridSliderWrapper.hidden = false;
+        updateGridColumns(gridCols);
+        clearCardPositions();
+      } else { // desktop
+        galleryEl.setAttribute('data-layout', 'desktop');
+        layoutToggle.setAttribute('data-layout', 'desktop');
+        icon.textContent = '🖥️';
+        layoutToggle.setAttribute('title', 'Switch to list view');
+        gridSliderWrapper.hidden = true;
+        randomizeCardPositions();
+      }
+    };
+
+    /* Clear card positions and rotations for list/grid modes */
+    function clearCardPositions() {
+      const cards = galleryEl.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.style.left = '';
+        card.style.top = '';
+        card.style.transform = '';
+        card.style.position = '';
+        card.dataset.rotation = '';
+      });
+    }
+
+    layoutToggle.addEventListener('click', () => {
+      const currentIndex = layoutModes.indexOf(currentLayout);
+      currentLayout = layoutModes[(currentIndex + 1) % layoutModes.length];
+      updateLayout();
+    });
+
+    gridSlider.addEventListener('input', (e) => {
+      updateGridColumns(parseInt(e.target.value));
+    });
+
+    /* ===== Desktop mode: Random positioning with collision detection ===== */
+    function randomizeCardPositions() {
+      if(galleryEl.getAttribute('data-layout') !== 'desktop') return;
+
+      const cards = Array.from(galleryEl.querySelectorAll('.card'));
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = Math.max(2000, cards.length * 100);
+      const cardWidth = window.innerWidth <= 768 ? 140 : 180;
+      const cardHeight = window.innerWidth <= 768 ? 180 : 240;
+      const minDistance = 30; // Minimum distance between cards
+      const positions = [];
+
+      // Decide which cards can overlap (1 in 33)
+      const canOverlap = cards.map((_, index) => Math.random() < (1/33));
+
+      cards.forEach((card, index) => {
+        let x, y, attempts = 0;
+        let validPosition = false;
+
+        // Try to find a non-overlapping position
+        while(!validPosition && attempts < 50) {
+          x = Math.random() * (viewportWidth - cardWidth - 40) + 20;
+          y = Math.random() * (viewportHeight - cardHeight - 40) + 20;
+
+          // Check collision with existing cards (unless this card is allowed to overlap)
+          if(canOverlap[index]) {
+            validPosition = true;
+          } else {
+            validPosition = true;
+            for(let pos of positions) {
+              const dx = x - pos.x;
+              const dy = y - pos.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if(distance < cardWidth + minDistance) {
+                validPosition = false;
+                break;
+              }
+            }
+          }
+          attempts++;
+        }
+
+        // If couldn't find position, just use last random one
+        if(!validPosition) {
+          x = Math.random() * (viewportWidth - cardWidth - 40) + 20;
+          y = Math.random() * (viewportHeight - cardHeight - 40) + 20;
+        }
+
+        // Store position
+        positions.push({x, y});
+
+        // Random rotation
+        const rotation = (Math.random() - 0.5) * 8; // -4 to +4 degrees
+
+        card.style.left = `${x}px`;
+        card.style.top = `${y}px`;
+        card.style.transform = `rotate(${rotation}deg)`;
+        card.dataset.rotation = rotation;
+      });
+
+      // Update gallery height
+      galleryEl.style.minHeight = `${viewportHeight}px`;
+    }
+
+    /* ===== Desktop mode: Drag and drop (Mouse + Touch) ===== */
+    let draggedCard = null;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
+    let lastClickTime = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+
+    function startDrag(card, clientX, clientY) {
+      draggedCard = card;
+
+      // Get current position of card (already in page coordinates)
+      const currentLeft = parseInt(card.style.left) || 0;
+      const currentTop = parseInt(card.style.top) || 0;
+
+      // Calculate offset from click position to card position
+      dragOffsetX = clientX - currentLeft;
+      dragOffsetY = (clientY + window.pageYOffset) - currentTop;
+
+      dragStartX = clientX;
+      dragStartY = clientY;
+      isDragging = false;
+
+      card.style.transition = 'none';
+      card.style.zIndex = '1000';
+    }
+
+    function moveDrag(clientX, clientY) {
+      if(!draggedCard) return;
+
+      // Check if moved enough to be considered a drag
+      const dx = clientX - dragStartX;
+      const dy = clientY - dragStartY;
+      if(Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+        isDragging = true;
+      }
+
+      const x = clientX - dragOffsetX;
+      const y = (clientY + window.pageYOffset) - dragOffsetY;
+
+      draggedCard.style.left = `${x}px`;
+      draggedCard.style.top = `${y}px`;
+    }
+
+    function endDrag() {
+      if(!draggedCard) return;
+
+      draggedCard.style.transition = '';
+      draggedCard.style.zIndex = '';
+      draggedCard = null;
+
+      // Reset drag state after a short delay
+      setTimeout(() => {
+        isDragging = false;
+      }, 50);
+    }
+
+    // Mouse events
+    function handleMouseDown(e) {
+      if(galleryEl.getAttribute('data-layout') !== 'desktop') return;
+
+      const card = e.target.closest('.card');
+      if(!card) return;
+
+      // Check for double click
+      const now = Date.now();
+      if(now - lastClickTime < 300 && !isDragging) {
+        // Double click detected
+        const itemId = parseInt(card.dataset.id);
+        const ref = domIndex.get(itemId) || domIndex.get(String(itemId));
+        if(ref) {
+          // Use full _itemData (has mystery_topic_text, etc.) — never reconstruct from DOM
+          const fullItem = ref._itemData || {
+            id: itemId,
+            topic: card.dataset.topic || '',
+            image_url: card.querySelector('img.card__image,video.card__image')?.src || '',
+            raw_url:   card.querySelector('img.card__image,video.card__image')?.src || '',
+            created_at: parseInt(card.dataset.created) || 0,
+            upvotes: parseInt(card.querySelector('[data-direction="up"] .count')?.textContent) || 0,
+            downvotes: parseInt(card.querySelector('[data-direction="down"] .count')?.textContent) || 0,
+            media_type: card.querySelector('video.card__image') ? 'video' : 'image'
+          };
+          showPostViewer(fullItem);
+        }
+        lastClickTime = 0;
+        return;
+      }
+      lastClickTime = now;
+
+      startDrag(card, e.clientX, e.clientY);
+
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+
+    function handleMouseMove(e) {
+      e.preventDefault();
+      moveDrag(e.clientX, e.clientY);
+    }
+
+    function handleMouseUp(e) {
+      endDrag();
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    }
+
+    // Touch events
+    function handleTouchStart(e) {
+      if(galleryEl.getAttribute('data-layout') !== 'desktop') return;
+
+      const card = e.target.closest('.card');
+      if(!card) return;
+
+      const touch = e.touches[0];
+
+      // Check for double tap
+      const now = Date.now();
+      if(now - lastClickTime < 300 && !isDragging) {
+        // Double tap detected
+        const itemId = parseInt(card.dataset.id);
+        const ref = domIndex.get(itemId) || domIndex.get(String(itemId));
+        if(ref) {
+          const fullItem = ref._itemData || {
+            id: itemId,
+            topic: card.dataset.topic || '',
+            image_url: card.querySelector('img.card__image,video.card__image')?.src || '',
+            raw_url:   card.querySelector('img.card__image,video.card__image')?.src || '',
+            created_at: parseInt(card.dataset.created) || 0,
+            upvotes: parseInt(card.querySelector('[data-direction="up"] .count')?.textContent) || 0,
+            downvotes: parseInt(card.querySelector('[data-direction="down"] .count')?.textContent) || 0,
+            media_type: card.querySelector('video.card__image') ? 'video' : 'image'
+          };
+          showPostViewer(fullItem);
+        }
+        lastClickTime = 0;
+        return;
+      }
+      lastClickTime = now;
+
+      startDrag(card, touch.clientX, touch.clientY);
+    }
+
+    function handleTouchMove(e) {
+      if(!draggedCard) return;
+      e.preventDefault();
+      const touch = e.touches[0];
+      moveDrag(touch.clientX, touch.clientY);
+    }
+
+    function handleTouchEnd(e) {
+      endDrag();
+    }
+
+    galleryEl.addEventListener('mousedown', handleMouseDown);
+    galleryEl.addEventListener('touchstart', handleTouchStart, {passive: false});
+    galleryEl.addEventListener('touchmove', handleTouchMove, {passive: false});
+    galleryEl.addEventListener('touchend', handleTouchEnd);
+
+    updateLayout();
+
+    /* ===== INIT ===== */
+    (async function init(){
+      buildLanguagePanel();
+      updateLangUI();
+
+      mountTitleLetters(I18N[CURRENT_LANG]?.titleText || I18N.en.titleText);
+      animateLettersIn([...document.querySelectorAll('#title-word .title-letter')]);
+      setupTitleWobble();
+      runEmojiSpinner();
+
+      setLanguage(CURRENT_LANG);
+
+      // Load gallery entries FIRST for immediate display
+      console.log('[Gallery] Loading gallery entries from SQL API:', API_BASE + '/list.php');
+      const startTime = performance.now();
+      await refreshFull();    // builds gallery immediately - fast!
+
+      // Deep link support: ?post=ID opens the post viewer, &guess=1 jumps into guessing
+      try{
+        const params = new URLSearchParams(window.location.search);
+        const postId = parseInt(params.get('post') || '', 10);
+        if(Number.isFinite(postId) && Array.isArray(window.__galleryItems)){
+          const target = window.__galleryItems.find(it => Number(it.id) === postId);
+          if(target){
+            setTimeout(()=>{
+              if(params.get('guess') === '1' && target.is_mystery_paint){
+                openGuessOverlay(target);
+              }else{
+                showPostViewer(target);
+              }
+            }, 400);
+          }
+        }
+      }catch(e){ console.warn('[Gallery] Deep link failed:', e); }
+
+      const loadTime = (performance.now() - startTime).toFixed(0);
+      console.log(`[Gallery] ✓ Gallery loaded in ${loadTime}ms (SQL is fast!)`);
+
+      // Force immediate rendering and image loading
+      setTimeout(()=>{
+        // Trigger scroll/resize to ensure images start loading
+        window.dispatchEvent(new Event('scroll'));
+        window.dispatchEvent(new Event('resize'));
+        // Force layout recalculation
+        document.getElementById('gallery').offsetHeight;
+      }, 50);
+
+      startTimers();
+
+      // Load topics in BACKGROUND (non-blocking)
+      console.log('[Gallery] Loading topics in background...');
+      loadTopics().then(()=>{
+        console.log('[Gallery] ✓ Topics loaded');
+        retranslateAllTopics(false);  // update topics after loading
+      }).catch(err => {
+        console.warn('[Gallery] Topics loading failed:', err);
+      });
+
+      // responsive image height
+      const applyH=()=>document.documentElement.style.setProperty('--image-h', `${Math.round(0.70 * window.innerHeight)}px`);
+      applyH(); addEventListener('resize', applyH);
+    })();
+
+    /* ===================================================
+       GUESS OVERLAY SYSTEM
+       =================================================== */
+
+    // All mystery items encountered on the page
+    let mysteryItems = [];       // [{item, index}, ...]
+    let currentMysteryIndex = 0; // index into mysteryItems
+    const guessOverlay    = document.getElementById('guess-overlay');
+    const guessMediaArea  = document.getElementById('guess-media-area');
+    const guessCharRow    = document.getElementById('guess-char-row');
+    const guessKbTrap     = document.getElementById('guess-keyboard-trap');
+    const guessSubmitBtn  = document.getElementById('guess-submit-btn');
+    const guessFeedback   = document.getElementById('guess-feedback');
+    const guessCounter    = document.getElementById('guess-counter');
+    const guessPrevBtn    = document.getElementById('guess-prev');
+    const guessNextBtn    = document.getElementById('guess-next');
+    const guessCloseBtn   = document.getElementById('guess-close');
+
+    // Current overlay state
+    let currentGuessItem  = null;  // the item object
+    let blankValues       = [];    // array of typed chars for blank positions
+    let blankOrder        = [];    // list of char-box elements in order (blanks only)
+    let activeBlankIdx    = 0;     // which blank is "active"
+    let isSubmitting      = false;
+
+    /* Register a mystery item so the overlay knows about it */
+    function registerMysteryItem(item){
+      if(!mysteryItems.find(m=>m.item.id===item.id)){
+        mysteryItems.push({ item });
+      }
+    }
+
+    /* Open the overlay for a specific item */
+    function openGuessOverlay(item){
+      // Rebuild mystery list in current page order using domIndex _itemData
+      mysteryItems = [];
+      const cards = document.querySelectorAll('#gallery .card');
+      cards.forEach(card => {
+        const btn = card.querySelector('.mystery-guess-btn');
+        if(!btn || btn.disabled) return;
+        const itemId = parseInt(card.dataset.id);
+        const ref = domIndex.get(itemId) || domIndex.get(String(itemId));
+        if(ref && ref._itemData){
+          mysteryItems.push({ item: ref._itemData });
+        } else {
+          // Fallback: build minimal item from card DOM
+          mysteryItems.push({ item: {
+            id: itemId,
+            topic: '',   // unknown without _itemData
+            image_url: card.querySelector('img.card__image,video.card__image')?.src || '',
+            raw_url:   card.querySelector('img.card__image,video.card__image')?.src || '',
+            media_type: card.querySelector('video.card__image') ? 'video' : 'image'
+          }});
+        }
+      });
+
+      // Ensure the clicked item is in the list
+      let idx = mysteryItems.findIndex(m => String(m.item.id) === String(item.id));
+      if(idx < 0){
+        mysteryItems.unshift({ item });
+        idx = 0;
+      }
+      currentMysteryIndex = idx;
+      renderGuessForItem(item);
+      guessOverlay.classList.add('active');
+      guessOverlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+      setTimeout(()=> guessKbTrap.focus(), 80);
+    }
+
+    function closeGuessOverlay(){
+      guessOverlay.classList.remove('active');
+      guessOverlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+      currentGuessItem = null;
+      isSubmitting = false;
+    }
+
+    function renderGuessForItem(item){
+      currentGuessItem = item;
+      isSubmitting = false;
+      guessFeedback.textContent = '';
+      guessFeedback.className = 'guess-feedback';
+      const triesEl = document.getElementById('guess-tries');
+      if(triesEl){
+        const n = getItemAttempts(item.id);
+        triesEl.textContent = n > 0 ? `${n} attempt${n!==1?'s':''} so far` : '';
+      }
+
+      // Update counter
+      const total = mysteryItems.length;
+      const pos   = currentMysteryIndex + 1;
+      guessCounter.textContent = total > 1 ? `${pos} / ${total}` : '';
+
+      // Nav arrows
+      guessPrevBtn.hidden = (currentMysteryIndex <= 0);
+      guessNextBtn.hidden = (currentMysteryIndex >= mysteryItems.length - 1);
+
+      // Media
+      // Remove old media children (keep nav buttons)
+      Array.from(guessMediaArea.children).forEach(ch=>{
+        if(!ch.classList.contains('guess-nav-btn')) ch.remove();
+      });
+      const mediaUrl = item.raw_url || item.image_url || '';
+      const isVid = /\.(mp4|mov|webm)$/i.test(mediaUrl) || item.media_type === 'video';
+      if(isVid){
+        const v = document.createElement('video');
+        v.src = mediaUrl;
+        v.autoplay = true; v.loop = true; v.muted = true; v.playsInline = true;
+        v.style.cssText='max-width:100%;max-height:100%;object-fit:contain;';
+        guessMediaArea.appendChild(v);
+      } else if(mediaUrl){
+        const im = document.createElement('img');
+        im.src = mediaUrl;
+        im.alt = '?';
+        im.style.cssText='max-width:100%;max-height:100%;object-fit:contain;';
+        guessMediaArea.appendChild(im);
+      }
+
+      // Build character boxes
+      buildCharBoxes(item);
+      focusBlank(0);
+    }
+
+    // Always resolve the mystery topic to English for guessing
+    function getMysteryTopicForGuess(item){
+      const raw = (item.mystery_topic_text || '').trim() || (item.topic || '').trim();
+      if(!raw) return '';
+      // Try translation maps first (handles legacy non-English stored topics)
+      const key = anyToBase.get(raw.toLowerCase().normalize('NFC')) || anyToBase.get(raw.toLowerCase());
+      return (key && getLocalizedFromBase(key, 'en')) || raw;
+    }
+
+    function buildCharBoxes(item){
+      guessCharRow.innerHTML='';
+      blankValues = [];
+      blankOrder  = [];
+      activeBlankIdx = 0;
+
+      const topic   = getMysteryTopicForGuess(item);
+      const topicId = item.mystery_topic_id ?? 0;
+      const { masked, revealedPositions } = maskTopic(topic, topicId);
+      const chars   = Array.from(topic);
+
+      // Group by words for spacing
+      let wordGroup = document.createDocumentFragment();
+      let prevWasSpace = false;
+
+      chars.forEach((origChar, idx) => {
+        if(origChar === ' '){
+          if(!prevWasSpace){
+            const gap = document.createElement('span');
+            gap.className = 'guess-word-gap';
+            guessCharRow.appendChild(gap);
+          }
+          prevWasSpace = true;
+          return;
+        }
+        prevWasSpace = false;
+
+        const box = document.createElement('div');
+        const isLetter = /\p{L}/u.test(origChar);
+
+        if(!isLetter){
+          box.className = 'guess-char-box punct';
+          box.textContent = origChar;
+        } else if(revealedPositions.includes(idx)){
+          box.className = 'guess-char-box revealed';
+          box.textContent = origChar.toLowerCase();
+        } else {
+          // Blank to fill
+          box.className = 'guess-char-box blank';
+          box.dataset.blankIdx = String(blankOrder.length);
+          blankValues.push('');
+          blankOrder.push(box);
+        }
+        guessCharRow.appendChild(box);
+      });
+
+      updateSubmitBtn();
+    }
+
+    function focusBlank(idx){
+      // Deactivate all
+      blankOrder.forEach(b=> b.classList.remove('active'));
+      if(idx < 0 || idx >= blankOrder.length) return;
+      activeBlankIdx = idx;
+      blankOrder[idx].classList.add('active');
+      guessKbTrap.focus();
+    }
+
+    function updateSubmitBtn(){
+      const allFilled = blankValues.every(v => v.trim().length > 0);
+      guessSubmitBtn.disabled = !allFilled;
+      const n = blankValues.length;
+      if(!allFilled){
+        const remaining = blankValues.filter(v=>!v.trim()).length;
+        guessSubmitBtn.textContent = `Fill ${remaining} blank${remaining===1?'':'s'}`;
+      } else {
+        guessSubmitBtn.textContent = 'Submit Guess ✓';
+      }
+    }
+
+    /* Keyboard handling */
+    guessKbTrap.addEventListener('keydown', e=>{
+      if(!currentGuessItem || isSubmitting) return;
+      if(e.key === 'Escape'){ e.preventDefault(); closeGuessOverlay(); return; }
+      if(e.key === 'ArrowLeft'){
+        e.preventDefault(); focusBlank(Math.max(0, activeBlankIdx-1)); return;
+      }
+      if(e.key === 'ArrowRight'){
+        e.preventDefault(); focusBlank(Math.min(blankOrder.length-1, activeBlankIdx+1)); return;
+      }
+      if(e.key === 'Tab'){
+        e.preventDefault();
+        const next = e.shiftKey
+          ? Math.max(0, activeBlankIdx-1)
+          : Math.min(blankOrder.length-1, activeBlankIdx+1);
+        focusBlank(next);
+        return;
+      }
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        if(!guessSubmitBtn.disabled) submitGuess();
+        return;
+      }
+      if(e.key === 'Backspace'){
+        e.preventDefault();
+        if(blankValues[activeBlankIdx]){
+          blankValues[activeBlankIdx]='';
+          blankOrder[activeBlankIdx].textContent='';
+          blankOrder[activeBlankIdx].classList.remove('filled');
+        } else if(activeBlankIdx > 0){
+          focusBlank(activeBlankIdx-1);
+          blankValues[activeBlankIdx]='';
+          blankOrder[activeBlankIdx].textContent='';
+          blankOrder[activeBlankIdx].classList.remove('filled');
+        }
+        updateSubmitBtn();
+        return;
+      }
+      // Printable character
+      if(e.key.length===1 && !e.ctrlKey && !e.metaKey){
+        e.preventDefault();
+        const ch = e.key;
+        if(!/\p{L}/u.test(ch)) return; // only letters
+        blankValues[activeBlankIdx] = ch;
+        blankOrder[activeBlankIdx].textContent = ch;
+        blankOrder[activeBlankIdx].classList.add('filled');
+        // Advance to next blank
+        if(activeBlankIdx < blankOrder.length-1){
+          focusBlank(activeBlankIdx+1);
+        }
+        updateSubmitBtn();
+      }
+    });
+
+    // Also handle input event from mobile keyboard
+    guessKbTrap.addEventListener('input', e=>{
+      const val = guessKbTrap.value;
+      guessKbTrap.value = '';
+      if(!val || !currentGuessItem || isSubmitting) return;
+      // Feed each char
+      for(const ch of val){
+        if(!/\p{L}/u.test(ch)) continue;
+        if(activeBlankIdx < blankOrder.length){
+          blankValues[activeBlankIdx] = ch;
+          blankOrder[activeBlankIdx].textContent = ch;
+          blankOrder[activeBlankIdx].classList.add('filled');
+          if(activeBlankIdx < blankOrder.length-1) focusBlank(activeBlankIdx+1);
+        }
+      }
+      updateSubmitBtn();
+    });
+
+    // Click a blank box to focus it
+    guessCharRow.addEventListener('click', e=>{
+      const box = e.target.closest('.guess-char-box.blank');
+      if(!box) return;
+      const idx = parseInt(box.dataset.blankIdx);
+      if(!isNaN(idx)) focusBlank(idx);
+      guessKbTrap.focus();
+    });
+
+    function buildGuessString(){
+      // Rebuild the full topic with user-filled blanks replacing _
+      const topic   = getMysteryTopicForGuess(currentGuessItem);
+      const topicId = currentGuessItem.mystery_topic_id ?? 0;
+      const { revealedPositions } = maskTopic(topic, topicId);
+      const chars   = Array.from(topic);
+      let blankIdx2 = 0;
+      const rebuilt = chars.map((ch, i) => {
+        if(ch === ' ') return ' ';
+        if(!(/\p{L}/u.test(ch))) return ch;
+        if(revealedPositions.includes(i)) return ch;
+        return blankValues[blankIdx2++] || '_';
+      }).join('');
+      return rebuilt;
+    }
+
+    function submitGuess(){
+      if(!currentGuessItem || isSubmitting) return;
+      const guessStr = buildGuessString();
+      const actual   = getMysteryTopicForGuess(currentGuessItem);
+      const correct  = topicsMatch(guessStr, actual);
+
+      isSubmitting = true;
+      const state = getGuessState();
+      const prev = state[String(currentGuessItem.id)];
+      const prevAttempts = prev ? (typeof prev === 'string' ? 1 : (prev.attempts || 0)) : 0;
+      state[String(currentGuessItem.id)] = { result: correct ? 'correct' : 'wrong', attempts: prevAttempts + 1 };
+      setGuessState(state);
+
+      if(correct){
+        guessFeedback.textContent = '🎉 Correct! Answer revealed ✓';
+        guessFeedback.className   = 'guess-feedback correct';
+        // Reveal full answer in char boxes
+        const chars = Array.from(actual);
+        guessCharRow.innerHTML = '';
+        chars.forEach(ch => {
+          if(ch === ' '){
+            const g = document.createElement('span');
+            g.className='guess-word-gap';
+            guessCharRow.appendChild(g);
+            return;
+          }
+          const b = document.createElement('div');
+          b.className = 'guess-char-box revealed';
+          b.textContent = ch.toLowerCase();
+          guessCharRow.appendChild(b);
+        });
+        guessSubmitBtn.disabled=true;
+        guessSubmitBtn.textContent='✓ Correct!';
+        launchWinAnimation();
+        // Update card in gallery
+        updateCardAfterGuess(currentGuessItem.id, 'correct', actual);
+        // Auto-advance after 1.8s
+        setTimeout(()=>{
+          const next = findNextUnsolved(currentMysteryIndex+1);
+          if(next !== null){
+            currentMysteryIndex = next;
+            renderGuessForItem(mysteryItems[next].item);
+          } else {
+            guessFeedback.textContent = '🏆 All done! No more mysteries.';
+            guessFeedback.className   = 'guess-feedback correct';
+            setTimeout(closeGuessOverlay, 1800);
+          }
+        }, 1800);
+      } else {
+        const tryNum = (getItemAttempts(currentGuessItem.id));
+        guessFeedback.textContent = `❌ Not quite! (Try ${tryNum})`;
+        guessFeedback.className   = 'guess-feedback wrong';
+        guessSubmitBtn.disabled=true;
+        // Update card
+        updateCardAfterGuess(currentGuessItem.id, 'wrong', actual);
+        // Auto-advance after 1.5s — find next non-correct mystery
+        setTimeout(()=>{
+          const next = findNextUnsolved(currentMysteryIndex+1);
+          if(next !== null){
+            currentMysteryIndex = next;
+            renderGuessForItem(mysteryItems[next].item);
+          } else {
+            guessFeedback.textContent = '😅 All mysteries attempted. Try again!';
+            setTimeout(closeGuessOverlay, 1500);
+          }
+        }, 1500);
+      }
+    }
+
+    function findNextUnsolved(startIdx){
+      // Try from startIdx forward first
+      for(let i = startIdx; i < mysteryItems.length; i++){
+        const id = mysteryItems[i].item.id;
+        if(getItemGuessResult(id) !== 'correct') return i;
+      }
+      // Wrap around from beginning
+      for(let i = 0; i < startIdx; i++){
+        const id = mysteryItems[i].item.id;
+        if(getItemGuessResult(id) !== 'correct') return i;
+      }
+      return null;
+    }
+
+    function updateCardAfterGuess(itemId, result, actualTopic){
+      const ref = domIndex.get(itemId) || domIndex.get(String(itemId));
+      if(!ref) return;
+      const card = ref.node;
+      const titleEl = card.querySelector('.card__title');
+      const btn = card.querySelector('.mystery-guess-btn');
+      if(result === 'correct'){
+        if(titleEl){
+          titleEl.innerHTML = `<span style="color:#0f3;font-weight:900;">✓ ${escapeHtml(actualTopic)}</span>`;
+        }
+        if(btn){
+          btn.innerHTML = '✓ Guessed it!';
+          btn.disabled = true;
+        }
+      } else {
+        if(btn){
+          const tries = getItemAttempts(itemId);
+          btn.innerHTML = `🔍 Try Again <span style="font-size:10px;opacity:.7;">(${tries}×)</span>`;
+          btn.disabled = false;
+        }
+      }
+    }
+
+    guessSubmitBtn.addEventListener('click', submitGuess);
+
+    guessCloseBtn.addEventListener('click', ()=>{
+      guessCloseBtn.textContent='✳️';
+      setTimeout(()=>guessCloseBtn.textContent='❎',300);
+      closeGuessOverlay();
+    });
+
+    guessPrevBtn.addEventListener('click', ()=>{
+      if(currentMysteryIndex>0){
+        currentMysteryIndex--;
+        renderGuessForItem(mysteryItems[currentMysteryIndex].item);
+      }
+    });
+
+    guessNextBtn.addEventListener('click', ()=>{
+      if(currentMysteryIndex < mysteryItems.length-1){
+        currentMysteryIndex++;
+        renderGuessForItem(mysteryItems[currentMysteryIndex].item);
+      }
+    });
+
+    guessOverlay.addEventListener('click', e=>{
+      if(e.target === guessOverlay) closeGuessOverlay();
+    });
+
+    document.addEventListener('keydown', e=>{
+      if(e.key==='Escape' && guessOverlay.classList.contains('active')){
+        closeGuessOverlay();
+      }
+    });
+
+    /* ===================================================
+       WIN ANIMATION (7 styles, chosen randomly)
+       =================================================== */
+    const WIN_STYLES = [
+      // 0: coin burst upward arc
+      { emojis:['🪙'], count:24, getCSS:(i,cx,cy)=>{
+        const angle=(i/24)*Math.PI*2; const dist=60+Math.random()*120;
+        const tx=Math.cos(angle)*dist; const ty=-Math.abs(Math.sin(angle)*dist)-60;
+        return {top:`${cy}px`,left:`${cx}px`,fontSize:'20px',
+          '--tx':`${tx}px`,'--ty':`${ty}px`,
+          animation:`winS0 1.3s cubic-bezier(.2,.8,.4,1) ${i*0.04}s forwards`};
+      }},
+      // 1: star radial explosion
+      { emojis:['⭐','🌟','✨'], count:20, getCSS:(i,cx,cy)=>{
+        const angle=(i/20)*Math.PI*2; const dist=80+Math.random()*100;
+        const tx=Math.cos(angle)*dist; const ty=Math.sin(angle)*dist;
+        return {top:`${cy}px`,left:`${cx}px`,fontSize:'18px',
+          '--tx':`${tx}px`,'--ty':`${ty}px`,
+          animation:`winS1 1.2s ease-out ${i*0.03}s forwards`};
+      }},
+      // 2: colored square confetti falling
+      { emojis:['🟥','🟧','🟨','🟩','🟦','🟪'], count:28, getCSS:(i,cx,cy)=>{
+        const tx=(Math.random()-0.5)*400; const ty=200+Math.random()*500;
+        const rot=Math.random()*720-360;
+        return {top:`${cy-50}px`,left:`${cx+(Math.random()-0.5)*300}px`,fontSize:'14px',
+          '--ty':`${ty}px`,'--rot':`${rot}deg`,
+          animation:`winS2 1.4s ease-in ${i*0.025}s forwards`};
+      }},
+      // 3: emoji fountain
+      { emojis:['🎉','🎊','🥳'], count:20, getCSS:(i,cx,cy)=>{
+        const angle=(-0.5+Math.random())*1.2; const speed=120+Math.random()*160;
+        const tx=Math.cos(angle)*speed; const ty=-speed-Math.random()*80;
+        const ty2=-speed*0.5;
+        return {top:`${cy}px`,left:`${cx}px`,fontSize:'22px',
+          '--tx':`${tx}px`,'--ty':`${ty}px`,'--ty2':`${ty2}px`,
+          animation:`winS3 1.3s cubic-bezier(.2,.8,.3,1) ${i*0.05}s forwards`};
+      }},
+      // 4: sparkle spiral outward
+      { emojis:['✨','💫'], count:24, getCSS:(i,cx,cy)=>{
+        const angle=(i/24)*Math.PI*2; const dist=50+i*5;
+        const tx=Math.cos(angle)*dist; const ty=Math.sin(angle)*dist;
+        const rot=(Math.random()-0.5)*720;
+        return {top:`${cy}px`,left:`${cx}px`,fontSize:'16px',
+          '--tx':`${tx}px`,'--ty':`${ty}px`,'--rot':`${rot}deg`,
+          animation:`winS4 1.2s ease-out ${i*0.035}s forwards`};
+      }},
+      // 5: heart shower from top
+      { emojis:['❤️','🧡','💛','💚','💙','💜'], count:24, getCSS:(i,cx,cy)=>{
+        const ty=100+Math.random()*400;
+        return {top:`${Math.random()*-60}px`,left:`${Math.random()*window.innerWidth}px`,fontSize:'20px',
+          '--ty':`${ty}px`,
+          animation:`winS5 1.5s ease-in ${i*0.04}s forwards`};
+      }},
+      // 6: fast burst all directions
+      { emojis:['⚡','🔥','💥'], count:24, getCSS:(i,cx,cy)=>{
+        const angle=(i/24)*Math.PI*2; const dist=100+Math.random()*150;
+        const tx=Math.cos(angle)*dist; const ty=Math.sin(angle)*dist;
+        return {top:`${cy}px`,left:`${cx}px`,fontSize:'20px',
+          '--tx':`${tx}px`,'--ty':`${ty}px`,
+          animation:`winS6 0.9s ease-out ${i*0.02}s forwards`};
+      }}
+    ];
+
+    function launchWinAnimation(){
+      const container = document.getElementById('win-particles');
+      container.innerHTML='';
+      const styleIdx = Math.floor(Math.random()*WIN_STYLES.length);
+      const style    = WIN_STYLES[styleIdx];
+      const cx = window.innerWidth/2;
+      const cy = window.innerHeight*0.45;
+      const { emojis, count, getCSS } = style;
+
+      for(let i=0;i<count;i++){
+        const el = document.createElement('div');
+        el.className = 'win-particle';
+        el.textContent = emojis[i % emojis.length];
+        const css = getCSS(i, cx, cy);
+        Object.assign(el.style, css);
+        container.appendChild(el);
+      }
+      // Clean up after animation
+      setTimeout(()=>container.innerHTML='', 2200);
+    }
+
+  </script>
+</body>
+</html>

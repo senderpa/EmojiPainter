@@ -1,0 +1,37 @@
+name: Bug report
+description: Something in EmojiPainter isn't working right
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device + OS version
+      placeholder: "e.g. iPhone 14 Pro, iOS 18.1"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version / commit
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots
+      description: Xcode console output, screen recording, etc. if you have it.
+    validations:
+      required: false

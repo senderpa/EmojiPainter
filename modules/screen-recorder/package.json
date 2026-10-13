@@ -1,0 +1,10 @@
+{
+  "name": "screen-recorder",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {},
+  "dependencies": {},
+  "expo": {
+    "platforms": ["ios"]
+  }
+}

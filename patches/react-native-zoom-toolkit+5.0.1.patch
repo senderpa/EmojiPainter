@@ -1,0 +1,142 @@
+diff --git a/node_modules/react-native-zoom-toolkit/src/commons/hooks/usePinchCommons.ts b/node_modules/react-native-zoom-toolkit/src/commons/hooks/usePinchCommons.ts
+index 617862f..359b745 100644
+--- a/node_modules/react-native-zoom-toolkit/src/commons/hooks/usePinchCommons.ts
++++ b/node_modules/react-native-zoom-toolkit/src/commons/hooks/usePinchCommons.ts
+@@ -1,4 +1,5 @@
+ import { useState } from 'react';
++import { Platform } from 'react-native';
+ import {
+   withTiming,
+   cancelAnimation,
+@@ -49,6 +50,9 @@ type PinchOptions = {
+ type PinchGestueUpdateEvent =
+   GestureUpdateEvent<PinchGestureHandlerEventPayload>;
+ 
++const IS_IPAD = Platform.OS === 'ios' && (Platform as any)?.isPad === true;
++const SHOULD_ANIMATE_SETTLE = IS_IPAD;
++
+ export const usePinchCommons = (options: PinchOptions) => {
+   const {
+     container,
+@@ -126,10 +130,19 @@ export const usePinchCommons = (options: PinchOptions) => {
+     scaleOffset.value = scale.value;
+   };
+ 
++  const PINCH_DAMPING = 0.8;
++
++  const applyDampedScale = (rawScale: number) => {
++    'worklet';
++    const delta = rawScale - 1;
++    return 1 + delta * PINCH_DAMPING;
++  };
++
+   const onPinchUpdate = (e: PinchGestueUpdateEvent) => {
+     'worklet';
+ 
+-    let toScale = e.scale * scaleOffset.value;
++    const dampedScale = applyDampedScale(e.scale);
++    let toScale = dampedScale * scaleOffset.value;
+     if (scaleClamp) toScale = clamp(toScale, minScale, maxScale.value);
+ 
+     const deltaX = currentFocal.x.value - initialFocal.x.value;
+@@ -162,10 +175,26 @@ export const usePinchCommons = (options: PinchOptions) => {
+     cancelAnimation(translate.y);
+     cancelAnimation(scale);
+ 
+-    const areTXNotEqual = translate.x.value !== toX;
+-    const areTYNotEqual = translate.y.value !== toY;
+-    const areScalesNotEqual = scale.value !== toScale;
+-    const toValue = areTXNotEqual || areTYNotEqual || areScalesNotEqual ? 1 : 0;
++    const translationDelta = Math.max(
++      Math.abs(translate.x.value - toX),
++      Math.abs(translate.y.value - toY)
++    );
++    const scaleDelta = Math.abs(scale.value - toScale);
++    const allowAnimation = SHOULD_ANIMATE_SETTLE;
++    const shouldAnimate = allowAnimation && (translationDelta > 4 || scaleDelta > 0.01);
++
++    if (!shouldAnimate) {
++      translate.x.value = toX;
++      translate.y.value = toY;
++      scale.value = toScale;
++      scaleOffset.value = toScale;
++      gestureEnd.value = 0;
++      runOnJS(switchGesturesState)(true);
++      if (userCallbacks.onGestureEnd !== undefined) {
++        runOnJS(userCallbacks.onGestureEnd)();
++      }
++      return;
++    }
+ 
+     translate.x.value = withTiming(toX);
+     translate.y.value = withTiming(toY);
+@@ -174,7 +203,7 @@ export const usePinchCommons = (options: PinchOptions) => {
+       finished && runOnJS(switchGesturesState)(true);
+     });
+ 
+-    gestureEnd.value = withTiming(toValue, undefined, (finished) => {
++    gestureEnd.value = withTiming(1, undefined, (finished) => {
+       gestureEnd.value = 0;
+       if (finished && userCallbacks.onGestureEnd !== undefined) {
+         runOnJS(userCallbacks.onGestureEnd)();
+diff --git a/node_modules/react-native-zoom-toolkit/src/components/resumable/ResumableZoom.tsx b/node_modules/react-native-zoom-toolkit/src/components/resumable/ResumableZoom.tsx
+index 56007cf..95ce2e1 100644
+--- a/node_modules/react-native-zoom-toolkit/src/components/resumable/ResumableZoom.tsx
++++ b/node_modules/react-native-zoom-toolkit/src/components/resumable/ResumableZoom.tsx
+@@ -5,6 +5,7 @@ import Animated, {
+   useDerivedValue,
+   useSharedValue,
+   withTiming,
++  runOnJS,
+ } from 'react-native-reanimated';
+ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+ 
+@@ -110,21 +111,23 @@ const ResumableZoom: React.FC<ResumableZoomPropsWithRef> = (props) => {
+   };
+ 
+   useDerivedValue(() => {
+-    onUpdate?.({
+-      containerSize: {
+-        width: rootSize.width.value,
+-        height: rootSize.height.value,
+-      },
+-      childSize: {
+-        width: childSize.width.value,
+-        height: childSize.height.value,
+-      },
+-      maxScale: maxScale.value,
+-      translateX: translate.x.value,
+-      translateY: translate.y.value,
+-      scale: scale.value,
+-    });
+-  }, [rootSize, childSize, translate, maxScale, scale]);
++    if (onUpdate) {
++      runOnJS(onUpdate)({
++        containerSize: {
++          width: rootSize.width.value,
++          height: rootSize.height.value,
++        },
++        childSize: {
++          width: childSize.width.value,
++          height: childSize.height.value,
++        },
++        maxScale: maxScale.value,
++        translateX: translate.x.value,
++        translateY: translate.y.value,
++        scale: scale.value,
++      });
++    }
++  }, [rootSize, childSize, translate, maxScale, scale, onUpdate]);
+ 
+   const {
+     gesturesEnabled,
+@@ -195,7 +198,8 @@ const ResumableZoom: React.FC<ResumableZoomPropsWithRef> = (props) => {
+   const pan = Gesture.Pan()
+     .withTestId('pan')
+     .enabled(panEnabled && gesturesEnabled && enablePanGestureByDoubleTap)
+-    .maxPointers(1)
++    .minPointers(2)
++    .maxPointers(2)
+     .onStart(onPanStart)
+     .onChange(onPanChange)
+     .onEnd(onPanEnd);

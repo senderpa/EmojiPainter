@@ -1,0 +1,1828 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>About — EmojiPainter | Anti-AI Art, Human-Encoded Emoji Paintings by Pascal Sender</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="About EmojiPainter — anti-AI image making by Pascal Sender (creator of hittheai.com & sprayar.com). Human-painted emoji art: encoded with meaning, translatable across cultures, unscrapeable by AI." />
+
+  <!-- === SEO + Social: About ============================================== -->
+<link rel="canonical" href="https://emojipainter.com/">
+  <meta name="description" content="Learn the story behind EmojiPainter: the online emoji art app, live gallery, and daily prompts platform. Meet the goals, features, and vision of the project." />
+  <meta name="keywords" content="about EmojiPainter, emoji art app, team, story, mission, online painter, gallery, daily prompts" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="EmojiPainter" />
+  <meta property="og:url" content="https://emojipainter.com/about.html" />
+  <meta property="og:title" content="About EmojiPainter — Anti-AI Art, Painted by Humans in Emojis" />
+  <meta property="og:description" content="The story behind the anti-AI emoji art app: human-encoded paintings AI cannot replicate, daily speed challenges, 999+ mystery guessing topics. By the creator of hittheai.com & sprayar.com." />
+  <meta property="og:image" content="https://emojipainter.com/emojip.png?v=5" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About EmojiPainter — Story, Vision & Features" />
+  <meta name="twitter:description" content="The story and goals behind the emoji art app, gallery, and daily prompts." />
+  <meta name="twitter:image" content="https://www.emojipainter.com/emojip.png?v=5" />
+
+  <!-- Favicons (versioned) -->
+  <link rel="icon" href="/favicon.ico?v=5" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png?v=5" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png?v=5" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png?v=5" />
+  <link rel="mask-icon" href="/img/favicons/safari-pinned-tab.svg?v=5" color="#111111" />
+  <link rel="manifest" href="/img/favicons/site.webmanifest?v=5" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"AboutPage",
+    "url":"https://emojipainter.com/about.html",
+    "name":"About EmojiPainter — Story, Vision & Features",
+    "description":"Learn the story behind EmojiPainter: the online emoji art app, live gallery, and daily prompts platform.",
+    "isPartOf":{"@type":"WebSite","name":"EmojiPainter","url":"https://emojipainter.com/"},
+    "primaryImageOfPage":{"@type":"ImageObject","url":"https://emojipainter.com/social/cover-1200x630.png?v=5","width":1200,"height":630},
+    "publisher":{"@type":"Organization","name":"EmojiPainter","logo":{"@type":"ImageObject","url":"https://emojipainter.com/img/favicons/apple-touch-icon.png?v=5","width":180,"height":180}}
+  }
+  </script>
+  <!-- ===================================================================== -->
+
+  <!-- Custom Font + Styles -->
+  <style>
+    @font-face {
+      font-family: 'VRTFinale';
+      src: url('emoji_paint/font/vrtlfinale1.woff2') format('woff2'),
+           url('emoji_paint/font/vrtlfinale1.woff') format('woff'),
+           url('emoji_paint/font/vrtlfinale1.ttf') format('truetype'),
+           url('emoji_paint/font/vrtlfinale1.eot') format('embedded-opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root{
+      --bg:#08080b;
+      --bg2:#0b0b10;
+      --card:#12121a;
+      --muted:#9aa0aa;
+      --fg:#e9edf4;
+      --primary:#7aa7ff;
+      --accent:#b47cff;
+      --border:rgba(255,255,255,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family:'VRTFinale',system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 800px at 80% -10%, rgba(122,167,255,.14), transparent 60%),
+        radial-gradient(900px 600px at 10% -10%, rgba(180,124,255,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      min-height:100dvh;
+      overflow-x:hidden;
+    }
+
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .wrap{max-width:1120px;margin:0 auto;padding:26px}
+
+    /* Header */
+    .header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(8,8,11,.65);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border)
+    }
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding:12px 0
+    }
+    .brand{
+      display:flex;
+      gap:10px;
+      align-items:center
+    }
+    .logo{
+      font-size:28px;
+      filter:drop-shadow(0 0 10px rgba(255,255,255,.2))
+    }
+    .brand a{
+      display:flex;
+      align-items:center;
+      gap:10px
+    }
+    .brand h1{
+      margin:0;
+      font-size:20px;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent
+    }
+    .links{
+      display:none;
+      gap:18px;
+      align-items:center
+    }
+
+    .btn{
+      display:inline-block;
+      background:var(--primary);
+      color:#0d1520;
+      padding:10px 16px;
+      border-radius:12px;
+      font-weight:700;
+      border:1px solid transparent;
+      cursor:pointer;
+      text-decoration:none
+    }
+    .btn:hover{filter:brightness(1.06)}
+
+    .opt{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--border);
+      padding:8px 12px;
+      border-radius:10px;
+      color:var(--fg);
+      background:rgba(255,255,255,.02);
+      cursor:pointer
+    }
+
+    /* Language Switcher Styles */
+    .flag-btn{
+      width:38px; height:38px; border-radius:999px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.08));
+      cursor:pointer; font-size:18px; line-height:1; user-select:none;
+      transition:transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
+    }
+    .flag-btn:hover{ transform:translateY(-1px); border-color:rgba(122,167,255,.4); }
+    .flag-btn[aria-expanded="true"]{
+      box-shadow:0 0 0 2px rgba(122,167,255,.6);
+      border-color:rgba(122,167,255,.6);
+    }
+    .sr-only{
+      position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+    }
+    .lang-panel{
+      position:absolute; right:26px; top:66px;
+      min-width:200px; padding:8px;
+      display:flex; flex-direction:column; gap:6px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow:0 8px 24px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.03) inset;
+      backdrop-filter:blur(10px) saturate(140%);
+      z-index:100;
+    }
+    .lang-panel[hidden]{ display:none; }
+    .lang-opt{
+      width:100%;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; padding:10px 12px;
+      border-radius:10px; border:1px solid transparent;
+      background:transparent; color:var(--fg); font-weight:700; cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .lang-opt .left{ display:flex; align-items:center; gap:10px; }
+    .lang-opt .flag{ font-size:18px; }
+    .lang-opt[aria-checked="true"]{
+      background:rgba(122,167,255,.18);
+      border-color:rgba(122,167,255,.5);
+    }
+    .lang-opt:hover{ transform:translateY(-1px); background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.1); }
+    .menu{
+      position:absolute;
+      right:26px;
+      top:66px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      display:none;
+      min-width:220px
+    }
+    .menu a{
+      display:block;
+      padding:10px 14px;
+      color:var(--fg);
+      text-decoration:none
+    }
+    .menu a:hover{background:rgba(255,255,255,.04)}
+    @media(min-width:860px){
+      .links{display:flex}
+      .opt{display:none}
+    }
+
+    /* Hero / animation */
+    .hero{
+      position:relative;
+      padding:70px 0 28px;
+      overflow:hidden;
+      border-bottom:1px solid var(--border);
+      margin-bottom:10px
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:conic-gradient(from 180deg, rgba(122,167,255,.12), rgba(180,124,255,.12), rgba(122,167,255,.12));
+      animation:spin 26s linear infinite;
+      filter:blur(70px);
+      z-index:0
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .hero-inner{position:relative;z-index:1}
+    .tag{
+      display:inline-block;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      color:var(--muted)
+    }
+    .title{
+      font-size:52px;
+      line-height:1.05;
+      margin:10px 0
+    }
+    .muted{color:var(--muted)}
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:12px
+    }
+
+    .emoji-splash{
+      font-size:68px;
+      line-height:1;
+      display:inline-block;
+      animation:pop .8s cubic-bezier(.2,.8,.3,1) both, float 4.5s ease-in-out infinite;
+      filter:drop-shadow(0 6px 22px rgba(255,255,255,.18))
+    }
+    @keyframes pop{
+      0%{transform:scale(.6) translateY(14px);opacity:0}
+      60%{transform:scale(1.08)}
+      100%{transform:scale(1) translateY(0);opacity:1}
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+    }
+
+    .reveal{opacity:0;transform:translateY(12px);animation:reveal .8s ease forwards var(--d,0s)}
+    @keyframes reveal{to{opacity:1;transform:none}}
+
+    .grid{display:grid;gap:18px}
+    @media(min-width:800px){
+      .grid-2{grid-template-columns:1fr 1fr}
+      .grid-3{grid-template-columns:repeat(3,1fr)}
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:22px
+    }
+    .k{display:flex;gap:10px;align-items:center}
+
+    footer{
+      margin:40px 0 14px;
+      color:var(--muted);
+      font-size:14px;
+      text-align:center
+    }
+
+    /* === DOWNLOAD OVERLAY STYLES (from index, adapted) =================== */
+    .download-overlay{
+      position:fixed;
+      inset:0;
+      background:hsla(220,13%,6%,.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:100;
+      overflow:hidden;
+    }
+    .download-overlay.open{
+      display:flex;
+      animation:fadeIn .25s ease-out;
+    }
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+    .download-panel{
+      position:relative;
+      width:min(980px,92vw);
+      max-height:86vh;
+      overflow:hidden;
+      background:linear-gradient(145deg,hsla(220,13%,16%,.38),hsla(220,13%,12%,.26));
+      border:1px solid hsla(220,13%,20%,.35);
+      border-radius:24px;
+      padding:28px 28px 22px;
+      box-shadow:0 30px 80px -20px rgba(0,0,0,.6),inset 0 1px 0 hsla(var(--border)/.4);
+      animation:panelIn .35s cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes panelIn{
+      from{transform:translateY(12px) scale(.98);opacity:0}
+      to{transform:none;opacity:1}
+    }
+
+    .download-top{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:10px;
+      justify-content:space-between;
+      flex-wrap:wrap
+    }
+    .download-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:1.6rem;
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+    .download-badge{
+      font-size:.9rem;
+      padding:.35rem .7rem;
+      border-radius:999px;
+      background:hsla(220,96%,60%,.22);
+      border:1px solid hsla(220,96%,60%,.38)
+    }
+    .download-body{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      position:relative
+    }
+    .platform-card{
+      border-radius:18px;
+      padding:16px;
+      background:rgba(255,255,255,.02);
+      border:1px solid var(--border)
+    }
+    .platform-row{
+      display:flex;
+      align-items:center;
+      gap:12px
+    }
+    .platform-emoji{
+      font-size:36px;
+      line-height:1
+    }
+    .desc{
+      color:var(--muted);
+      font-size:.98rem
+    }
+    .dl-btn{
+      display:inline-block;
+      margin-top:8px;
+      background:var(--primary);
+      color:#0d1520;
+      padding:10px 16px;
+      border-radius:12px;
+      font-weight:700;
+      border:1px solid transparent;
+      text-decoration:none
+    }
+    .dl-btn:hover{filter:brightness(1.06)}
+
+    .close-x{
+      position:absolute;
+      top:10px;
+      right:10px;
+      border:0;
+      background:transparent;
+      color:#fff;
+      font-size:24px;
+      opacity:.85;
+      cursor:pointer
+    }
+
+    /* Flying emoji layer inside overlay */
+    .vehicles-layer{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+    }
+    .vehicle{
+      position:absolute;
+      filter:drop-shadow(0 2px 6px rgba(0,0,0,.45));
+      opacity:.95;
+      font-size:clamp(24px,3vw,48px);
+      line-height:1;
+      animation-duration:var(--dur);
+      animation-iteration-count:infinite;
+      animation-timing-function:linear;
+      transform:translate(-10vw,0)
+    }
+
+    @keyframes flyLR{
+      from{transform:translate(-12vw,var(--y)) rotate(0turn)}
+      to{transform:translate(112vw,calc(var(--y) + var(--wiggle))) rotate(var(--rot))}
+    }
+    @keyframes flyRL{
+      from{transform:translate(112vw,var(--y)) rotate(0turn)}
+      to{transform:translate(-12vw,calc(var(--y) - var(--wiggle))) rotate(calc(-1*var(--rot)))}
+    }
+
+    @media (max-width:900px){
+      .download-body{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="wrap">
+      <nav class="nav" aria-label="Main">
+        <div class="brand">
+          <a href="https://emojipainter.com/" aria-label="Go to main page">
+            <div class="logo" aria-hidden="true">©️</div>
+            <h1 data-i18n="brandName">EmojiPainter</h1>
+          </a>
+        </div>
+        <div class="links">
+
+
+          <a href="leaderboard/index.html" data-i18n="navLeaderboard">Leaderboard</a>
+          <a href="public/gallery.html" data-i18n="navGallery">Gallery</a>
+
+          <a class="btn" data-open-download data-i18n="downloadNow">Download Now</a>
+        </div>
+
+        <!-- Language Switcher -->
+        <button id="lang-toggle" class="flag-btn" aria-haspopup="menu" aria-expanded="false" title="Change language" style="margin-left:12px">
+          <span id="lang-flag" aria-hidden="true">🇬🇧</span>
+          <span id="lang-name" class="sr-only">English</span>
+        </button>
+        <div id="lang-panel" class="lang-panel" role="menu" aria-labelledby="lang-toggle" hidden></div>
+
+        <button class="opt" id="optBtn" aria-haspopup="menu" aria-expanded="false" data-i18n="options">☰ Options</button>
+        <div class="menu" id="menu" role="menu" aria-label="Options">
+          <a role="menuitem" href="featers.html" data-i18n="navFeatures">Features</a>
+          <a role="menuitem" href="about.html" data-i18n="navAbout">About</a>
+          <a role="menuitem" href="leaderboard/index.html" data-i18n="navLeaderboard">Leaderboard</a>
+          <a role="menuitem" href="public/gallery.html" data-i18n="navGallery">Gallery</a>
+
+          <a role="menuitem" href="#download" data-open-download data-i18n="downloadNow">Download Now</a>
+          <a role="menuitem" href="https://emojipainter.com/" data-i18n="navHome">Home</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-inner">
+        <span class="tag reveal" style="--d:.05s"></span>
+
+<section id="anima2-stage" style="
+  box-sizing:border-box;
+  margin:52px auto;
+  display:block;
+  width:min(52vw, 50vmin);
+  height:min(52vw, 50vmin);     /* perfect square in normal flow */
+  max-width:1200px;
+  background:rgba(15,23,42,.6);
+  border:1px solid rgba(148,163,184,.28);
+  border-radius:18px;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+  overflow:hidden;              /* just clips inside the box */
+">
+  <canvas id="anima2-canvas"
+    style="display:block; width:100%; height:100%;"
+    width="756" height="756"  
+  ></canvas>
+</section>
+
+
+
+
+<script>
+(function(){
+  const DIR = '/anima2/';          // folder with frames
+  const FIRST = 0, LAST = 600;     // supports 00000..00600 (or 0..600) with ANY suffix .png
+
+  // Playback behavior
+  const BASE_FPS = 12, LOW_FPS = 0.5, MAX_FPS = 36;
+  const PRELOAD_AHEAD = 10, LERP_PER_S = 7;
+  const IDLE_MS = 2000, RAMP_MS = 800;
+  const PULSE_MIN_MS = 900, PULSE_VAR_MS = 1400;
+
+  const canvas = document.getElementById('anima2-canvas');
+  const stage  = document.getElementById('anima2-stage');
+  const ctx = canvas.getContext('2d');
+
+  // ====== Utilities ======
+  const pad5 = n => String(n).padStart(5,'0');
+  function resizeCanvas(){
+    const r = canvas.getBoundingClientRect();
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const w = Math.max(256, Math.floor(r.width  * ratio));
+    const h = Math.max(256, Math.floor(r.height * ratio));
+    if (canvas.width !== w || canvas.height !== h){ canvas.width = w; canvas.height = h; }
+  }
+  resizeCanvas(); addEventListener('resize', resizeCanvas, { passive:true });
+
+  function drawContain(img){
+    const cw = canvas.width, ch = canvas.height;
+    const iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height;
+    if (!iw || !ih) return;
+    ctx.clearRect(0,0,cw,ch);
+    const s = Math.min(cw/iw, ch/ih);
+    const dw = iw*s, dh = ih*s;
+    const dx = (cw-dw)*0.5, dy = (ch-dh)*0.5;
+    ctx.drawImage(img, dx, dy, dw, dh);
+  }
+
+  // ====== Discovery (handles random suffixes) ======
+  async function discoverFrames(){
+    // 1) Global manifest provided
+    if (Array.isArray(window.ANIMA2_MANIFEST) && window.ANIMA2_MANIFEST.length){
+      return sanitizeAndSort(window.ANIMA2_MANIFEST);
+    }
+    // 2) frames.json
+    try{
+      const r = await fetch(DIR + 'frames.json', { cache:'no-store' });
+      if (r.ok){
+        const arr = await r.json();
+        if (Array.isArray(arr) && arr.length) return sanitizeAndSort(arr);
+      }
+    }catch(_){}
+    // 3) frames.php
+    try{
+      const r = await fetch(DIR + 'frames.php', { cache:'no-store' });
+      if (r.ok){
+        const arr = await r.json();
+        if (Array.isArray(arr) && arr.length) return sanitizeAndSort(arr);
+      }
+    }catch(_){}
+    // 4) Directory index parse
+    try{
+      const r = await fetch(DIR, { cache:'no-store' });
+      if (r.ok){
+        const html = await r.text();
+        const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
+        const urls = hrefs.map(h => h.startsWith('http') ? h : (DIR + h));
+        const filtered = urls.filter(u => /\.png(\?.*)?$/i.test(u) && numberFromName(u) != null);
+        if (filtered.length) return sanitizeAndSort(filtered);
+      }
+    }catch(_){}
+    throw new Error('No frames manifest found and no directory index available. Provide /anima2/frames.json or frames.php.');
+  }
+
+  function numberFromName(url){
+    // Accept names like 00000-xyz.png or 12-something.png or 00012.png
+    const m = url.match(/\/(\d{1,5})[^/]*\.png(\?.*)?$/i);
+    if (!m) return null;
+    const n = parseInt(m[1], 10);
+    if (!Number.isFinite(n)) return null;
+    if (n < FIRST || n > LAST) return null;
+    return n;
+  }
+
+  function sanitizeAndSort(urls){
+    const uniq = new Map();
+    for (const u of urls){
+      if (typeof u !== 'string') continue;
+      const n = numberFromName(u);
+      if (n == null) continue;
+      // Keep the first occurrence per frame number
+      if (!uniq.has(n)) uniq.set(n, u.startsWith('http') ? u : (u.startsWith('/') ? u : (DIR + u)));
+    }
+    // Ensure we keep sequence order FIRST..LAST if available; gaps allowed.
+    const out = Array.from(uniq.entries())
+      .sort((a,b)=>a[0]-b[0])
+      .map(([,u])=>u);
+    if (!out.length) throw new Error('Found files, but none matched 0..600 *.png');
+    return out;
+  }
+
+  // ====== Player ======
+  (async function run(){
+    let frames;
+    try{
+      frames = await discoverFrames();
+    }catch(err){
+      console.error(err);
+      // Visible hint for you (non-blocking)
+      ctx.font = '16px sans-serif';
+      ctx.fillStyle = '#cbd5e1';
+      ctx.textAlign = 'center';
+      ctx.fillText('Provide /anima2/frames.json or frames.php (see code comment).', canvas.width/2, canvas.height/2);
+      return;
+    }
+
+    // Cache + warmup
+    const cache = new Map();
+    function getImg(i){
+      const url = frames[i % frames.length];
+      let im = cache.get(url);
+      if (!im){
+        im = new Image();
+        im.decoding = 'async';
+        im.src = url;
+        cache.set(url, im);
+      }
+      return im;
+    }
+    function warmBuffer(i){
+      for (let k=1; k<=PRELOAD_AHEAD; k++){
+        const j = (i + k) % frames.length;
+        getImg(j);
+      }
+    }
+
+    // Random start each load
+    let idx = Math.floor(Math.random() * frames.length);
+    let frac = 0;
+
+    const first = getImg(idx);
+    if (first.complete) drawContain(first);
+    else first.addEventListener('load', ()=>drawContain(first), { once:true });
+    warmBuffer(idx);
+
+    // Visibility
+    let inView = true;
+    const io = new IntersectionObserver((es)=>{
+      inView = es[0]?.isIntersecting ?? true;
+      if (!inView) targetSpeed = 0;
+      else targetSpeed = baselineSpeed;
+    }, { threshold:0.2 });
+    io.observe(stage);
+
+    // Speed state
+    let baselineSpeed = BASE_FPS;
+    let targetSpeed   = BASE_FPS;
+    let currentSpeed  = BASE_FPS;
+
+    // Hover state
+    let hovering = false, hoverStart = 0;
+
+    // Scroll/idle
+    let lastScroll = 0, rampStart = 0;
+    let nextPulseAt = performance.now() + PULSE_MIN_MS + Math.random()*PULSE_VAR_MS;
+
+    function onScrolled(){
+      const now = performance.now();
+      lastScroll = now;
+      baselineSpeed = LOW_FPS;     // drop immediately to 0.5 fps
+      targetSpeed   = LOW_FPS;     // keep playing at low speed
+      rampStart = 0;               // cancel any ramp
+      nextPulseAt = now + PULSE_MIN_MS + Math.random()*PULSE_VAR_MS;
+    }
+    addEventListener('wheel', onScrolled, { passive:true });
+    addEventListener('touchmove', onScrolled, { passive:true });
+    addEventListener('scroll', onScrolled, { passive:true });
+
+    stage.addEventListener('mouseenter', ()=>{ hovering = true; hoverStart = performance.now(); }, { passive:true });
+    stage.addEventListener('mouseleave', ()=>{
+      hovering = false;
+      targetSpeed = baselineSpeed; // lerp back
+    }, { passive:true });
+
+    function updateIdleResume(now){
+      if (!inView) return;
+      // After 2s of no scroll, ramp LOW -> BASE smoothly
+      if (baselineSpeed === LOW_FPS && now - lastScroll >= IDLE_MS && rampStart === 0){
+        rampStart = now;
+      }
+      if (rampStart){
+        const t = Math.min(1, (now - rampStart) / RAMP_MS);
+        const ease = t*t*(3 - 2*t);
+        const rampFps = LOW_FPS + (BASE_FPS - LOW_FPS) * ease;
+        baselineSpeed = rampFps;
+        targetSpeed   = rampFps;
+        if (t >= 1){
+          baselineSpeed = BASE_FPS;
+          targetSpeed   = BASE_FPS;
+          rampStart = 0;
+          nextPulseAt = now + 300 + Math.random()*400;
+        }
+      }
+      // Small pulses up to BASE while idle (not hovering)
+      if (!hovering && now >= nextPulseAt){
+        const pulseDur = 280 + Math.random()*520;
+        const pulseStart = now, pulseEnd = now + pulseDur, startBase = baselineSpeed;
+        (function pulseTick(ts){
+          const tt = Math.min(1, (ts - pulseStart) / pulseDur);
+          const ease = tt*tt*(3 - 2*tt);
+          const pulseTarget = startBase + (BASE_FPS - startBase) * ease;
+          targetSpeed = Math.max(targetSpeed, pulseTarget);
+          if (ts < pulseEnd && !hovering && inView && (performance.now()-lastScroll)>=200){
+            requestAnimationFrame(pulseTick);
+          } else {
+            targetSpeed = baselineSpeed = BASE_FPS;
+          }
+        })(now);
+        nextPulseAt = now + PULSE_MIN_MS + Math.random()*PULSE_VAR_MS;
+      }
+    }
+
+    // Main loop
+    let lastTs = performance.now();
+    (function loop(now){
+      const dt = Math.min(0.1, (now - lastTs) / 1000); lastTs = now;
+
+      if (hovering && inView){
+        const hoverSecs = Math.max(0, (now - hoverStart) / 1000);
+        const boosted = Math.min(MAX_FPS, BASE_FPS + hoverSecs * 10);
+        targetSpeed = Math.max(targetSpeed, boosted);
+      } else if (inView){
+        updateIdleResume(now);
+      } else {
+        targetSpeed = 0;
+      }
+
+      // Smooth speed
+      const k = 1 - Math.exp(-LERP_PER_S * dt);
+      currentSpeed += (targetSpeed - currentSpeed) * k;
+
+      // Draw & advance
+      const img = getImg(idx);
+      if (img.complete) drawContain(img);
+      const adv = Math.max(0, currentSpeed) * dt;
+      frac += adv;
+      while (frac >= 1){
+        frac -= 1;
+        idx = (idx + 1) % frames.length;
+        warmBuffer(idx);
+      }
+      requestAnimationFrame(loop);
+    })(performance.now());
+
+    document.addEventListener('visibilitychange', ()=>{
+      if (document.hidden) targetSpeed = 0;
+      else targetSpeed = baselineSpeed;
+    }, { passive:true });
+  })();
+})();
+</script>
+
+
+
+
+
+
+
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px" class="reveal" style="--d:.08s">
+           >>>>>>><div id="emoji" class="emoji-splash" aria-hidden="true">🎉</div>
+         <p align="right"> <h3 style="margin:0" data-i18n="heroTitle">The Most Contemporary Brushstrokes for Digital Art in 2026</h3> </p>
+        </div>
+
+        <p class="muted reveal" style="--d:.12s;max-width:860px">
+
+        </p>
+
+        <div class="cta reveal" style="--d:.16s">
+          
+        
+        
+        </div>
+      </div>
+    </header>
+
+
+    <!-- EXTENDED INTRO / VISION -->
+    <section class="reveal" style="--d:.22s; margin-bottom:32px;">
+      <div class="card" style="background:var(--card);">
+        <h3 style="margin-top:0" data-i18n="visionTitle">What EmojiPainter Wants To Be</h3>
+        <p class="muted" style="line-height:1.6" data-i18n="visionPara1">
+          EmojiPainter should work for children. Think: a very easy version of Photoshop. You open it and you can just draw
+          with emojis. You do not need to understand complex menus. You click a symbol to import a image or play the timelapse, or you stamp it on to the canvas.
+        </p>
+        <p class="muted" style="line-height:1.6" data-i18n="visionPara2">
+          It should also work like a social creative safe space. A shared creative studio. A place where you can paint
+          and publish directly. a community-linked space  with no 3. parties involved !         </p>
+        <p class="muted" style="line-height:1.6" data-i18n="visionPara3">
+          Emojis enable simplicity. You can express a full idea with one icon. But you can also build difficult collages: layered.
+
+        </p>
+        <p class="muted" style="line-height:1.6" data-i18n="visionPara4">
+          The important part is global readability. Emojis carry worldwide understanding. The language travels. So  painting includes a new
+          shared visual vocabulary.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ANTI-AI PHILOSOPHY -->
+    <section class="reveal" style="--d:.23s; margin-bottom:32px;">
+      <div class="card" style="background:var(--card);">
+        <h3 style="margin-top:0">🛡️ Anti-AI Image Making — The Philosophy</h3>
+        <p class="muted" style="line-height:1.6">
+          EmojiPainter is built as a counter-position to AI image generation. Every painting here is made by a
+          human hand, stroke by stroke, under a ticking sprint timer — there is no prompt box, no model,
+          no "generate" button. What you see is what somebody painted.
+        </p>
+        <p class="muted" style="line-height:1.6">
+          Because the brush is the emoji itself, each artwork is a kind of <strong>encoding</strong>. Emojis are
+          symbols with worldwide meaning: a single icon carries emotion, history and context in every language.
+          A finished painting is therefore <strong>loaded with information</strong> — it can be read and translated
+          by any human anywhere, but it cannot be meaningfully scraped, averaged or replicated by an image model.
+          The meaning lives in the deliberate choice of hundreds of symbols, not in the pixels.
+        </p>
+        <p class="muted" style="line-height:1.6">
+          You can think of it as an <strong>encrypted way to paint</strong>: humanized digital images, readable by
+          people, opaque to machines. AI can imitate the look of a picture — it cannot fake the chain of human
+          decisions that emoji painting demands, and it cannot play the guessing game that grows around it.
+        </p>
+        <p class="muted" style="line-height:1.6">
+          This project comes from the same fight as
+          <a href="https://hittheai.com" target="_blank" rel="noopener">hittheai.com</a> and
+          <a href="https://sprayar.com" target="_blank" rel="noopener">sprayar.com</a> — tools and games by the
+          same creator that put humans, streets and play before generated content.
+        </p>
+      </div>
+    </section>
+
+    <!-- MYSTERY TOPICS -->
+    <section class="reveal" style="--d:.24s; margin-bottom:32px;">
+      <div class="card" style="background:var(--card);">
+        <h3 style="margin-top:0">🎲 Daily Topics &amp; Mystery Topics</h3>
+        <p class="muted" style="line-height:1.6">
+          <strong>Daily topics:</strong> every day the app deals three fresh topics — the same three for every
+          painter worldwide. Pick one, set a short sprint timer, paint it in minutes and upload it to the
+          <a href="public/gallery.html">live gallery</a>. The speed is the style: honest, fast, unpolished human work.
+        </p>
+        <p class="muted" style="line-height:1.6">
+          <strong>Mystery topics:</strong> the secret fourth challenge. You receive a hidden topic from a curated
+          pool of <strong>999+ topics</strong> (plus community suggestions that players vote on). You paint it so
+          clearly that strangers can guess it — but in the gallery the topic stays masked behind hidden letters.
+          Other players guess letter by letter; when somebody solves it, the painting is revealed and the solver
+          is counted. It turns every painting into a little proof of human communication: can another person
+          decode what you encoded in emojis?
+        </p>
+      </div>
+    </section>
+
+ <!-- ROADMAP -->
+    <section class="reveal" style="--d:.25s; margin-top:32px;">
+      <div class="card">
+        <h3 style="margin-top:0" data-i18n="roadmapTitle">Roadmap</h3>
+        <p class="muted" style="line-height:1.6" data-i18n="roadmapIntro">
+          Right now this is a free test run. A proof-of-concept state. You are basically inside an experiment. The current focus is:
+        </p>
+        <ul class="muted" style="padding-left:18px;line-height:1.6">
+          <li data-i18n="roadmapItem1">Realtime multi-painter space. Multiple people painting live together.</li>
+          <li data-i18n="roadmapItem2">Full scale animator features like on macOS only. Timeline, motion, GIF, MP4.</li>
+          <li data-i18n="roadmapItem3">Augmented reality painter with AR image options.</li>
+          <li data-i18n="roadmapItem4">Better long timelapse exports. At the moment most is still proof of concept.</li>
+          <li data-i18n="roadmapItem5">Working full stack website with webshop and a gated user area for self moderation.</li>
+          <li data-i18n="roadmapItem6">One-time purchase model. After the first 1k users the plan is to sell the application for 9,99.</li>
+        </ul>
+        <p class="muted" style="line-height:1.6" data-i18n="roadmapGoal">
+          Goal is stability and low friction. No algorithmic feed deciding what you see. You load art. You paint. You publish.
+        </p>
+      </div>
+    </section>
+
+    <!-- INSPIRATION -->
+    <section class="reveal" style="--d:.3s; margin-top:32px;">
+      <div class="card">
+        <h3 style="margin-top:0" data-i18n="inspirationTitle">Inspiration</h3>
+        <p class="muted" style="line-height:1.6" data-i18n="inspirationPara1">
+          This can also be understanded as an homage to <a href="https://www.facebook.com/groups/1402563099961950"> DailySpitPaint Group on Facebook.</a>
+        </p>
+        <p class="muted" style="line-height:1.6" data-i18n="inspirationPara2">
+          I really liked the whole idea and I could really feel that community moment. As a huge fan and participant of the challenges
+          I wanted to create a artist first save space and game-ify it even more. The 3 daily prompt. The leaderboard. The public gallery. The replay at the exact time of day.
+        </p>
+        <p class="muted" style="line-height:1.6">
+          <span data-i18n="inspirationPara3">So EmojiPainter is a kind of continuation. Same spirit. New tool. I hope John Conner maybe reads this at some point. Or you.</span>
+<br>
+
+          <span data-i18n="inspirationThanks">Thanks for reading — Pascal Sender /// For the first 1k Users App is Free : </span>
+
+
+  <a data-open-download data-i18n="downloadNow">Download Now</a>
+        </p>
+      </div>
+    </section>
+
+
+
+
+
+    <!-- CORE FEATURE BLOCKS -->
+    <section class="grid grid-2">
+      <div class="card reveal" style="--d:.05s">
+        <h3 data-i18n="whatWeDoTitle">What We Do</h3>
+        <p class="muted" data-i18n="whatWeDoDesc">We transform emojis into a universal visual language for creators. Paint, layer, animate, export — without friction, on any device.</p>
+        <ul class="muted" style="padding-left:18px">
+          <li data-i18n="whatWeDoItem1">Massive emoji "brush" library</li>
+          <li data-i18n="whatWeDoItem2">Layers, effects, precision placement</li>
+          <li data-i18n="whatWeDoItem3">GIF & video exports, print-ready images</li>
+          <li data-i18n="whatWeDoItem4">Share-first workflow on every platform</li>
+        </ul>
+      </div>
+
+      <div class="card reveal" style="--d:.1s">
+        <h3 data-i18n="whyArtistsTitle">Why Artists Love It</h3>
+        <div class="grid grid-3" style="margin-top:8px">
+          <div>
+            <div class="k"><div>⚡</div><strong>:))))</strong></div>
+              _;_;_:_;_;_;_____:_:_:__;___:_:_;_;_;;;MM_;_:_;_:_;_M
+M_M;_M;_M:_:_;_::__;:;_Ä;Ä:_;Ä:_;Ä_:Ä;:_;Ä:_;Ä;_:
+**'*'*:___:_:_:__:_::__:_:_:_:_:_:_:_:_:_:_:_:_
+            <p class="muted" data-i18n="whyArtistsDesc">Art that speaks to everyone.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid grid-2">
+      <div class="card reveal" style="--d:.05s">
+        <h3 data-i18n="teamTitle">Team & Values</h3>
+        <p class="muted" data-i18n="teamDesc">
+          I am a single Developer, design-obsessed, building creative tools that feel playful and professional. I value accessibility,
+          performance, and community.
+        </p>
+        <p class="muted">
+          Also by me: <a href="https://hittheai.com" target="_blank" rel="noopener">hittheai.com</a> ·
+          <a href="https://sprayar.com" target="_blank" rel="noopener">sprayar.com</a> ·
+          <a href="https://www.pascalsender.com" target="_blank" rel="noopener">pascalsender.com</a>
+        </p>
+      </div>
+
+      <div class="card reveal" style="--d:.1s">
+        <h3 data-i18n="pressTitle">Press & Partnerships</h3>
+        <p class="muted" data-i18n="pressDesc">
+          For interviews, showcases, or educational use, reach out !
+        </p>
+        <p class="muted">
+          📬 <a href="mailto:support@emojipainter.com">support@emojipainter.com</a>
+        </p>
+      </div>
+    </section>
+
+
+    <!-- QUICK LINKS / CONTACT -->
+    <section class="grid grid-2" style="margin-top:32px;">
+
+
+      <div class="card reveal" style="--d:.1s">
+        <h3 data-i18n="contactTitle">Contact</h3>
+        <p class="muted" data-i18n="contactInfo">EmojiPainter — Pascal Sender - Düsseldorf, Germany (EU)</p>
+        <a href="https://www.pascalsender.com">www.pascalsender.com</a>
+
+      </div>
+    </section>
+
+    <footer><span data-i18n="footerCopyright">© </span><span id="y"></span> <span data-i18n="footerRights">EmojiPainter — All rights reserved.</span></footer>
+  </div>
+
+  <!-- ===================== DOWNLOAD OVERLAY (WITH FLYING EMOJIS) ===================== -->
+  <div class="download-overlay" data-download-overlay aria-hidden="true">
+    <div class="download-panel glass" role="dialog" aria-modal="true" aria-labelledby="dl-title">
+      <button class="close-x" type="button" aria-label="Close" data-close-download>✕</button>
+      <div class="download-top">
+        <div class="download-title">
+          <img src="android-chrome-512x512.png" alt="" width="32" height="32" style="border-radius:8px"/>
+          <span id="dl-title" data-i18n="downloadTitle">Download EmojiPainter</span>
+          <span class="download-badge" data-i18n="downloadBadge">Currently available on Apple platforms</span>
+        </div>
+        <div class="download-title" id="platform-hint" style="font-size:1rem;font-weight:700;opacity:.9"></div>
+      </div>
+
+      <div class="download-body">
+        <div class="platform-card glass" id="ios-card">
+          <div class="platform-row">
+            <span class="platform-emoji" aria-hidden="true">📱</span>
+            <strong data-i18n="downloadIOS">iPhone / iPad (iOS/iPadOS)</strong>
+          </div>
+          <p class="desc" data-i18n="downloadIOSDesc">Touch-optimized painting. Share instantly.</p>
+          <a class="dl-btn" href="https://apps.apple.com/us/app/emoji-painter/id6753342820" target="_blank" rel="noopener" data-i18n="downloadButton">Download</a>
+        </div>
+
+        <div class="platform-card glass" id="mac-card">
+          <div class="platform-row">
+            <span class="platform-emoji" aria-hidden="true">💻</span>
+            <strong data-i18n="downloadMac">Mac (macOS)</strong>
+          </div>
+          <p class="desc" data-i18n="downloadMacDesc">Desktop precision. Big canvas performance.</p>
+          <a class="dl-btn" href="https://apps.apple.com/us/app/emoji-paint/id6753338528" target="_blank" rel="noopener" data-i18n="downloadButton">Download</a>
+        </div>
+
+        <!-- Flying emojis layer -->
+        <div class="vehicles-layer" data-vehicles id="vehicles-layer"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- ===================== SCRIPTS ===================== -->
+
+  <!-- Header menu toggle -->
+  <script>
+    (function(){
+      const btn = document.getElementById('optBtn');
+      const menu = document.getElementById('menu');
+      function hide(){
+        menu.style.display='none';
+        btn.setAttribute('aria-expanded','false')
+      }
+      function toggle(){
+        const s = menu.style.display==='block'?'none':'block';
+        menu.style.display = s;
+        btn.setAttribute('aria-expanded', s==='block');
+      }
+      btn.addEventListener('click', toggle);
+      document.addEventListener('click', (e)=>{
+        if(!menu.contains(e.target) && e.target!==btn) hide();
+      });
+      window.addEventListener('resize', hide);
+    })();
+  </script>
+
+  <!-- Randomize hero emoji + accent hues -->
+  <script>
+    (function(){
+      const emojis = ["🎉","✨","🎨","🌀","🧪","💫","🔥","🌈","🧩","🪄","🫧","🖼️","🧠","🎭"];
+      const e = document.getElementById('emoji');
+      if(e){
+        e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      }
+      const hue = Math.floor(Math.random()*360);
+      document.body.style.setProperty('--primary', `hsl(${(200+hue)%360} 90% 75%)`);
+      document.body.style.setProperty('--accent', `hsl(${(285+hue)%360} 85% 70%)`);
+    })();
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Dynamic animated favicon from emojis -->
+  <script>
+  (() => {
+    "use strict";
+
+    /* ================= CONFIG ================= */
+    const BASE_SIZE = 64;                                  // canvas size (px)
+    const FONT = "Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, EmojiOne, Twemoji Mozilla, sans-serif";
+    const params = new URLSearchParams(location.search);
+    const FPS = (() => {
+      const n = parseInt(params.get("fps") || "2", 10);
+      return Math.min(Math.max(Number.isFinite(n) ? n : 2, 1), 30);
+    })();
+    const USE_PNG = params.get("png") === "1";             // optional: ?png=1 to load Twemoji PNGs
+
+    /* ================= 33 THEMATIC SETS ================= */
+    const SETS = {
+      faces:        ["😀","😃","😄","😁","😆","😅","🤣","😂","🙂","😉","😊","😇","😍","🥰","😘","😗","😙","😚","😋","😛","😜","🤪","😝","🤗","🤭","🤫","🤔","🫣","🤨","🙄"],
+      faces_cool:   ["😎","🥳","🤩","🤓","🧐","🤠","🥴","😵‍💫","🥵","🥶","😱","😳","😭","😤","😡","🤯","😷","🤒","🤕"],
+      hands:        ["👍","👎","✊","👊","🤛","🤜","👏","🙌","👐","🤲","🙏","✍️","🤝","🤟","🤘","🤞","✌️","👌","🤌","🤏","☝️","👇","👆","👉","👈","🖖","✋","🖐️","🤚","🫶"],
+      gestures3:    ["🙏","👍","👎"],
+      hearts:       ["❤️","🧡","💛","💚","💙","💜","🖤","🤍","🤎","💖","💘","💝","💟","💗","💓","💞","💕","💌"],
+      stars:        ["⭐","🌟","✨","💫","🌠","🪩","🔆","🔅","🌞","☀️","🌈","🌙","🌔","🌖","🌌"],
+      weather:      ["☀️","🌤️","⛅","🌥️","☁️","🌦️","🌧️","⛈️","🌩️","🌨️","❄️","🌪️","🌫️","💨","🌈","🌡️","☔"],
+      clocks:       ["⏰","⏱️","⏲️","🕰️","⌛","⏳","🕛","🕐","🕑","🕒","🕓","🕔","🕕","🕖","🕗","🕘","🕙","🕚"],
+      animals_cute: ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🦄"],
+      cats_dogs:    ["🐶","🐕","🦮","🐩","🐕‍🦺","🐾","🐱","🐈","🐈‍⬛","🙀","😺","😻"],
+      marine:       ["🐟","🐠","🐡","🐬","🐳","🐋","🦈","🐙","🦑","🦐","🦞","🦀"],
+      insects:      ["🦋","🐞","🐝","🐜","🪲","🪳","🪰","🪱","🦂"],
+      birds:        ["🦅","🦆","🦉","🦢","🦜","🕊️","🐔","🐦","🐤","🐣"],
+      reptiles:     ["🐍","🦎","🐊","🐢"],
+      mammals:      ["🐘","🦏","🦒","🦘","🦬","🦣","🐫","🐪","🦓","🦍","🦧"],
+      plants:       ["🌱","🌿","🍀","🌵","🌴","🌲","🌳","🍁","🍂","🍃","🪴"],
+      flowers:      ["🌸","🌺","🌻","🌼","🌷","💮","🏵️"],
+      fruits:       ["🍎","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🫐","🍒","🍑","🥭","🍍","🥝"],
+      veggies:      ["🥕","🥔","🌽","🥦","🥬","🧅","🧄","🍆","🫑","🥒","🍄","🫛"],
+      food_junk:    ["🍔","🍟","🌭","🍕","🥪","🌮","🌯","🍗","🍖","🥓","🍳","🧇"],
+      desserts:     ["🍰","🎂","🧁","🍮","🍭","🍬","🍫","🍪","🍩","🥧","🍨","🍦"],
+      drinks:       ["🧃","🥤","🧋","☕","🍵","🥛","🍷","🍸","🍹","🍺","🍻","🥂","🍾","🧉"],
+      transport:    ["🚗","🚕","🚙","🚌","🚎","🏎️","🚑","🚒","🚐","🚚","🚛","🚜","🚲","🏍️","🛵","✈️","🛩️","🚀","🛸","🚁","⛵","🚤","🛶","🚢"],
+      sports:       ["⚽","🏀","🏈","⚾","🎾","🏐","🏉","🥏","🎱","🏓","🏸","🥅","🏒","🏑","🥍","⛷️","🏂","🛼","🛹","🏹","🥊","🥋","🎯"],
+      music:        ["🎧","🎤","🎼","🎵","🎶","🎷","🎸","🎹","🎺","🥁","🎻"],
+      tools:        ["🔧","🔨","🪛","🪚","⚙️","🧰","🧲","🔩","🪜","🧯"],
+      office:       ["📎","🖇️","📌","📍","✂️","📏","📐","🖊️","🖋️","🖌️","🖍️","🗂️","📁","📂","🗃️","🗄️","🗑️"],
+      shapes:       ["⚪","⚫","🔴","🟠","🟡","🟢","🔵","🟣","🟤","🔺","🔻","🔶","🔷","◼️","◻️","⬛","⬜","🔸","🔹"],
+      arrows:       ["⬆️","⬇️","⬅️","➡️","↗️","↘️","↙️","↖️","↔️","↕️","🔁","🔄","🔃"],
+      symbols_ui:   ["✅","❌","❓","❗","⭕","➕","➖","✖️","➗","♾️","♻️","⚜️"],
+      numbers:      ["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟"],
+      tiles:        ["🅰️","🅱️","🅾️","🆎","🆒","🆑","🆓","🆔","🆕","🆖","🆗","🆘","🆙","🆚","🔤","🔠","🔡","🔢"],
+      space:        ["🌌","🌠","🪐","🌙","🌔","🌖","⭐","🛰️","🚀","🛸","👽","🧑‍🚀"],
+      gaming:       ["🎮","🕹️","👾","🖥️","💾","🧩","🎲","♟️"],
+      celebration:  ["🎉","🥳","🎊","🎈","🎇","🎆","🪅","🪩","🍾","🥂"]
+    };
+    const KEYS = Object.keys(SETS);
+    const THEME = (() => {
+      const req = params.get("theme");
+      return (req && SETS[req]) ? req : KEYS[Math.floor(Math.random() * KEYS.length)];
+    })();
+    const SEQ = SETS[THEME];
+
+    const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 3));
+    const canvas = document.createElement("canvas");
+    canvas.width = BASE_SIZE * dpr;
+    canvas.height = BASE_SIZE * dpr;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+
+    function clear(){ ctx.clearRect(0, 0, BASE_SIZE, BASE_SIZE); }
+
+    function replaceFavicon(dataUrl) {
+      const olds = Array.from(document.querySelectorAll('link#dynamic-favicon[rel="icon"], link#dynamic-favicon[rel="shortcut icon"]'));
+      olds.forEach(n => n.parentNode && n.parentNode.removeChild(n));
+      const link = document.createElement("link");
+      link.id = "dynamic-favicon";
+      link.rel = "icon";
+      link.type = "image/png";
+      link.sizes = "any";
+      link.href = dataUrl;
+      document.head.appendChild(link);
+    }
+
+    function drawEmojiText(e) {
+      clear();
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = `${Math.floor(BASE_SIZE * 0.82)}px ${FONT}`;
+      ctx.fillText(e, BASE_SIZE / 2, BASE_SIZE / 2 + 1);
+      replaceFavicon(canvas.toDataURL("image/png"));
+    }
+
+    const toCodePoints = (str) => Array.from(str).map(ch => ch.codePointAt(0).toString(16)).join("-");
+    function drawEmojiPNG(e, cbFallback) {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => {
+        clear();
+        const target = Math.floor(BASE_SIZE * 0.88);
+        const x = Math.floor((BASE_SIZE - target) / 2);
+        const y = Math.floor((BASE_SIZE - target) / 2);
+        ctx.drawImage(img, x, y, target, target);
+        replaceFavicon(canvas.toDataURL("image/png"));
+      };
+      img.onerror = () => cbFallback && cbFallback();
+      img.src = `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/${toCodePoints(e)}.png`;
+    }
+
+    let idx = 0;
+    let last = 0;
+    const interval = 1000 / FPS;
+    let anim = null;
+
+    function step(ts) {
+      if (!last) last = ts;
+      if (ts - last >= interval) {
+        const e = SEQ[idx % SEQ.length];
+        if (USE_PNG) {
+          drawEmojiPNG(e, () => drawEmojiText(e));
+        } else {
+          drawEmojiText(e);
+        }
+        idx++;
+        last = ts;
+      }
+      anim = requestAnimationFrame(step);
+    }
+
+    function onVis() {
+      if (document.hidden) { if (anim) cancelAnimationFrame(anim); anim = null; }
+      else { last = 0; anim = requestAnimationFrame(step); }
+    }
+    document.addEventListener("visibilitychange", onVis, { passive: true });
+    onVis();
+  })();
+  </script>
+
+  <!-- ===================== INTERNATIONALIZATION ===================== -->
+  <script>
+    // Language metadata for flags/names
+    const LANGUAGE_META = {
+      en:{ flag:'🇬🇧', name:'English'  },
+      de:{ flag:'🇩🇪', name:'Deutsch'  },
+      fr:{ flag:'🇫🇷', name:'Français' },
+      it:{ flag:'🇮🇹', name:'Italiano' },
+      ja:{ flag:'🇯🇵', name:'日本語'     },
+      ko:{ flag:'🇰🇷', name:'한국어'     },
+      zh:{ flag:'🇨🇳', name:'中文'       },
+    };
+
+    // I18N translations for all page content
+    const I18N = {
+      en: {
+        brandName: "EmojiPainter",
+        navFeatures: "Features",
+        navAbout: "About",
+        navLeaderboard: "Leaderboard",
+        navGallery: "Gallery",
+        navHome: "Home",
+        downloadNow: "Download Now",
+        options: "☰ Options",
+        heroTitle: "The Most Contemporary Brushstrokes for Digital Art in 2026",
+        visionTitle: "What EmojiPainter Wants To Be",
+        visionPara1: "EmojiPainter should work for children. Think: a very easy version of Photoshop. You open it and you can just draw with emojis. You do not need to understand complex menus. You click a symbol to import a image or play the timelapse, or you stamp it on to the canvas.",
+        visionPara2: "It should also work like a social creative safe space. A shared creative studio. A place where you can paint and publish directly. a community-linked space  with no 3. parties involved !",
+        visionPara3: "Emojis enable simplicity. You can express a full idea with one icon. But you can also build difficult collages: layered.",
+        visionPara4: "The important part is global readability. Emojis carry worldwide understanding. The language travels. So  painting includes a new shared visual vocabulary.",
+        roadmapTitle: "Roadmap",
+        roadmapIntro: "Right now this is a free test run. A proof-of-concept state. You are basically inside an experiment. The current focus is:",
+        roadmapItem1: "Realtime multi-painter space. Multiple people painting live together.",
+        roadmapItem2: "Full scale animator features like on macOS only. Timeline, motion, GIF, MP4.",
+        roadmapItem3: "Augmented reality painter with AR image options.",
+        roadmapItem4: "Better long timelapse exports. At the moment most is still proof of concept.",
+        roadmapItem5: "Working full stack website with webshop and a gated user area for self moderation.",
+        roadmapItem6: "One-time purchase model. After the first 1k users the plan is to sell the application for 9,99.",
+        roadmapGoal: "Goal is stability and low friction. No algorithmic feed deciding what you see. You load art. You paint. You publish.",
+        inspirationTitle: "Inspiration",
+        inspirationPara1: 'This can also be understanded as an homage to <a href="https://www.facebook.com/groups/1402563099961950"> DailySpitPaint Group on Facebook.</a>',
+        inspirationPara2: "I really liked the whole idea and I could really feel that community moment. As a huge fan and participant of the challenges I wanted to create a artist first save space and game-ify it even more. The 3 daily prompt. The leaderboard. The public gallery. The replay at the exact time of day.",
+        inspirationPara3: "So EmojiPainter is a kind of continuation. Same spirit. New tool. I hope John Conner maybe reads this at some point. Or you.",
+        inspirationThanks: "Thanks for reading — Pascal Sender /// For the first 1k Users App is Free : ",
+        whatWeDoTitle: "What We Do",
+        whatWeDoDesc: "We transform emojis into a universal visual language for creators. Paint, layer, animate, export — without friction, on any device.",
+        whatWeDoItem1: 'Massive emoji "brush" library',
+        whatWeDoItem2: "Layers, effects, precision placement",
+        whatWeDoItem3: "GIF & video exports, print-ready images",
+        whatWeDoItem4: "Share-first workflow on every platform",
+        whyArtistsTitle: "Why Artists Love It",
+        whyArtistsDesc: "Art that speaks to everyone.",
+        teamTitle: "Team & Values",
+        teamDesc: "I am a single Developer, design-obsessed, building creative tools that feel playful and professional. I value accessibility, performance, and community.",
+        pressTitle: "Press & Partnerships",
+        pressDesc: "For interviews, showcases, or educational use, reach out !",
+        contactTitle: "Contact",
+        contactInfo: "EmojiPainter — Pascal Sender - Düsseldorf, Germany (EU)",
+        footerCopyright: "© ",
+        footerRights: "EmojiPainter — All rights reserved.",
+        downloadTitle: "Download EmojiPainter",
+        downloadBadge: "Currently available on Apple platforms",
+        downloadIOS: "iPhone / iPad (iOS/iPadOS)",
+        downloadIOSDesc: "Touch-optimized painting. Share instantly.",
+        downloadMac: "Mac (macOS)",
+        downloadMacDesc: "Desktop precision. Big canvas performance.",
+        downloadButton: "Download"
+      },
+      de: {
+        brandName: "EmojiPainter",
+        navFeatures: "Funktionen",
+        navAbout: "Über uns",
+        navLeaderboard: "Bestenliste",
+        navGallery: "Galerie",
+        navHome: "Startseite",
+        downloadNow: "Jetzt herunterladen",
+        options: "☰ Optionen",
+        heroTitle: "Die zeitgemäßesten Pinselstriche für digitale Kunst 2026",
+        visionTitle: "Was EmojiPainter sein möchte",
+        visionPara1: "EmojiPainter sollte für Kinder funktionieren. Denken Sie: eine sehr einfache Version von Photoshop. Sie öffnen es und können einfach mit Emojis malen. Sie müssen keine komplexen Menüs verstehen. Sie klicken auf ein Symbol, um ein Bild zu importieren oder das Zeitraffer abzuspielen, oder Sie stempeln es auf die Leinwand.",
+        visionPara2: "Es sollte auch wie ein sozialer kreativer Schutzraum funktionieren. Ein gemeinsames kreatives Studio. Ein Ort, an dem Sie malen und direkt veröffentlichen können. Ein Community-verbundener Raum ohne Drittparteien!",
+        visionPara3: "Emojis ermöglichen Einfachheit. Sie können eine vollständige Idee mit einem Symbol ausdrücken. Aber Sie können auch schwierige Collagen erstellen: geschichtet.",
+        visionPara4: "Der wichtige Teil ist die globale Lesbarkeit. Emojis tragen weltweites Verständnis. Die Sprache reist. So beinhaltet das Malen ein neues gemeinsames visuelles Vokabular.",
+        roadmapTitle: "Roadmap",
+        roadmapIntro: "Im Moment ist dies ein kostenloser Testlauf. Ein Proof-of-Concept-Zustand. Sie befinden sich im Grunde in einem Experiment. Der aktuelle Fokus liegt auf:",
+        roadmapItem1: "Echtzeit-Multi-Painter-Raum. Mehrere Personen malen live zusammen.",
+        roadmapItem2: "Vollwertige Animator-Funktionen wie nur auf macOS. Timeline, Motion, GIF, MP4.",
+        roadmapItem3: "Augmented-Reality-Maler mit AR-Bildoptionen.",
+        roadmapItem4: "Bessere lange Zeitraffer-Exporte. Im Moment ist das meiste noch Proof of Concept.",
+        roadmapItem5: "Funktionierende Full-Stack-Website mit Webshop und einem geschlossenen Benutzerbereich zur Selbstmoderation.",
+        roadmapItem6: "Einmaliges Kaufmodell. Nach den ersten 1.000 Benutzern ist geplant, die Anwendung für 9,99 zu verkaufen.",
+        roadmapGoal: "Ziel ist Stabilität und geringe Reibung. Kein algorithmischer Feed entscheidet, was Sie sehen. Sie laden Kunst. Sie malen. Sie veröffentlichen.",
+        inspirationTitle: "Inspiration",
+        inspirationPara1: 'Dies kann auch als Hommage an die <a href="https://www.facebook.com/groups/1402563099961950"> DailySpitPaint-Gruppe auf Facebook</a> verstanden werden.',
+        inspirationPara2: "Ich mochte die ganze Idee wirklich und konnte diesen Community-Moment wirklich spüren. Als großer Fan und Teilnehmer der Herausforderungen wollte ich einen Künstler-First-Schutzraum schaffen und ihn noch mehr gamifizieren. Die 3 täglichen Prompts. Die Bestenliste. Die öffentliche Galerie. Die Wiederholung zur genauen Tageszeit.",
+        inspirationPara3: "EmojiPainter ist also eine Art Fortsetzung. Gleicher Geist. Neues Werkzeug. Ich hoffe, John Conner liest dies vielleicht irgendwann. Oder Sie.",
+        inspirationThanks: "Danke fürs Lesen — Pascal Sender /// Für die ersten 1.000 Benutzer ist die App kostenlos: ",
+        whatWeDoTitle: "Was wir tun",
+        whatWeDoDesc: "Wir verwandeln Emojis in eine universelle visuelle Sprache für Kreative. Malen, Schichten, Animieren, Exportieren — reibungslos auf jedem Gerät.",
+        whatWeDoItem1: 'Riesige Emoji-"Pinsel"-Bibliothek',
+        whatWeDoItem2: "Ebenen, Effekte, präzise Platzierung",
+        whatWeDoItem3: "GIF- und Videoexporte, druckfertige Bilder",
+        whatWeDoItem4: "Share-First-Workflow auf jeder Plattform",
+        whyArtistsTitle: "Warum Künstler es lieben",
+        whyArtistsDesc: "Kunst, die zu jedem spricht.",
+        teamTitle: "Team & Werte",
+        teamDesc: "Ich bin ein einzelner Entwickler, designbesessen, der kreative Tools baut, die sich spielerisch und professionell anfühlen. Ich schätze Zugänglichkeit, Leistung und Community.",
+        pressTitle: "Presse & Partnerschaften",
+        pressDesc: "Für Interviews, Showcases oder Bildungszwecke melden Sie sich!",
+        contactTitle: "Kontakt",
+        contactInfo: "EmojiPainter — Pascal Sender - Düsseldorf, Deutschland (EU)",
+        footerCopyright: "© ",
+        footerRights: "EmojiPainter — Alle Rechte vorbehalten.",
+        downloadTitle: "EmojiPainter herunterladen",
+        downloadBadge: "Derzeit auf Apple-Plattformen verfügbar",
+        downloadIOS: "iPhone / iPad (iOS/iPadOS)",
+        downloadIOSDesc: "Touch-optimiertes Malen. Sofort teilen.",
+        downloadMac: "Mac (macOS)",
+        downloadMacDesc: "Desktop-Präzision. Große Canvas-Leistung.",
+        downloadButton: "Herunterladen"
+      },
+      fr: {
+        brandName: "EmojiPainter",
+        navFeatures: "Fonctionnalités",
+        navAbout: "À propos",
+        navLeaderboard: "Classement",
+        navGallery: "Galerie",
+        navHome: "Accueil",
+        downloadNow: "Télécharger maintenant",
+        options: "☰ Options",
+        heroTitle: "Les coups de pinceau les plus contemporains pour l'art numérique en 2026",
+        visionTitle: "Ce que EmojiPainter veut être",
+        visionPara1: "EmojiPainter devrait fonctionner pour les enfants. Pensez : une version très facile de Photoshop. Vous l'ouvrez et vous pouvez simplement dessiner avec des emojis. Vous n'avez pas besoin de comprendre des menus complexes. Vous cliquez sur un symbole pour importer une image ou lire le timelapse, ou vous le tamponnez sur la toile.",
+        visionPara2: "Cela devrait également fonctionner comme un espace créatif social sûr. Un studio créatif partagé. Un endroit où vous pouvez peindre et publier directement. Un espace lié à la communauté sans tiers impliqués !",
+        visionPara3: "Les emojis permettent la simplicité. Vous pouvez exprimer une idée complète avec une seule icône. Mais vous pouvez aussi créer des collages difficiles : en couches.",
+        visionPara4: "La partie importante est la lisibilité mondiale. Les emojis portent une compréhension mondiale. Le langage voyage. Ainsi, la peinture inclut un nouveau vocabulaire visuel partagé.",
+        roadmapTitle: "Feuille de route",
+        roadmapIntro: "Pour l'instant, c'est un essai gratuit. Un état de preuve de concept. Vous êtes essentiellement dans une expérience. L'accent actuel est mis sur :",
+        roadmapItem1: "Espace multi-peintre en temps réel. Plusieurs personnes peignent en direct ensemble.",
+        roadmapItem2: "Fonctionnalités d'animation complète comme sur macOS uniquement. Timeline, motion, GIF, MP4.",
+        roadmapItem3: "Peintre en réalité augmentée avec options d'image AR.",
+        roadmapItem4: "Meilleurs exports de timelapse longs. Pour le moment, la plupart est encore une preuve de concept.",
+        roadmapItem5: "Site Web full stack fonctionnel avec boutique en ligne et zone utilisateur fermée pour l'auto-modération.",
+        roadmapItem6: "Modèle d'achat unique. Après les 1 000 premiers utilisateurs, le plan est de vendre l'application pour 9,99.",
+        roadmapGoal: "L'objectif est la stabilité et la faible friction. Aucun flux algorithmique ne décide de ce que vous voyez. Vous chargez de l'art. Vous peignez. Vous publiez.",
+        inspirationTitle: "Inspiration",
+        inspirationPara1: 'Cela peut également être compris comme un hommage au <a href="https://www.facebook.com/groups/1402563099961950"> groupe DailySpitPaint sur Facebook.</a>',
+        inspirationPara2: "J'ai vraiment aimé toute l'idée et j'ai vraiment ressenti ce moment communautaire. En tant que grand fan et participant aux défis, je voulais créer un espace de sauvegarde pour artistes et le gamifier encore plus. Les 3 prompts quotidiens. Le classement. La galerie publique. La rediffusion à l'heure exacte de la journée.",
+        inspirationPara3: "Ainsi, EmojiPainter est une sorte de continuation. Même esprit. Nouvel outil. J'espère que John Conner lira peut-être ceci à un moment donné. Ou vous.",
+        inspirationThanks: "Merci d'avoir lu — Pascal Sender /// Pour les 1 000 premiers utilisateurs, l'application est gratuite : ",
+        whatWeDoTitle: "Ce que nous faisons",
+        whatWeDoDesc: "Nous transformons les emojis en un langage visuel universel pour les créateurs. Peindre, superposer, animer, exporter — sans friction, sur n'importe quel appareil.",
+        whatWeDoItem1: 'Bibliothèque massive de "pinceaux" emoji',
+        whatWeDoItem2: "Calques, effets, placement de précision",
+        whatWeDoItem3: "Exports GIF et vidéo, images prêtes à imprimer",
+        whatWeDoItem4: "Workflow axé sur le partage sur chaque plateforme",
+        whyArtistsTitle: "Pourquoi les artistes l'adorent",
+        whyArtistsDesc: "L'art qui parle à tout le monde.",
+        teamTitle: "Équipe & Valeurs",
+        teamDesc: "Je suis un développeur solo, obsédé par le design, qui construit des outils créatifs qui semblent ludiques et professionnels. Je valorise l'accessibilité, les performances et la communauté.",
+        pressTitle: "Presse & Partenariats",
+        pressDesc: "Pour des interviews, des présentations ou une utilisation éducative, contactez-nous !",
+        contactTitle: "Contact",
+        contactInfo: "EmojiPainter — Pascal Sender - Düsseldorf, Allemagne (UE)",
+        footerCopyright: "© ",
+        footerRights: "EmojiPainter — Tous droits réservés.",
+        downloadTitle: "Télécharger EmojiPainter",
+        downloadBadge: "Actuellement disponible sur les plateformes Apple",
+        downloadIOS: "iPhone / iPad (iOS/iPadOS)",
+        downloadIOSDesc: "Peinture optimisée pour le tactile. Partagez instantanément.",
+        downloadMac: "Mac (macOS)",
+        downloadMacDesc: "Précision de bureau. Performances de grande toile.",
+        downloadButton: "Télécharger"
+      },
+      it: {
+        brandName: "EmojiPainter",
+        navFeatures: "Funzionalità",
+        navAbout: "Chi siamo",
+        navLeaderboard: "Classifica",
+        navGallery: "Galleria",
+        navHome: "Home",
+        downloadNow: "Scarica ora",
+        options: "☰ Opzioni",
+        heroTitle: "I pennelli più contemporanei per l'arte digitale nel 2026",
+        visionTitle: "Cosa vuole essere EmojiPainter",
+        visionPara1: "EmojiPainter dovrebbe funzionare per i bambini. Pensa: una versione molto facile di Photoshop. Lo apri e puoi semplicemente disegnare con gli emoji. Non è necessario capire menu complessi. Fai clic su un simbolo per importare un'immagine o riprodurre il timelapse, oppure lo stampi sulla tela.",
+        visionPara2: "Dovrebbe anche funzionare come uno spazio creativo sociale sicuro. Uno studio creativo condiviso. Un luogo dove puoi dipingere e pubblicare direttamente. Uno spazio collegato alla comunità senza terze parti coinvolte!",
+        visionPara3: "Gli emoji consentono la semplicità. Puoi esprimere un'idea completa con un'icona. Ma puoi anche creare collage difficili: stratificati.",
+        visionPara4: "La parte importante è la leggibilità globale. Gli emoji portano comprensione mondiale. Il linguaggio viaggia. Quindi dipingere include un nuovo vocabolario visivo condiviso.",
+        roadmapTitle: "Roadmap",
+        roadmapIntro: "In questo momento questa è una prova gratuita. Uno stato di proof-of-concept. Sei praticamente all'interno di un esperimento. L'attenzione attuale è su:",
+        roadmapItem1: "Spazio multi-pittore in tempo reale. Più persone dipingono dal vivo insieme.",
+        roadmapItem2: "Funzionalità di animazione completa come solo su macOS. Timeline, motion, GIF, MP4.",
+        roadmapItem3: "Pittore in realtà aumentata con opzioni immagine AR.",
+        roadmapItem4: "Migliori esportazioni di timelapse lunghi. Al momento la maggior parte è ancora proof of concept.",
+        roadmapItem5: "Sito Web full stack funzionante con webshop e area utente chiusa per l'automodazione.",
+        roadmapItem6: "Modello di acquisto una tantum. Dopo i primi 1.000 utenti, il piano è vendere l'applicazione per 9,99.",
+        roadmapGoal: "L'obiettivo è la stabilità e l'attrito basso. Nessun feed algoritmico decide cosa vedi. Carichi arte. Dipingi. Pubblichi.",
+        inspirationTitle: "Ispirazione",
+        inspirationPara1: 'Questo può anche essere inteso come un omaggio al <a href="https://www.facebook.com/groups/1402563099961950"> gruppo DailySpitPaint su Facebook.</a>',
+        inspirationPara2: "Mi è piaciuta davvero tutta l'idea e ho davvero sentito quel momento comunitario. Come grande fan e partecipante alle sfide, volevo creare uno spazio sicuro per gli artisti e renderlo ancora più ludico. I 3 prompt giornalieri. La classifica. La galleria pubblica. La ripetizione all'ora esatta del giorno.",
+        inspirationPara3: "Quindi EmojiPainter è una sorta di continuazione. Stesso spirito. Nuovo strumento. Spero che John Conner legga questo a un certo punto. O tu.",
+        inspirationThanks: "Grazie per aver letto — Pascal Sender /// Per i primi 1.000 utenti l'app è gratuita: ",
+        whatWeDoTitle: "Cosa facciamo",
+        whatWeDoDesc: "Trasformiamo gli emoji in un linguaggio visivo universale per i creatori. Dipingi, stratifica, anima, esporta — senza attriti, su qualsiasi dispositivo.",
+        whatWeDoItem1: 'Enorme libreria di "pennelli" emoji',
+        whatWeDoItem2: "Livelli, effetti, posizionamento di precisione",
+        whatWeDoItem3: "Esportazioni GIF e video, immagini pronte per la stampa",
+        whatWeDoItem4: "Flusso di lavoro orientato alla condivisione su ogni piattaforma",
+        whyArtistsTitle: "Perché gli artisti lo adorano",
+        whyArtistsDesc: "Arte che parla a tutti.",
+        teamTitle: "Team & Valori",
+        teamDesc: "Sono un singolo sviluppatore, ossessionato dal design, che costruisce strumenti creativi che si sentono giocosi e professionali. Apprezzo l'accessibilità, le prestazioni e la comunità.",
+        pressTitle: "Stampa & Partnership",
+        pressDesc: "Per interviste, showcase o uso educativo, contattaci!",
+        contactTitle: "Contatto",
+        contactInfo: "EmojiPainter — Pascal Sender - Düsseldorf, Germania (UE)",
+        footerCopyright: "© ",
+        footerRights: "EmojiPainter — Tutti i diritti riservati.",
+        downloadTitle: "Scarica EmojiPainter",
+        downloadBadge: "Attualmente disponibile su piattaforme Apple",
+        downloadIOS: "iPhone / iPad (iOS/iPadOS)",
+        downloadIOSDesc: "Pittura ottimizzata per il tocco. Condividi istantaneamente.",
+        downloadMac: "Mac (macOS)",
+        downloadMacDesc: "Precisione desktop. Prestazioni di grande tela.",
+        downloadButton: "Scarica"
+      },
+      ja: {
+        brandName: "EmojiPainter",
+        navFeatures: "機能",
+        navAbout: "について",
+        navLeaderboard: "リーダーボード",
+        navGallery: "ギャラリー",
+        navHome: "ホーム",
+        downloadNow: "今すぐダウンロード",
+        options: "☰ オプション",
+        heroTitle: "2026年のデジタルアートのための最も現代的なブラシストローク",
+        visionTitle: "EmojiPainterが目指すもの",
+        visionPara1: "EmojiPainterは子供向けに動作する必要があります。考えてみてください：Photoshopの非常に簡単なバージョン。開くと絵文字で描くだけです。複雑なメニューを理解する必要はありません。シンボルをクリックして画像をインポートしたり、タイムラプスを再生したり、キャンバスにスタンプしたりします。",
+        visionPara2: "また、ソーシャルクリエイティブセーフスペースのように機能する必要があります。共有クリエイティブスタジオ。直接描いて公開できる場所。サードパーティが関与しないコミュニティリンクスペース！",
+        visionPara3: "絵文字はシンプルさを可能にします。1つのアイコンで完全なアイデアを表現できます。しかし、難しいコラージュを作成することもできます：レイヤー化されています。",
+        visionPara4: "重要な部分はグローバルな読みやすさです。絵文字は世界的な理解を運びます。言語は旅します。したがって、絵を描くことには新しい共有ビジュアルボキャブラリーが含まれます。",
+        roadmapTitle: "ロードマップ",
+        roadmapIntro: "現在、これは無料のテスト実行です。概念実証状態。基本的に実験の中にいます。現在の焦点は：",
+        roadmapItem1: "リアルタイムマルチペインタースペース。複数の人がライブで一緒に絵を描きます。",
+        roadmapItem2: "macOSのみのようなフルスケールアニメーター機能。タイムライン、モーション、GIF、MP4。",
+        roadmapItem3: "AR画像オプション付きの拡張現実ペインター。",
+        roadmapItem4: "より良い長いタイムラプスエクスポート。現時点ではほとんどがまだ概念実証です。",
+        roadmapItem5: "Webショップと自己調整のためのゲート付きユーザーエリアを備えた機能的なフルスタックウェブサイト。",
+        roadmapItem6: "1回限りの購入モデル。最初の1,000ユーザーの後、計画ではアプリケーションを9.99で販売します。",
+        roadmapGoal: "目標は安定性と低摩擦です。アルゴリズムフィードが何を見るかを決定しません。アートをロードします。描きます。公開します。",
+        inspirationTitle: "インスピレーション",
+        inspirationPara1: 'これは<a href="https://www.facebook.com/groups/1402563099961950"> FacebookのDailySpitPaintグループ</a>へのオマージュとしても理解できます。',
+        inspirationPara2: "アイデア全体が本当に好きで、そのコミュニティの瞬間を本当に感じることができました。挑戦の大ファンおよび参加者として、アーティストファーストのセーブスペースを作成し、さらにゲーム化したかったのです。3つの毎日のプロンプト。リーダーボード。パブリックギャラリー。正確な時刻のリプレイ。",
+        inspirationPara3: "したがって、EmojiPainterは一種の継続です。同じ精神。新しいツール。いつかJohn Connerがこれを読むことを願っています。またはあなた。",
+        inspirationThanks: "お読みいただきありがとうございます — Pascal Sender /// 最初の1,000ユーザーにはアプリが無料です：",
+        whatWeDoTitle: "私たちがすること",
+        whatWeDoDesc: "クリエイター向けに絵文字を普遍的なビジュアル言語に変換します。描く、レイヤー化する、アニメーション化する、エクスポートする — 摩擦なく、あらゆるデバイスで。",
+        whatWeDoItem1: '大規模な絵文字「ブラシ」ライブラリ',
+        whatWeDoItem2: "レイヤー、エフェクト、精密配置",
+        whatWeDoItem3: "GIFおよびビデオエクスポート、印刷可能な画像",
+        whatWeDoItem4: "すべてのプラットフォームでの共有ファーストワークフロー",
+        whyArtistsTitle: "アーティストが気に入る理由",
+        whyArtistsDesc: "誰にでも語りかけるアート。",
+        teamTitle: "チーム＆価値観",
+        teamDesc: "デザインに夢中な単独開発者で、遊び心とプロフェッショナルを感じるクリエイティブツールを構築しています。アクセシビリティ、パフォーマンス、コミュニティを大切にしています。",
+        pressTitle: "プレス＆パートナーシップ",
+        pressDesc: "インタビュー、ショーケース、または教育目的の使用については、お問い合わせください！",
+        contactTitle: "連絡先",
+        contactInfo: "EmojiPainter — Pascal Sender - デュッセルドルフ、ドイツ（EU）",
+        footerCopyright: "© ",
+        footerRights: "EmojiPainter — すべての権利を保有しています。",
+        downloadTitle: "EmojiPainterをダウンロード",
+        downloadBadge: "現在Appleプラットフォームで利用可能",
+        downloadIOS: "iPhone / iPad（iOS/iPadOS）",
+        downloadIOSDesc: "タッチ最適化ペインティング。即座に共有。",
+        downloadMac: "Mac（macOS）",
+        downloadMacDesc: "デスクトップ精度。大きなキャンバスパフォーマンス。",
+        downloadButton: "ダウンロード"
+      },
+      ko: {
+        brandName: "EmojiPainter",
+        navFeatures: "기능",
+        navAbout: "소개",
+        navLeaderboard: "리더보드",
+        navGallery: "갤러리",
+        navHome: "홈",
+        downloadNow: "지금 다운로드",
+        options: "☰ 옵션",
+        heroTitle: "2026년 디지털 아트를 위한 가장 현대적인 붓터치",
+        visionTitle: "EmojiPainter가 되고자 하는 것",
+        visionPara1: "EmojiPainter는 어린이를 위해 작동해야 합니다. 생각해보세요: 매우 쉬운 버전의 Photoshop. 열면 이모지로 그릴 수 있습니다. 복잡한 메뉴를 이해할 필요가 없습니다. 기호를 클릭하여 이미지를 가져오거나 타임랩스를 재생하거나 캔버스에 스탬프를 찍습니다.",
+        visionPara2: "또한 소셜 크리에이티브 안전 공간처럼 작동해야 합니다. 공유 크리에이티브 스튜디오. 직접 그리고 게시할 수 있는 장소. 제3자가 관여하지 않는 커뮤니티 연결 공간!",
+        visionPara3: "이모지는 단순함을 가능하게 합니다. 하나의 아이콘으로 완전한 아이디어를 표현할 수 있습니다. 그러나 어려운 콜라주를 만들 수도 있습니다: 레이어링됨.",
+        visionPara4: "중요한 부분은 전 세계적인 가독성입니다. 이모지는 전 세계적인 이해를 전달합니다. 언어가 여행합니다. 따라서 그림에는 새로운 공유 시각 어휘가 포함됩니다.",
+        roadmapTitle: "로드맵",
+        roadmapIntro: "현재 이것은 무료 테스트 실행입니다. 개념 증명 상태. 기본적으로 실험 안에 있습니다. 현재 초점은:",
+        roadmapItem1: "실시간 멀티 페인터 공간. 여러 사람이 라이브로 함께 그립니다.",
+        roadmapItem2: "macOS에서만 가능한 완전한 애니메이터 기능. 타임라인, 모션, GIF, MP4.",
+        roadmapItem3: "AR 이미지 옵션이 있는 증강 현실 페인터.",
+        roadmapItem4: "더 나은 긴 타임랩스 내보내기. 현재 대부분은 여전히 개념 증명입니다.",
+        roadmapItem5: "웹샵과 자체 조정을 위한 게이트된 사용자 영역이 있는 작동하는 풀스택 웹사이트.",
+        roadmapItem6: "일회성 구매 모델. 처음 1,000명의 사용자 이후 계획은 애플리케이션을 9.99에 판매하는 것입니다.",
+        roadmapGoal: "목표는 안정성과 낮은 마찰입니다. 알고리즘 피드가 무엇을 볼지 결정하지 않습니다. 아트를 로드합니다. 그립니다. 게시합니다.",
+        inspirationTitle: "영감",
+        inspirationPara1: '이것은 <a href="https://www.facebook.com/groups/1402563099961950"> Facebook의 DailySpitPaint 그룹</a>에 대한 오마주로 이해될 수도 있습니다.',
+        inspirationPara2: "전체 아이디어가 정말 마음에 들었고 그 커뮤니티 순간을 정말로 느낄 수 있었습니다. 도전의 열렬한 팬이자 참가자로서 아티스트 우선 세이브 공간을 만들고 더욱 게임화하고 싶었습니다. 3개의 일일 프롬프트. 리더보드. 공개 갤러리. 정확한 시간의 재생.",
+        inspirationPara3: "따라서 EmojiPainter는 일종의 연속입니다. 같은 정신. 새로운 도구. 언젠가 John Conner가 이것을 읽기를 바랍니다. 또는 당신.",
+        inspirationThanks: "읽어주셔서 감사합니다 — Pascal Sender /// 처음 1,000명의 사용자에게 앱은 무료입니다:",
+        whatWeDoTitle: "우리가 하는 일",
+        whatWeDoDesc: "크리에이터를 위한 보편적인 시각 언어로 이모지를 변환합니다. 그리기, 레이어링, 애니메이션, 내보내기 — 마찰 없이 모든 장치에서.",
+        whatWeDoItem1: '방대한 이모지 "브러시" 라이브러리',
+        whatWeDoItem2: "레이어, 효과, 정밀 배치",
+        whatWeDoItem3: "GIF 및 비디오 내보내기, 인쇄 가능한 이미지",
+        whatWeDoItem4: "모든 플랫폼에서 공유 우선 워크플로",
+        whyArtistsTitle: "아티스트가 좋아하는 이유",
+        whyArtistsDesc: "모두에게 말하는 예술.",
+        teamTitle: "팀 & 가치",
+        teamDesc: "디자인에 집착하는 단독 개발자로 재미있고 전문적인 느낌의 크리에이티브 도구를 구축합니다. 접근성, 성능 및 커뮤니티를 소중히 여깁니다.",
+        pressTitle: "언론 & 파트너십",
+        pressDesc: "인터뷰, 쇼케이스 또는 교육 용도로 문의하세요!",
+        contactTitle: "연락처",
+        contactInfo: "EmojiPainter — Pascal Sender - 뒤셀도르프, 독일 (EU)",
+        footerCopyright: "© ",
+        footerRights: "EmojiPainter — 모든 권리 보유.",
+        downloadTitle: "EmojiPainter 다운로드",
+        downloadBadge: "현재 Apple 플랫폼에서 사용 가능",
+        downloadIOS: "iPhone / iPad (iOS/iPadOS)",
+        downloadIOSDesc: "터치 최적화 페인팅. 즉시 공유.",
+        downloadMac: "Mac (macOS)",
+        downloadMacDesc: "데스크톱 정밀도. 큰 캔버스 성능.",
+        downloadButton: "다운로드"
+      },
+      zh: {
+        brandName: "EmojiPainter",
+        navFeatures: "功能",
+        navAbout: "关于",
+        navLeaderboard: "排行榜",
+        navGallery: "画廊",
+        navHome: "主页",
+        downloadNow: "立即下载",
+        options: "☰ 选项",
+        heroTitle: "2026年数字艺术最现代的笔触",
+        visionTitle: "EmojiPainter想要成为什么",
+        visionPara1: "EmojiPainter应该为儿童工作。想想看：Photoshop的非常简单的版本。打开它，您就可以用表情符号绘画。您不需要理解复杂的菜单。单击符号导入图像或播放延时，或将其印在画布上。",
+        visionPara2: "它还应该像一个社交创意安全空间一样工作。一个共享的创意工作室。一个您可以绘画并直接发布的地方。一个没有第三方参与的社区连接空间！",
+        visionPara3: "表情符号实现简单性。您可以用一个图标表达一个完整的想法。但您也可以构建困难的拼贴画：分层的。",
+        visionPara4: "重要的部分是全球可读性。表情符号承载全球理解。语言旅行。因此绘画包括一个新的共享视觉词汇。",
+        roadmapTitle: "路线图",
+        roadmapIntro: "现在这是一次免费测试运行。概念验证状态。您基本上在一个实验中。当前的重点是：",
+        roadmapItem1: "实时多画家空间。多人实时一起绘画。",
+        roadmapItem2: "仅在macOS上的全规模动画制作功能。时间轴、运动、GIF、MP4。",
+        roadmapItem3: "具有AR图像选项的增强现实画家。",
+        roadmapItem4: "更好的长延时导出。目前大多数仍然是概念验证。",
+        roadmapItem5: "具有网店和封闭用户区域的功能性全栈网站，用于自我调节。",
+        roadmapItem6: "一次性购买模式。在前1,000个用户之后，计划是以9.99出售应用程序。",
+        roadmapGoal: "目标是稳定性和低摩擦。没有算法feed决定您看到什么。您加载艺术。您绘画。您发布。",
+        inspirationTitle: "灵感",
+        inspirationPara1: '这也可以理解为对<a href="https://www.facebook.com/groups/1402563099961950"> Facebook上的DailySpitPaint组</a>的致敬。',
+        inspirationPara2: "我真的很喜欢整个想法，我真的能感受到那个社区时刻。作为挑战的大粉丝和参与者，我想创建一个艺术家优先的安全空间，并进一步游戏化它。3个每日提示。排行榜。公共画廊。在一天中确切时间的重播。",
+        inspirationPara3: "因此，EmojiPainter是一种延续。相同的精神。新工具。我希望John Conner也许在某个时候读到这个。或者你。",
+        inspirationThanks: "感谢阅读 — Pascal Sender /// 对于前1,000个用户，应用程序是免费的：",
+        whatWeDoTitle: "我们做什么",
+        whatWeDoDesc: "我们将表情符号转换为创作者的通用视觉语言。绘画、分层、动画、导出 — 无摩擦，在任何设备上。",
+        whatWeDoItem1: '大量表情符号"画笔"库',
+        whatWeDoItem2: "图层、效果、精确放置",
+        whatWeDoItem3: "GIF和视频导出、可打印图像",
+        whatWeDoItem4: "每个平台上的共享优先工作流程",
+        whyArtistsTitle: "为什么艺术家喜欢它",
+        whyArtistsDesc: "对每个人说话的艺术。",
+        teamTitle: "团队与价值观",
+        teamDesc: "我是一位单独的开发人员，痴迷于设计，构建感觉有趣和专业的创意工具。我重视可访问性、性能和社区。",
+        pressTitle: "新闻与合作伙伴关系",
+        pressDesc: "对于采访、展示或教育用途，请联系！",
+        contactTitle: "联系方式",
+        contactInfo: "EmojiPainter — Pascal Sender - 杜塞尔多夫，德国（欧盟）",
+        footerCopyright: "© ",
+        footerRights: "EmojiPainter — 保留所有权利。",
+        downloadTitle: "下载EmojiPainter",
+        downloadBadge: "目前在Apple平台上可用",
+        downloadIOS: "iPhone / iPad（iOS/iPadOS）",
+        downloadIOSDesc: "触摸优化绘画。立即分享。",
+        downloadMac: "Mac（macOS）",
+        downloadMacDesc: "桌面精度。大画布性能。",
+        downloadButton: "下载"
+      }
+    };
+
+    // Detect default language from browser
+    function detectDefaultLang(){
+      const saved = localStorage.getItem('lang');
+      if(saved && I18N[saved]) return saved;
+
+      const nav = (navigator.language||'en').toLowerCase();
+      if(nav.startsWith('de')) return 'de';
+      if(nav.startsWith('fr')) return 'fr';
+      if(nav.startsWith('it')) return 'it';
+      if(nav.startsWith('ja')) return 'ja';
+      if(nav.startsWith('ko')) return 'ko';
+      if(nav.startsWith('zh')) return 'zh';
+      return 'en';
+    }
+
+    // Update all text content based on current language
+    function setLanguage(lang){
+      if(!I18N[lang]) lang='en';
+
+      // Save to localStorage using 'lang' key (NOT 'daily-lang')
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+
+      const t = I18N[lang];
+
+      // Update all elements with data-i18n attributes
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        if(t[key]) el.innerHTML = t[key];
+      });
+
+      // Update language UI
+      updateLangUI(lang);
+    }
+
+    // Update language switcher UI
+    function updateLangUI(lang){
+      const meta = LANGUAGE_META[lang] || LANGUAGE_META.en;
+      document.getElementById('lang-flag').textContent = meta.flag;
+      document.getElementById('lang-name').textContent = meta.name;
+
+      // Update aria-checked on all language options
+      document.querySelectorAll('.lang-opt').forEach(el=>{
+        const isActive = el.getAttribute('data-lang') === lang;
+        el.setAttribute('aria-checked', String(isActive));
+      });
+    }
+
+    // Build language panel with all options
+    function buildLanguagePanel(){
+      const langPanel = document.getElementById('lang-panel');
+      langPanel.innerHTML = '';
+
+      Object.keys(LANGUAGE_META).forEach(code=>{
+        const meta = LANGUAGE_META[code];
+        const btn = document.createElement('button');
+        btn.className = 'lang-opt';
+        btn.setAttribute('role','menuitemradio');
+        btn.setAttribute('data-lang', code);
+        btn.innerHTML = `
+          <span class="left"><span class="flag" aria-hidden="true">${meta.flag}</span> <span class="label">${meta.name}</span></span>
+        `;
+        btn.addEventListener('click', ()=>{
+          setLanguage(code);
+          closeLangPanel();
+          document.getElementById('lang-toggle').focus({preventScroll:true});
+        });
+        langPanel.appendChild(btn);
+      });
+    }
+
+    // Language panel controls
+    function openLangPanel(){
+      const langPanel = document.getElementById('lang-panel');
+      const langToggle = document.getElementById('lang-toggle');
+      if(!langPanel.hidden) return;
+      langPanel.hidden = false;
+      langToggle.setAttribute('aria-expanded','true');
+      const active = langPanel.querySelector('.lang-opt[aria-checked="true"]') || langPanel.querySelector('.lang-opt');
+      if(active) active.focus({preventScroll:true});
+      document.addEventListener('mousedown', onDocDown, {capture:true});
+      document.addEventListener('touchstart', onDocDown, {capture:true, passive:true});
+      document.addEventListener('keydown', onKeyClose);
+    }
+
+    function closeLangPanel(){
+      const langPanel = document.getElementById('lang-panel');
+      const langToggle = document.getElementById('lang-toggle');
+      if(langPanel.hidden) return;
+      langPanel.hidden = true;
+      langToggle.setAttribute('aria-expanded','false');
+      document.removeEventListener('mousedown', onDocDown, {capture:true});
+      document.removeEventListener('touchstart', onDocDown, {capture:true});
+      document.removeEventListener('keydown', onKeyClose);
+    }
+
+    function toggleLangPanel(){
+      const langPanel = document.getElementById('lang-panel');
+      (langPanel.hidden ? openLangPanel : closeLangPanel)();
+    }
+
+    function onDocDown(e){
+      const langPanel = document.getElementById('lang-panel');
+      const langToggle = document.getElementById('lang-toggle');
+      if(!langPanel.contains(e.target) && e.target!==langToggle) closeLangPanel();
+    }
+
+    function onKeyClose(e){
+      const langPanel = document.getElementById('lang-panel');
+      const langToggle = document.getElementById('lang-toggle');
+      if(e.key==='Escape'){
+        e.preventDefault();
+        closeLangPanel();
+        langToggle.focus({preventScroll:true});
+      }
+      if((e.key==='ArrowDown' || e.key==='ArrowUp') && !langPanel.hidden){
+        const opts = [...langPanel.querySelectorAll('.lang-opt')];
+        const idx  = opts.indexOf(document.activeElement);
+        if(idx>=0){
+          e.preventDefault();
+          const next = (e.key==='ArrowDown') ? Math.min(opts.length-1, idx+1) : Math.max(0, idx-1);
+          opts[next].focus({preventScroll:true});
+        }
+      }
+    }
+
+    // Initialize language system
+    (function initLanguage(){
+      const currentLang = detectDefaultLang();
+      buildLanguagePanel();
+      setLanguage(currentLang);
+
+      // Bind language toggle button
+      document.getElementById('lang-toggle').addEventListener('click', toggleLangPanel);
+    })();
+  </script>
+
+  <!-- Download overlay open/close + flying emojis -->
+  <script>
+    (function(){
+      const overlay = document.querySelector('[data-download-overlay]');
+      const openers = document.querySelectorAll('[data-open-download]');
+      const closers = document.querySelectorAll('[data-close-download]');
+      const layer = document.getElementById('vehicles-layer');
+      let spawnInterval = null;
+
+      const EMOJI_POOL = [
+        "🎉","✨","🎨","💫","🌈","🔥","🪄","🧠","🎭","🧩",
+        "⭐","🌸","🌺","🎈","🎊","💥","🌍","🪐","🎆","🎇",
+        "🎮","🎧","🎵","🎷","🎺","🎹","🖌️","🖍️","📱","💻"
+      ];
+
+      function rand(min,max){return Math.random()*(max-min)+min;}
+
+      function spawnOne(){
+        if(!layer) return;
+        const d = document.createElement('div');
+        d.className = 'vehicle';
+        d.textContent = EMOJI_POOL[Math.floor(Math.random()*EMOJI_POOL.length)];
+
+        const dirLR = Math.random() < 0.5;
+        const y = rand(5,90).toFixed(2)+'vh';
+        const wiggle = (Math.random()*20-10).toFixed(2)+'vh';
+        const rot = rand(0,360).toFixed(2)+'deg';
+        const dur = (rand(6,12)).toFixed(2)+'s';
+
+        d.style.setProperty('--y', y);
+        d.style.setProperty('--wiggle', wiggle);
+        d.style.setProperty('--rot', rot);
+        d.style.setProperty('--dur', dur);
+        d.style.animationName = dirLR ? 'flyLR' : 'flyRL';
+
+        layer.appendChild(d);
+
+        // trim
+        if(layer.children.length > 120){
+          layer.removeChild(layer.firstChild);
+        }
+      }
+
+      function startFlying(){
+        if(!layer) return;
+        layer.innerHTML = "";
+        for(let i=0;i<40;i++){
+          spawnOne();
+        }
+        clearInterval(spawnInterval);
+        spawnInterval = setInterval(spawnOne, 1200);
+      }
+
+      function stopFlying(){
+        clearInterval(spawnInterval);
+        spawnInterval = null;
+        if(layer) layer.innerHTML = "";
+      }
+
+      openers.forEach(btn=>{
+        btn.addEventListener('click', e=>{
+          e.preventDefault();
+          if(!overlay) return;
+          overlay.classList.add('open');
+          startFlying();
+        });
+      });
+
+      closers.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          if(!overlay) return;
+          overlay.classList.remove('open');
+          stopFlying();
+        });
+      });
+
+      // also close when clicking outside panel
+      if(overlay){
+        overlay.addEventListener('click', e=>{
+          if(e.target === overlay){
+            overlay.classList.remove('open');
+            stopFlying();
+          }
+        });
+      }
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

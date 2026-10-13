@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-typecheck-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test:ci
+
+  # A full signed iOS build isn't realistically automatable here — it needs Apple
+  # signing credentials that must never live in a public repo's CI secrets in an
+  # unattended, always-runs-on-every-PR workflow. See docs/BUILDING.md to build
+  # locally with Xcode. This job only verifies the native project + JS bundle
+  # resolve correctly, without signing or archiving.
+  ios-unsigned-build-check:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install CocoaPods
+        run: cd ios && pod install
+
+      - name: Build for simulator (no signing required)
+        run: |
+          xcodebuild -workspace ios/EmojiPainter.xcworkspace \
+            -scheme EmojiPainter \
+            -destination 'generic/platform=iOS Simulator' \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            build

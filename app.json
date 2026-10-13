@@ -1,0 +1,59 @@
+{
+  "expo": {
+    "name": "Emoji Painter",
+    "slug": "emojipaint-mobile",
+    "scheme": "emojipaint",
+    "version": "9.7.7",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "userInterfaceStyle": "dark",
+    "jsEngine": "hermes",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.emojipaint.mobile",
+      "buildNumber": "894",
+      "requireFullScreen": false,
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Allow Emoji Painter to import a reference image for tracing.",
+        "NSPhotoLibraryAddUsageDescription": "Allow Emoji Painter to export finished artwork to your library.",
+        "NSCameraUsageDescription": "Allow Emoji Painter to capture trace photos, paint in AR or Front Camera, and optionally understand rooms with Apple RoomPlan. Face tracking and room understanding are processed on device; camera frames are not transmitted.",
+        "NSMicrophoneUsageDescription": "Allow Emoji Painter to record audio in animations.",
+        "UIStatusBarHidden": true,
+        "UIViewControllerBasedStatusBarAppearance": false,
+        "UIStatusBarStyle": "UIStatusBarStyleLightContent",
+        "UIViewControllerPrefersHomeIndicatorAutoHidden": true,
+        "UIViewControllerPreferredScreenEdgesDeferringSystemGestures": 15,
+        "UIAppFonts": [
+          "vrtlfinale1.ttf"
+        ]
+      },
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "enabled": false
+    },
+    "plugins": [
+      "expo-localization",
+      "expo-file-system",
+      "expo-media-library",
+      "expo-sqlite",
+      "expo-asset",
+      "expo-font",
+      "@sentry/react-native"
+    ],
+    "android": {
+      "package": "com.emojipaint.mobile"
+    }
+  }
+}

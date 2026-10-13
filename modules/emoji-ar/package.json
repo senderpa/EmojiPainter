@@ -1,0 +1,9 @@
+{
+  "name": "emoji-ar",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "description": "EmojiAr Expo Module — ARKit face filter + AR wall painting for EmojiPaint",
+  "author": "EmojiPaint",
+  "homepage": "https://github.com/emojipaint/mobile",
+  "license": "MIT"
+}

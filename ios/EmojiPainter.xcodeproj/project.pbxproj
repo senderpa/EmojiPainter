@@ -1,0 +1,1344 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		019AC5B62E7619F8A955BD3C /* MovementOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A441DC48D3905D58B190D /* MovementOverlay.swift */; };
+		02CB8A1C9094800D94888E0F /* frame_21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 564394F3FD23FF2FCC5F4E4B /* frame_21.jpg */; };
+		066C3775E9D8AA64D7420D74 /* frame_24.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E54DB07D7B13DCBBE7469310 /* frame_24.jpg */; };
+		0693E126D0AE40C6F0EFC045 /* frame_17.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26036D65961B0F733AA1374C /* frame_17.jpg */; };
+		0BCB67B8FF513F399D5AE4A7 /* frame_09.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32EF3D029C567277AFFC59FB /* frame_09.jpg */; };
+		0E0A139C5BBDF3F9CBDA6543 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33A6F175A12A8D5F2BEF4A /* GameView.swift */; };
+		0EB478228A978D7FBE29C711 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8A1B6E2A6052DBE69B5DA /* APIClient.swift */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		18F42C6A2766133B2C98E949 /* frame_25.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83BC84D8071435B64203CD54 /* frame_25.jpg */; };
+		1A48F1414116B03E15AFF23E /* frame_14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 982F7BBF12D5E764B6FAB2F5 /* frame_14.jpg */; };
+		1A6A9204FF8460661B8AA552 /* frame_18.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8031BE86ACEE4C1CCB08668 /* frame_18.jpg */; };
+		1B036DE68CBCFF6F37C5275F /* frame_22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C886D080DCF6EE7603C2425F /* frame_22.jpg */; };
+		1B5C93C6B112153CD5B0A0C7 /* frame_13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B88D092679163EACD692491E /* frame_13.jpg */; };
+		202D0EA0759BC1ED436622EA /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6671793673DBF0C182D05DA1 /* CloseButton.swift */; };
+		2062988DCC49B5AD778E44F4 /* MultiPainterBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81FD21519C4124B547D135A /* MultiPainterBridge.swift */; };
+		212BB1E8A26C6F5517FB258C /* EmojiSetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E6BACFF0C3C496BD57F1A /* EmojiSetSettingsView.swift */; };
+		2298B6064E8530B734FC5678 /* RandomNameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F808EAE10F5F113DF623A4B /* RandomNameGenerator.swift */; };
+		2F45D16705C5157A2B209538 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 5BE30BB05141356F68F441B2 /* PrivacyInfo.xcprivacy */; };
+		319CDA1850CD3C03ED407D4C /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56140E1B54532DC8B1B1815 /* CanvasView.swift */; };
+		35E8824C68AB67DF8DDCB2EA /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCBABE2F574CA3272A7C919 /* AppFont.swift */; };
+		368F188784D54603075F0676 /* frame_04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA4F2D42DD205A9BFFA0D21F /* frame_04.jpg */; };
+		3759BE4B76C4D0C855FD8FC7 /* frame_26.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F040CFA0FBF533091DA59400 /* frame_26.jpg */; };
+		3B0EF4BD28263A9B71975994 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD123617F84E5170F104C3F /* UserPreferences.swift */; };
+		3B7FCC0F1A2C810C378D9F9C /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D36E459BD9BF40EB155E8A /* ChatView.swift */; };
+		3B83D3507DCD5C30A87779D5 /* EnhancedMainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B17C2393F9676374AC5A97 /* EnhancedMainMenuView.swift */; };
+		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
+		3EBC3251A1E43C57B55762B4 /* frame_10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D26BD9B5837D41E634E12595 /* frame_10.jpg */; };
+		3EE8A211B8A12621F4A9E7BC /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453C230E012ECD08D1433E4 /* ConnectionView.swift */; };
+		4395A4253958DCFEB6150F8F /* frame_28.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C16FB0AC1A3DE05595E33E3D /* frame_28.jpg */; };
+		468D36F99FD3AA88EDA9E66D /* frame_27.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92D8FC1FEF3E4292B8BBADA3 /* frame_27.jpg */; };
+		4C041D0B0A38F52C44985CEC /* frame_23.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41365220B565914A010288DD /* frame_23.jpg */; };
+		4C555632F507CBABCA1CC657 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE73C67A207025E544B4757E /* GameState.swift */; };
+		54668AEACB362036E22C113E /* vrtlfinale1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90B6D8E4BF4876570991BEED /* vrtlfinale1.ttf */; };
+		56BCD1E5AA0270D1050B7BD8 /* MessageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535310CC5340709E61AD9821 /* MessageModels.swift */; };
+		6123C95C0E0EE16D52872451 /* TimelapseViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CE975B52192577A49FE67C /* TimelapseViewerView.swift */; };
+		74DFE78BEC1243D0DE800BAF /* EnhancedOverlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CEB23DA1491E31FA2929D3 /* EnhancedOverlays.swift */; };
+		755E309E25AB0D055F4776D7 /* CustomEmojiStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDDA8BD35FFAB7B48D65249 /* CustomEmojiStore.swift */; };
+		775AE98714F4B7EF821130FD /* AnimatedLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16E14F03BC36D430ABD5403 /* AnimatedLoaderView.swift */; };
+		77857416E2905719749898B0 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D0C7549DF7765E31E5D8B /* Color+Hex.swift */; };
+		7AF2B1C319F0EB44825ED66B /* frame_11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 02A24C477B5D6CDC9CF5BC2C /* frame_11.jpg */; };
+		7EDAC43EDA0FAA28129C80D6 /* NewCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAD7682AD03D7D6C5DB850 /* NewCanvasView.swift */; };
+		873D2D728A740DC459A6E7B1 /* GameLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F9133A6FE2439EC75F092 /* GameLanguage.swift */; };
+		88E6A8E7DA905E786A004B79 /* NewLobbyViewExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5C56888B10AA5DE19F5192 /* NewLobbyViewExtras.swift */; };
+		896D2C0242C60F753AA7E5E0 /* frame_15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 553411D816C7027B68517D80 /* frame_15.jpg */; };
+		89D0D62A2D7BE11CA0BE6349 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77283FB77F712FD6983909CC /* GameManager.swift */; };
+		8A368C91BDBB02FE45879CBF /* FullscreenTimelapsePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A7E3D78089AAE37415A18 /* FullscreenTimelapsePlayer.swift */; };
+		8AA457669D7E948983FD4698 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8FBE25322CAD874E8D588F /* NetworkMonitor.swift */; };
+		8F361803007712EDFE53F61B /* EnhancedSettingsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774BE0682E79B3285B74E76 /* EnhancedSettingsOverlay.swift */; };
+		A096E1D21DCBD590E8BD57D2 /* MyMomentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E28FC9121DC75BCC9C02DA /* MyMomentsView.swift */; };
+		A22625E07210FF677D4A86DC /* frame_12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1FD9EB586087B93836458B6B /* frame_12.jpg */; };
+		A34D30E074D072F90FC6CFD9 /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649181B5A00336C2B7BE67BE /* Stroke.swift */; };
+		A582ABFFE41E20590DB66C4B /* WebSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C8692DB7DDBA52BA8519A4 /* WebSocketService.swift */; };
+		A8353D50BB5B4D9997DE397F /* CustomEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6C17807FD70DB7F02C00E /* CustomEmojiView.swift */; };
+		AA2AE42AFFAAD880528937F8 /* EnhancedModelsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A21725E3C55CE52A3ACA6 /* EnhancedModelsExtensions.swift */; };
+		AD1E4E449550951A30527FE5 /* OverlayTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411F398FF2E87D111E5FDFB3 /* OverlayTransitions.swift */; };
+		B147259C518AC1DA2A6EBADD /* frame_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE462C62BF31193FA50C95AE /* frame_02.jpg */; };
+		B2046D34D51C8758B9A09F37 /* TimelapseChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B189F9E0C92AB646871FC35 /* TimelapseChooserView.swift */; };
+		B2A635A31B2228A5BE76C221 /* EmojiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A295301B9D2CA3B68993D6A9 /* EmojiData.swift */; };
+		B3955F4AAFC3F000183FA084 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53D93B5160D6B95663879F9 /* ContentView.swift */; };
+		B549FC64CB1759C42412AA0F /* frame_19.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 588BC47C08A4B2FDC1D64A7B /* frame_19.jpg */; };
+		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		BB3C543EEB15B979D662F8B2 /* LobbyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB7BD50E4583707A10D1A7 /* LobbyScreenView.swift */; };
+		BC5889FA9DEF750B5C6207C6 /* frame_29.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 198AFC3C821F6AB82AF307BB /* frame_29.jpg */; };
+		CADDADFA1E3277FC008CC6C3 /* frame_16.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B15B94B4A11D726C7CE6611F /* frame_16.jpg */; };
+		CD7CFD5AD50A95E687541AE3 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74272744EA245525DCDAF07 /* ColorPickerView.swift */; };
+		CECBEDAAC1DE5FC07A4CB374 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7050C4EC9574A08AFA1ED6AA /* LeaderboardView.swift */; };
+		D1494D0238FDB493EE774C5D /* frame_03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FC99DEB847D47A939550516F /* frame_03.jpg */; };
+		D5CB10396D234E8188BBD229 /* MultiPainterBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3CF6ABFF13C50DA4661EE9 /* MultiPainterBridge.m */; };
+		D8770FB28880399C2B2E9999 /* frame_06.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 861D26E57228CE53EDFAB496 /* frame_06.jpg */; };
+		D8B0AA3E5D3F00691B655F81 /* frame_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3666D917E9739DA33A04C4A6 /* frame_01.jpg */; };
+		DB4FD1D9E41EF7160B89F0A3 /* frame_05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C841BB234C226BE59AF41290 /* frame_05.jpg */; };
+		DC78D9D11E06ED6ABD7ABA13 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6361F3006733E5BC3F376 /* ProfileEditorView.swift */; };
+		DD672701BB7B600012ECE4DF /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E1974395A889F465742CA /* Player.swift */; };
+		E7D825A3EABDB6CD70AD1653 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8FE2E062EB4B473436408D /* Tile.swift */; };
+		EA13C2187093F38DEE6CF6E3 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B3AC124C03F8035C2644CA /* ExpoModulesProvider.swift */; };
+		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
+		F1DE819AFFE68640805669C6 /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EFD4C59D2C396793FCACE7 /* NewGameView.swift */; };
+		F2F0E85797DB5DBE57A5FF81 /* EmojiSetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B66A954EFBD4FD310CEF1E4 /* EmojiSetManager.swift */; };
+		F6438E0E1EF40A33B468FDC9 /* LobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F930D488273D0BB3693F8C /* LobbyView.swift */; };
+		F6639C4ED8C7FDF84387DF99 /* frame_20.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 20148FF17DDA9FA38A1F2A08 /* frame_20.jpg */; };
+		F7A22E3CBF89BA83E6308414 /* frame_07.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F078E5EA9AA83EDB67500CA /* frame_07.jpg */; };
+		F7AC3C7B438D91F6D44B0DC8 /* libPods-EmojiPainter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6168541D5F4C6B31FC6B541 /* libPods-EmojiPainter.a */; };
+		F9E42C582A72E8FBEBDA83C2 /* frame_08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D7380C45B8683067C80A76A /* frame_08.jpg */; };
+		FACA9A36170F3B394FFB4C44 /* NewLobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286CD5DBD65F89079443D579 /* NewLobbyView.swift */; };
+		FE768865259E21DAB862F26F /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0550F6FB9D5E4A3A7D66EB /* WebSocketClient.swift */; };
+		FEB71E9D3ACE7609FA9BDE0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E24A431F6491AD7693F7E1E0 /* Assets.xcassets */; };
+		FF8BC3E6F3315BF6B6BE8D3E /* ProfileStatsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCFB7AF8CED9C38267E1546 /* ProfileStatsOverlay.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		01277AF65A8C2C7E92BFF12E /* ProfileEditorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileEditorView.swift; path = EmojiPainter/MultiPainter/Views/ProfileEditorView.swift; sourceTree = SOURCE_ROOT; };
+		0127C4CAD9502D6C07CBB2EE /* GameView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameView.swift; path = EmojiPainter/MultiPainter/Views/GameView.swift; sourceTree = SOURCE_ROOT; };
+		02A24C477B5D6CDC9CF5BC2C /* frame_11.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_11.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_11.jpg; sourceTree = SOURCE_ROOT; };
+		03736A4CE32AC477EE8FC778 /* frame_23.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_23.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_23.jpg; sourceTree = SOURCE_ROOT; };
+		0BCB06E8253D5A79DF7FA9FF /* MessageModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageModels.swift; path = EmojiPainter/MultiPainter/Models/MessageModels.swift; sourceTree = SOURCE_ROOT; };
+		0BE6C70EE04EFBF4415DE577 /* frame_04.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_04.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_04.jpg; sourceTree = SOURCE_ROOT; };
+		0FF3090E2E6A81F60C7DA8A8 /* ColorPickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerView.swift; path = EmojiPainter/MultiPainter/Views/ColorPickerView.swift; sourceTree = SOURCE_ROOT; };
+		118F36DAB97B02BEDDE3FC37 /* GameManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameManager.swift; path = EmojiPainter/MultiPainter/Managers/GameManager.swift; sourceTree = SOURCE_ROOT; };
+		13B07F961A680F5B00A75B9A /* EmojiPainter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiPainter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = EmojiPainter/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = EmojiPainter/Info.plist; sourceTree = "<group>"; };
+		1774BE0682E79B3285B74E76 /* EnhancedSettingsOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnhancedSettingsOverlay.swift; path = EmojiPainter/MultiPainter/Views/EnhancedSettingsOverlay.swift; sourceTree = SOURCE_ROOT; };
+		17C8692DB7DDBA52BA8519A4 /* WebSocketService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocketService.swift; path = EmojiPainter/MultiPainter/Services/WebSocketService.swift; sourceTree = SOURCE_ROOT; };
+		198AFC3C821F6AB82AF307BB /* frame_29.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_29.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_29.jpg; sourceTree = SOURCE_ROOT; };
+		1AE91A6DACCEBE96D6652731 /* frame_27.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_27.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_27.jpg; sourceTree = SOURCE_ROOT; };
+		1CD123617F84E5170F104C3F /* UserPreferences.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserPreferences.swift; path = EmojiPainter/MultiPainter/Utilities/UserPreferences.swift; sourceTree = SOURCE_ROOT; };
+		1D14794DEF49BE1777E1D460 /* EmojiData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmojiData.swift; path = EmojiPainter/MultiPainter/Utilities/EmojiData.swift; sourceTree = SOURCE_ROOT; };
+		1F0E55E8862A132DF6FE78D5 /* RandomNameGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RandomNameGenerator.swift; path = EmojiPainter/MultiPainter/Utilities/RandomNameGenerator.swift; sourceTree = SOURCE_ROOT; };
+		1FD9EB586087B93836458B6B /* frame_12.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_12.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_12.jpg; sourceTree = SOURCE_ROOT; };
+		20148FF17DDA9FA38A1F2A08 /* frame_20.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_20.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_20.jpg; sourceTree = SOURCE_ROOT; };
+		20BEA617D734B4B48054FCBC /* AppFont.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppFont.swift; path = EmojiPainter/MultiPainter/Utilities/AppFont.swift; sourceTree = SOURCE_ROOT; };
+		20CAD7682AD03D7D6C5DB850 /* NewCanvasView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NewCanvasView.swift; path = EmojiPainter/MultiPainter/Views/NewCanvasView.swift; sourceTree = SOURCE_ROOT; };
+		26036D65961B0F733AA1374C /* frame_17.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_17.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_17.jpg; sourceTree = SOURCE_ROOT; };
+		2728FF0AC419717D92C6C6E5 /* frame_21.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_21.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_21.jpg; sourceTree = SOURCE_ROOT; };
+		286CD5DBD65F89079443D579 /* NewLobbyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NewLobbyView.swift; path = EmojiPainter/MultiPainter/Views/NewLobbyView.swift; sourceTree = SOURCE_ROOT; };
+		2B8FE2E062EB4B473436408D /* Tile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = EmojiPainter/MultiPainter/Models/Tile.swift; sourceTree = SOURCE_ROOT; };
+		2D7380C45B8683067C80A76A /* frame_08.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_08.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_08.jpg; sourceTree = SOURCE_ROOT; };
+		2F078E5EA9AA83EDB67500CA /* frame_07.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_07.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_07.jpg; sourceTree = SOURCE_ROOT; };
+		2FB02E60273C618EF697D9ED /* ProfileStatsOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileStatsOverlay.swift; path = EmojiPainter/MultiPainter/Views/ProfileStatsOverlay.swift; sourceTree = SOURCE_ROOT; };
+		2FEF84C628B1B24339E758AC /* Player.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Player.swift; path = EmojiPainter/MultiPainter/Models/Player.swift; sourceTree = SOURCE_ROOT; };
+		30AB53D37890C11631988FD3 /* WebSocketClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocketClient.swift; path = EmojiPainter/MultiPainter/Services/WebSocketClient.swift; sourceTree = SOURCE_ROOT; };
+		30E71D7619E706D2C93A0CEA /* TimelapseChooserView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelapseChooserView.swift; path = EmojiPainter/MultiPainter/Views/TimelapseChooserView.swift; sourceTree = SOURCE_ROOT; };
+		32EF3D029C567277AFFC59FB /* frame_09.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_09.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_09.jpg; sourceTree = SOURCE_ROOT; };
+		359DBAAAE5DA430ADECA5C3F /* frame_25.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_25.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_25.jpg; sourceTree = SOURCE_ROOT; };
+		360488B714130E7E920B1EF4 /* frame_12.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_12.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_12.jpg; sourceTree = SOURCE_ROOT; };
+		3666D917E9739DA33A04C4A6 /* frame_01.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_01.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_01.jpg; sourceTree = SOURCE_ROOT; };
+		3B66A954EFBD4FD310CEF1E4 /* EmojiSetManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmojiSetManager.swift; path = EmojiPainter/MultiPainter/Utilities/EmojiSetManager.swift; sourceTree = SOURCE_ROOT; };
+		3D664F2764B53A4D7EF3DDDF /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = EmojiPainter/MultiPainter/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		3F58E9F6BCF5E959BBD57477 /* EnhancedOverlays.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnhancedOverlays.swift; path = EmojiPainter/MultiPainter/Views/EnhancedOverlays.swift; sourceTree = SOURCE_ROOT; };
+		40A879153D80F8410E5B6BF1 /* frame_19.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_19.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_19.jpg; sourceTree = SOURCE_ROOT; };
+		411F398FF2E87D111E5FDFB3 /* OverlayTransitions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OverlayTransitions.swift; path = EmojiPainter/MultiPainter/Utilities/OverlayTransitions.swift; sourceTree = SOURCE_ROOT; };
+		41365220B565914A010288DD /* frame_23.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_23.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_23.jpg; sourceTree = SOURCE_ROOT; };
+		4229B67F46C83A67648FFF04 /* EnhancedMainMenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnhancedMainMenuView.swift; path = EmojiPainter/MultiPainter/Views/EnhancedMainMenuView.swift; sourceTree = SOURCE_ROOT; };
+		42FF5BDC381BF7E5AA04D2E8 /* frame_13.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_13.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_13.jpg; sourceTree = SOURCE_ROOT; };
+		43E6C17807FD70DB7F02C00E /* CustomEmojiView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomEmojiView.swift; path = EmojiPainter/MultiPainter/Views/Components/CustomEmojiView.swift; sourceTree = SOURCE_ROOT; };
+		457E1974395A889F465742CA /* Player.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Player.swift; path = EmojiPainter/MultiPainter/Models/Player.swift; sourceTree = SOURCE_ROOT; };
+		47AB1BB8667963949D0ECA3C /* frame_24.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_24.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_24.jpg; sourceTree = SOURCE_ROOT; };
+		47F8566F1986CCB454D0ACAC /* GameState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameState.swift; path = EmojiPainter/MultiPainter/State/GameState.swift; sourceTree = SOURCE_ROOT; };
+		49E28FC9121DC75BCC9C02DA /* MyMomentsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyMomentsView.swift; path = EmojiPainter/MultiPainter/Views/MyMomentsView.swift; sourceTree = SOURCE_ROOT; };
+		4B189F9E0C92AB646871FC35 /* TimelapseChooserView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelapseChooserView.swift; path = EmojiPainter/MultiPainter/Views/TimelapseChooserView.swift; sourceTree = SOURCE_ROOT; };
+		4B3CF6ABFF13C50DA4661EE9 /* MultiPainterBridge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MultiPainterBridge.m; path = EmojiPainter/MultiPainterBridge.m; sourceTree = SOURCE_ROOT; };
+		4B67F88224F9BF4B35456F27 /* LeaderboardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LeaderboardView.swift; path = EmojiPainter/MultiPainter/Views/LeaderboardView.swift; sourceTree = SOURCE_ROOT; };
+		4BD498351006A9F461FD37AE /* EmojiSetSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmojiSetSettingsView.swift; path = EmojiPainter/MultiPainter/Views/EmojiSetSettingsView.swift; sourceTree = SOURCE_ROOT; };
+		4D7437968E3F8FE9CF615485 /* AnimatedLoaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimatedLoaderView.swift; path = EmojiPainter/MultiPainter/Views/AnimatedLoaderView.swift; sourceTree = SOURCE_ROOT; };
+		4F0E50465A7ABBAD97BD6664 /* CustomEmojiView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomEmojiView.swift; path = EmojiPainter/MultiPainter/Views/Components/CustomEmojiView.swift; sourceTree = SOURCE_ROOT; };
+		4F808EAE10F5F113DF623A4B /* RandomNameGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RandomNameGenerator.swift; path = EmojiPainter/MultiPainter/Utilities/RandomNameGenerator.swift; sourceTree = SOURCE_ROOT; };
+		4F8A21725E3C55CE52A3ACA6 /* EnhancedModelsExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnhancedModelsExtensions.swift; path = EmojiPainter/MultiPainter/Models/EnhancedModelsExtensions.swift; sourceTree = SOURCE_ROOT; };
+		535310CC5340709E61AD9821 /* MessageModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageModels.swift; path = EmojiPainter/MultiPainter/Models/MessageModels.swift; sourceTree = SOURCE_ROOT; };
+		553411D816C7027B68517D80 /* frame_15.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_15.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_15.jpg; sourceTree = SOURCE_ROOT; };
+		564394F3FD23FF2FCC5F4E4B /* frame_21.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_21.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_21.jpg; sourceTree = SOURCE_ROOT; };
+		588BC47C08A4B2FDC1D64A7B /* frame_19.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_19.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_19.jpg; sourceTree = SOURCE_ROOT; };
+		5962C7FFC8A1B073E1A5B80F /* frame_20.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_20.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_20.jpg; sourceTree = SOURCE_ROOT; };
+		5A128F0B20586816BE8B6369 /* MovementOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MovementOverlay.swift; path = EmojiPainter/MultiPainter/Views/MovementOverlay.swift; sourceTree = SOURCE_ROOT; };
+		5BE30BB05141356F68F441B2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = EmojiPainter/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		60EEF25633FE6267A2D935CA /* frame_10.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_10.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_10.jpg; sourceTree = SOURCE_ROOT; };
+		62B3AC124C03F8035C2644CA /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-EmojiPainter/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		62CE48AB325F2BEA94F35D56 /* frame_28.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_28.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_28.jpg; sourceTree = SOURCE_ROOT; };
+		649181B5A00336C2B7BE67BE /* Stroke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stroke.swift; path = EmojiPainter/MultiPainter/Models/Stroke.swift; sourceTree = SOURCE_ROOT; };
+		6671793673DBF0C182D05DA1 /* CloseButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloseButton.swift; path = EmojiPainter/MultiPainter/Views/Components/CloseButton.swift; sourceTree = SOURCE_ROOT; };
+		6800BF8124A39ABF9F01BD4C /* CloseButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloseButton.swift; path = EmojiPainter/MultiPainter/Views/Components/CloseButton.swift; sourceTree = SOURCE_ROOT; };
+		6F01F6653BC24493FDDEE11B /* LobbyScreenView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LobbyScreenView.swift; path = EmojiPainter/MultiPainter/Views/LobbyScreenView.swift; sourceTree = SOURCE_ROOT; };
+		7050C4EC9574A08AFA1ED6AA /* LeaderboardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LeaderboardView.swift; path = EmojiPainter/MultiPainter/Views/LeaderboardView.swift; sourceTree = SOURCE_ROOT; };
+		70656054C47B40674AEF063C /* frame_02.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_02.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_02.jpg; sourceTree = SOURCE_ROOT; };
+		71133097B2C56A22ED8B14C0 /* NewLobbyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NewLobbyView.swift; path = EmojiPainter/MultiPainter/Views/NewLobbyView.swift; sourceTree = SOURCE_ROOT; };
+		74B17C2393F9676374AC5A97 /* EnhancedMainMenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnhancedMainMenuView.swift; path = EmojiPainter/MultiPainter/Views/EnhancedMainMenuView.swift; sourceTree = SOURCE_ROOT; };
+		74C43E400EAD96293AB3463A /* frame_26.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_26.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_26.jpg; sourceTree = SOURCE_ROOT; };
+		767D3E1C345AD1AB6B7F00BF /* ConnectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectionView.swift; path = EmojiPainter/MultiPainter/Views/ConnectionView.swift; sourceTree = SOURCE_ROOT; };
+		77283FB77F712FD6983909CC /* GameManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameManager.swift; path = EmojiPainter/MultiPainter/Managers/GameManager.swift; sourceTree = SOURCE_ROOT; };
+		7844E32081980F6389F21C56 /* NewCanvasView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NewCanvasView.swift; path = EmojiPainter/MultiPainter/Views/NewCanvasView.swift; sourceTree = SOURCE_ROOT; };
+		79BEB2484DE71B65111B9630 /* MultiPainterBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultiPainterBridge.swift; path = EmojiPainter/MultiPainterBridge.swift; sourceTree = SOURCE_ROOT; };
+		7AE1C4B4BA2B9628C7734F4E /* MyMomentsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyMomentsView.swift; path = EmojiPainter/MultiPainter/Views/MyMomentsView.swift; sourceTree = SOURCE_ROOT; };
+		7B5C56888B10AA5DE19F5192 /* NewLobbyViewExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NewLobbyViewExtras.swift; path = EmojiPainter/MultiPainter/Views/NewLobbyViewExtras.swift; sourceTree = SOURCE_ROOT; };
+		7CE4588698DADBC676ECCBB0 /* frame_18.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_18.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_18.jpg; sourceTree = SOURCE_ROOT; };
+		7ECDCEE5329177C0E7EDF65C /* MultiPainterBridge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MultiPainterBridge.m; path = EmojiPainter/MultiPainterBridge.m; sourceTree = SOURCE_ROOT; };
+		7F04BFEE80CCC5DAE3857BA6 /* Pods-EmojiPainter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojiPainter.debug.xcconfig"; path = "Target Support Files/Pods-EmojiPainter/Pods-EmojiPainter.debug.xcconfig"; sourceTree = "<group>"; };
+		7FF562CF621391951211F772 /* Color+Hex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Color+Hex.swift"; path = "EmojiPainter/MultiPainter/Extensions/Color+Hex.swift"; sourceTree = SOURCE_ROOT; };
+		83BC84D8071435B64203CD54 /* frame_25.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_25.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_25.jpg; sourceTree = SOURCE_ROOT; };
+		83C71AB380FACC7B66AA32DC /* ChatView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChatView.swift; path = EmojiPainter/MultiPainter/Views/ChatView.swift; sourceTree = SOURCE_ROOT; };
+		861D26E57228CE53EDFAB496 /* frame_06.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_06.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_06.jpg; sourceTree = SOURCE_ROOT; };
+		890C49337DF1018AD0D00748 /* NetworkMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkMonitor.swift; path = EmojiPainter/MultiPainter/Services/NetworkMonitor.swift; sourceTree = SOURCE_ROOT; };
+		8AD57416E7285D9A18D2D6C7 /* EnhancedModelsExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnhancedModelsExtensions.swift; path = EmojiPainter/MultiPainter/Models/EnhancedModelsExtensions.swift; sourceTree = SOURCE_ROOT; };
+		8F8FBE25322CAD874E8D588F /* NetworkMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkMonitor.swift; path = EmojiPainter/MultiPainter/Services/NetworkMonitor.swift; sourceTree = SOURCE_ROOT; };
+		8FB6361F3006733E5BC3F376 /* ProfileEditorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileEditorView.swift; path = EmojiPainter/MultiPainter/Views/ProfileEditorView.swift; sourceTree = SOURCE_ROOT; };
+		90B6D8E4BF4876570991BEED /* vrtlfinale1.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = vrtlfinale1.ttf; path = EmojiPainter/MultiPainter/Resources/vrtlfinale1.ttf; sourceTree = SOURCE_ROOT; };
+		92D8FC1FEF3E4292B8BBADA3 /* frame_27.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_27.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_27.jpg; sourceTree = SOURCE_ROOT; };
+		93580580BDD42B0B9389025C /* frame_01.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_01.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_01.jpg; sourceTree = SOURCE_ROOT; };
+		978E6A9317A3AC1B95D01D57 /* EnhancedSettingsOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnhancedSettingsOverlay.swift; path = EmojiPainter/MultiPainter/Views/EnhancedSettingsOverlay.swift; sourceTree = SOURCE_ROOT; };
+		98165D4E9B6BE803C68B8AE2 /* TimelapseViewerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelapseViewerView.swift; path = EmojiPainter/MultiPainter/Views/TimelapseViewerView.swift; sourceTree = SOURCE_ROOT; };
+		982F7BBF12D5E764B6FAB2F5 /* frame_14.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_14.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_14.jpg; sourceTree = SOURCE_ROOT; };
+		9B311B4D978835DF3546F31C /* frame_07.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_07.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_07.jpg; sourceTree = SOURCE_ROOT; };
+		9B7D0C7549DF7765E31E5D8B /* Color+Hex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Color+Hex.swift"; path = "EmojiPainter/MultiPainter/Extensions/Color+Hex.swift"; sourceTree = SOURCE_ROOT; };
+		9DFCA1788ECF036C1450DCD5 /* frame_22.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_22.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_22.jpg; sourceTree = SOURCE_ROOT; };
+		9E0714E3A08A79D84A66EF29 /* frame_03.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_03.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_03.jpg; sourceTree = SOURCE_ROOT; };
+		A16F9133A6FE2439EC75F092 /* GameLanguage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameLanguage.swift; path = EmojiPainter/MultiPainter/Utilities/GameLanguage.swift; sourceTree = SOURCE_ROOT; };
+		A295301B9D2CA3B68993D6A9 /* EmojiData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmojiData.swift; path = EmojiPainter/MultiPainter/Utilities/EmojiData.swift; sourceTree = SOURCE_ROOT; };
+		A3CEB23DA1491E31FA2929D3 /* EnhancedOverlays.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnhancedOverlays.swift; path = EmojiPainter/MultiPainter/Views/EnhancedOverlays.swift; sourceTree = SOURCE_ROOT; };
+		A453C230E012ECD08D1433E4 /* ConnectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectionView.swift; path = EmojiPainter/MultiPainter/Views/ConnectionView.swift; sourceTree = SOURCE_ROOT; };
+		A74272744EA245525DCDAF07 /* ColorPickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerView.swift; path = EmojiPainter/MultiPainter/Views/ColorPickerView.swift; sourceTree = SOURCE_ROOT; };
+		A8CE975B52192577A49FE67C /* TimelapseViewerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelapseViewerView.swift; path = EmojiPainter/MultiPainter/Views/TimelapseViewerView.swift; sourceTree = SOURCE_ROOT; };
+		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = EmojiPainter/SplashScreen.storyboard; sourceTree = "<group>"; };
+		AA7ECF1DF542E93792161701 /* frame_14.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_14.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_14.jpg; sourceTree = SOURCE_ROOT; };
+		AB33A6F175A12A8D5F2BEF4A /* GameView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameView.swift; path = EmojiPainter/MultiPainter/Views/GameView.swift; sourceTree = SOURCE_ROOT; };
+		AB8CAA6D826537C8290CE688 /* Stroke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stroke.swift; path = EmojiPainter/MultiPainter/Models/Stroke.swift; sourceTree = SOURCE_ROOT; };
+		AE73C67A207025E544B4757E /* GameState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameState.swift; path = EmojiPainter/MultiPainter/State/GameState.swift; sourceTree = SOURCE_ROOT; };
+		AF9B938C3DD7D61B88E69A0B /* frame_09.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_09.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_09.jpg; sourceTree = SOURCE_ROOT; };
+		B0FB1A17AC857D03B39349FC /* CanvasView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasView.swift; path = EmojiPainter/MultiPainter/Views/CanvasView.swift; sourceTree = SOURCE_ROOT; };
+		B15B94B4A11D726C7CE6611F /* frame_16.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_16.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_16.jpg; sourceTree = SOURCE_ROOT; };
+		B1A8546E1DF3863B5EB2703D /* frame_29.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_29.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_29.jpg; sourceTree = SOURCE_ROOT; };
+		B401BD4D33BA5B6C703B2074 /* NewGameView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NewGameView.swift; path = EmojiPainter/MultiPainter/Views/NewGameView.swift; sourceTree = SOURCE_ROOT; };
+		B8031BE86ACEE4C1CCB08668 /* frame_18.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_18.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_18.jpg; sourceTree = SOURCE_ROOT; };
+		B88D092679163EACD692491E /* frame_13.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_13.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_13.jpg; sourceTree = SOURCE_ROOT; };
+		B9074CA5F781F89143A7140B /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = EmojiPainter/MultiPainter/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		B95AA32C13C16125A3CD6FC4 /* LobbyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LobbyView.swift; path = EmojiPainter/MultiPainter/Views/LobbyView.swift; sourceTree = SOURCE_ROOT; };
+		B9D36E459BD9BF40EB155E8A /* ChatView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChatView.swift; path = EmojiPainter/MultiPainter/Views/ChatView.swift; sourceTree = SOURCE_ROOT; };
+		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		BFC11B5EFD78B382D7C3D6FB /* Tile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = EmojiPainter/MultiPainter/Models/Tile.swift; sourceTree = SOURCE_ROOT; };
+		BFD77FA110DEB67B9A0FDAC5 /* EmojiSetManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmojiSetManager.swift; path = EmojiPainter/MultiPainter/Utilities/EmojiSetManager.swift; sourceTree = SOURCE_ROOT; };
+		C16A1EF2E970D2F0FA11DD3E /* frame_15.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_15.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_15.jpg; sourceTree = SOURCE_ROOT; };
+		C16FB0AC1A3DE05595E33E3D /* frame_28.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_28.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_28.jpg; sourceTree = SOURCE_ROOT; };
+		C3392B0FD066C3B96341CBB1 /* GameLanguage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GameLanguage.swift; path = EmojiPainter/MultiPainter/Utilities/GameLanguage.swift; sourceTree = SOURCE_ROOT; };
+		C33FAF6B4D85BA678817442B /* CustomEmojiStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomEmojiStore.swift; path = EmojiPainter/MultiPainter/Utilities/CustomEmojiStore.swift; sourceTree = SOURCE_ROOT; };
+		C491F85CB08E4F823EF0D934 /* UserPreferences.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserPreferences.swift; path = EmojiPainter/MultiPainter/Utilities/UserPreferences.swift; sourceTree = SOURCE_ROOT; };
+		C66A441DC48D3905D58B190D /* MovementOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MovementOverlay.swift; path = EmojiPainter/MultiPainter/Views/MovementOverlay.swift; sourceTree = SOURCE_ROOT; };
+		C81FD21519C4124B547D135A /* MultiPainterBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultiPainterBridge.swift; path = EmojiPainter/MultiPainterBridge.swift; sourceTree = SOURCE_ROOT; };
+		C841BB234C226BE59AF41290 /* frame_05.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_05.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_05.jpg; sourceTree = SOURCE_ROOT; };
+		C886D080DCF6EE7603C2425F /* frame_22.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_22.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_22.jpg; sourceTree = SOURCE_ROOT; };
+		C8CC6747378863DAF4159343 /* vrtlfinale1.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = vrtlfinale1.ttf; path = EmojiPainter/MultiPainter/Resources/vrtlfinale1.ttf; sourceTree = SOURCE_ROOT; };
+		CBE2CE75BEB1C60A14AB11F7 /* frame_11.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_11.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_11.jpg; sourceTree = SOURCE_ROOT; };
+		CD1173AC56C7A4F16E2A4C82 /* frame_08.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_08.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_08.jpg; sourceTree = SOURCE_ROOT; };
+		CE6A7E3D78089AAE37415A18 /* FullscreenTimelapsePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FullscreenTimelapsePlayer.swift; path = EmojiPainter/MultiPainter/Views/FullscreenTimelapsePlayer.swift; sourceTree = SOURCE_ROOT; };
+		D26BD9B5837D41E634E12595 /* frame_10.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_10.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_10.jpg; sourceTree = SOURCE_ROOT; };
+		DA4012E4154574DD217FDB2D /* frame_06.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_06.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_06.jpg; sourceTree = SOURCE_ROOT; };
+		DA4F2D42DD205A9BFFA0D21F /* frame_04.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_04.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_04.jpg; sourceTree = SOURCE_ROOT; };
+		DCB45163D86D1E4785FF2901 /* NewLobbyViewExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NewLobbyViewExtras.swift; path = EmojiPainter/MultiPainter/Views/NewLobbyViewExtras.swift; sourceTree = SOURCE_ROOT; };
+		DE462C62BF31193FA50C95AE /* frame_02.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_02.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_02.jpg; sourceTree = SOURCE_ROOT; };
+		DE907F08D4BA8E2C3A7E1E0F /* Pods-EmojiPainter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojiPainter.release.xcconfig"; path = "Target Support Files/Pods-EmojiPainter/Pods-EmojiPainter.release.xcconfig"; sourceTree = "<group>"; };
+		DF0B8EEC27BAE9EB46F09529 /* APIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = EmojiPainter/MultiPainter/Services/APIClient.swift; sourceTree = SOURCE_ROOT; };
+		DFCBABE2F574CA3272A7C919 /* AppFont.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppFont.swift; path = EmojiPainter/MultiPainter/Utilities/AppFont.swift; sourceTree = SOURCE_ROOT; };
+		E24A431F6491AD7693F7E1E0 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = EmojiPainter/MultiPainter/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		E4D37E7D110211F5E810BDC6 /* frame_17.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_17.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_17.jpg; sourceTree = SOURCE_ROOT; };
+		E54DB07D7B13DCBBE7469310 /* frame_24.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_24.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_24.jpg; sourceTree = SOURCE_ROOT; };
+		E56140E1B54532DC8B1B1815 /* CanvasView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasView.swift; path = EmojiPainter/MultiPainter/Views/CanvasView.swift; sourceTree = SOURCE_ROOT; };
+		E6168541D5F4C6B31FC6B541 /* libPods-EmojiPainter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EmojiPainter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC0E6BACFF0C3C496BD57F1A /* EmojiSetSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmojiSetSettingsView.swift; path = EmojiPainter/MultiPainter/Views/EmojiSetSettingsView.swift; sourceTree = SOURCE_ROOT; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED3E37B068AFFDA29CB3385E /* Pods-EmojiPainter.release-lite.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojiPainter.release-lite.xcconfig"; path = "Target Support Files/Pods-EmojiPainter/Pods-EmojiPainter.release-lite.xcconfig"; sourceTree = "<group>"; };
+		EDBA74FEB29A98B3EFBD4DC6 /* frame_16.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_16.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_16.jpg; sourceTree = SOURCE_ROOT; };
+		EFEB7BD50E4583707A10D1A7 /* LobbyScreenView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LobbyScreenView.swift; path = EmojiPainter/MultiPainter/Views/LobbyScreenView.swift; sourceTree = SOURCE_ROOT; };
+		F040CFA0FBF533091DA59400 /* frame_26.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_26.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_26.jpg; sourceTree = SOURCE_ROOT; };
+		F0EFD4C59D2C396793FCACE7 /* NewGameView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NewGameView.swift; path = EmojiPainter/MultiPainter/Views/NewGameView.swift; sourceTree = SOURCE_ROOT; };
+		F0F35E640790174AA149D7C9 /* frame_05.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_05.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_05.jpg; sourceTree = SOURCE_ROOT; };
+		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = EmojiPainter/AppDelegate.swift; sourceTree = "<group>"; };
+		F11748442D0722820044C1D9 /* EmojiPainter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "EmojiPainter-Bridging-Header.h"; path = "EmojiPainter/EmojiPainter-Bridging-Header.h"; sourceTree = "<group>"; };
+		F16E14F03BC36D430ABD5403 /* AnimatedLoaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimatedLoaderView.swift; path = EmojiPainter/MultiPainter/Views/AnimatedLoaderView.swift; sourceTree = SOURCE_ROOT; };
+		F428A6DB5BB86B024521C8DD /* OverlayTransitions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OverlayTransitions.swift; path = EmojiPainter/MultiPainter/Utilities/OverlayTransitions.swift; sourceTree = SOURCE_ROOT; };
+		F53D93B5160D6B95663879F9 /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = EmojiPainter/MultiPainter/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		F8281CD6A5742C54DD772363 /* FullscreenTimelapsePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FullscreenTimelapsePlayer.swift; path = EmojiPainter/MultiPainter/Views/FullscreenTimelapsePlayer.swift; sourceTree = SOURCE_ROOT; };
+		F9F930D488273D0BB3693F8C /* LobbyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LobbyView.swift; path = EmojiPainter/MultiPainter/Views/LobbyView.swift; sourceTree = SOURCE_ROOT; };
+		FAA8A1B6E2A6052DBE69B5DA /* APIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = EmojiPainter/MultiPainter/Services/APIClient.swift; sourceTree = SOURCE_ROOT; };
+		FBCFB7AF8CED9C38267E1546 /* ProfileStatsOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProfileStatsOverlay.swift; path = EmojiPainter/MultiPainter/Views/ProfileStatsOverlay.swift; sourceTree = SOURCE_ROOT; };
+		FBDDA8BD35FFAB7B48D65249 /* CustomEmojiStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomEmojiStore.swift; path = EmojiPainter/MultiPainter/Utilities/CustomEmojiStore.swift; sourceTree = SOURCE_ROOT; };
+		FC0550F6FB9D5E4A3A7D66EB /* WebSocketClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocketClient.swift; path = EmojiPainter/MultiPainter/Services/WebSocketClient.swift; sourceTree = SOURCE_ROOT; };
+		FC99DEB847D47A939550516F /* frame_03.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = frame_03.jpg; path = EmojiPainter/MultiPainter/Resources/LoaderFrames/frame_03.jpg; sourceTree = SOURCE_ROOT; };
+		FDF705E81AEB4586BD1BF9E0 /* WebSocketService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocketService.swift; path = EmojiPainter/MultiPainter/Services/WebSocketService.swift; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7AC3C7B438D91F6D44B0DC8 /* libPods-EmojiPainter.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0736C68B348C68B15681FB9B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				77283FB77F712FD6983909CC /* GameManager.swift */,
+			);
+			name = Managers;
+			path = EmojiPainter/MultiPainter/Managers;
+			sourceTree = SOURCE_ROOT;
+		};
+		13B07FAE1A68108700A75B9A /* EmojiPainter */ = {
+			isa = PBXGroup;
+			children = (
+				F11748412D0307B40044C1D9 /* AppDelegate.swift */,
+				F11748442D0722820044C1D9 /* EmojiPainter-Bridging-Header.h */,
+				BB2F792B24A3F905000567C9 /* Supporting */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
+				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
+				5BE30BB05141356F68F441B2 /* PrivacyInfo.xcprivacy */,
+				C81FD21519C4124B547D135A /* MultiPainterBridge.swift */,
+				4B3CF6ABFF13C50DA4661EE9 /* MultiPainterBridge.m */,
+				A7FDA9C772DD59678113D452 /* MultiPainter */,
+				79BEB2484DE71B65111B9630 /* MultiPainterBridge.swift */,
+				7ECDCEE5329177C0E7EDF65C /* MultiPainterBridge.m */,
+				E2B6DDD712D18C9CE364D666 /* MultiPainter */,
+			);
+			name = EmojiPainter;
+			sourceTree = "<group>";
+		};
+		1C12048F2CC39F6E25B2FBDD /* State */ = {
+			isa = PBXGroup;
+			children = (
+				AE73C67A207025E544B4757E /* GameState.swift */,
+			);
+			name = State;
+			path = EmojiPainter/MultiPainter/State;
+			sourceTree = SOURCE_ROOT;
+		};
+		20344758AA93395099530CFF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8A1B6E2A6052DBE69B5DA /* APIClient.swift */,
+				8F8FBE25322CAD874E8D588F /* NetworkMonitor.swift */,
+				FC0550F6FB9D5E4A3A7D66EB /* WebSocketClient.swift */,
+				17C8692DB7DDBA52BA8519A4 /* WebSocketService.swift */,
+			);
+			name = Services;
+			path = EmojiPainter/MultiPainter/Services;
+			sourceTree = SOURCE_ROOT;
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				E6168541D5F4C6B31FC6B541 /* libPods-EmojiPainter.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E9414694BA11BC55E076EE2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4F8A21725E3C55CE52A3ACA6 /* EnhancedModelsExtensions.swift */,
+				535310CC5340709E61AD9821 /* MessageModels.swift */,
+				457E1974395A889F465742CA /* Player.swift */,
+				649181B5A00336C2B7BE67BE /* Stroke.swift */,
+				2B8FE2E062EB4B473436408D /* Tile.swift */,
+			);
+			name = Models;
+			path = EmojiPainter/MultiPainter/Models;
+			sourceTree = SOURCE_ROOT;
+		};
+		3A26D6C91E5B2D05DCF86904 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6800BF8124A39ABF9F01BD4C /* CloseButton.swift */,
+				4F0E50465A7ABBAD97BD6664 /* CustomEmojiView.swift */,
+			);
+			name = Components;
+			path = EmojiPainter/MultiPainter/Views/Components;
+			sourceTree = SOURCE_ROOT;
+		};
+		4BC90292E457B65B5011B9A4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9B7D0C7549DF7765E31E5D8B /* Color+Hex.swift */,
+			);
+			name = Extensions;
+			path = EmojiPainter/MultiPainter/Extensions;
+			sourceTree = SOURCE_ROOT;
+		};
+		5087959CE48BFAB7CDFA1961 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8AD57416E7285D9A18D2D6C7 /* EnhancedModelsExtensions.swift */,
+				0BCB06E8253D5A79DF7FA9FF /* MessageModels.swift */,
+				2FEF84C628B1B24339E758AC /* Player.swift */,
+				AB8CAA6D826537C8290CE688 /* Stroke.swift */,
+				BFC11B5EFD78B382D7C3D6FB /* Tile.swift */,
+			);
+			name = Models;
+			path = EmojiPainter/MultiPainter/Models;
+			sourceTree = SOURCE_ROOT;
+		};
+		58B9DA813DA2535B804E23A7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DF0B8EEC27BAE9EB46F09529 /* APIClient.swift */,
+				890C49337DF1018AD0D00748 /* NetworkMonitor.swift */,
+				30AB53D37890C11631988FD3 /* WebSocketClient.swift */,
+				FDF705E81AEB4586BD1BF9E0 /* WebSocketService.swift */,
+			);
+			name = Services;
+			path = EmojiPainter/MultiPainter/Services;
+			sourceTree = SOURCE_ROOT;
+		};
+		79D197A7DB7BD68BEEE0EF4B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F16E14F03BC36D430ABD5403 /* AnimatedLoaderView.swift */,
+				E56140E1B54532DC8B1B1815 /* CanvasView.swift */,
+				B9D36E459BD9BF40EB155E8A /* ChatView.swift */,
+				A74272744EA245525DCDAF07 /* ColorPickerView.swift */,
+				A453C230E012ECD08D1433E4 /* ConnectionView.swift */,
+				EC0E6BACFF0C3C496BD57F1A /* EmojiSetSettingsView.swift */,
+				74B17C2393F9676374AC5A97 /* EnhancedMainMenuView.swift */,
+				A3CEB23DA1491E31FA2929D3 /* EnhancedOverlays.swift */,
+				1774BE0682E79B3285B74E76 /* EnhancedSettingsOverlay.swift */,
+				CE6A7E3D78089AAE37415A18 /* FullscreenTimelapsePlayer.swift */,
+				AB33A6F175A12A8D5F2BEF4A /* GameView.swift */,
+				7050C4EC9574A08AFA1ED6AA /* LeaderboardView.swift */,
+				EFEB7BD50E4583707A10D1A7 /* LobbyScreenView.swift */,
+				F9F930D488273D0BB3693F8C /* LobbyView.swift */,
+				C66A441DC48D3905D58B190D /* MovementOverlay.swift */,
+				49E28FC9121DC75BCC9C02DA /* MyMomentsView.swift */,
+				20CAD7682AD03D7D6C5DB850 /* NewCanvasView.swift */,
+				F0EFD4C59D2C396793FCACE7 /* NewGameView.swift */,
+				286CD5DBD65F89079443D579 /* NewLobbyView.swift */,
+				7B5C56888B10AA5DE19F5192 /* NewLobbyViewExtras.swift */,
+				8FB6361F3006733E5BC3F376 /* ProfileEditorView.swift */,
+				FBCFB7AF8CED9C38267E1546 /* ProfileStatsOverlay.swift */,
+				4B189F9E0C92AB646871FC35 /* TimelapseChooserView.swift */,
+				A8CE975B52192577A49FE67C /* TimelapseViewerView.swift */,
+			);
+			name = Views;
+			path = EmojiPainter/MultiPainter/Views;
+			sourceTree = SOURCE_ROOT;
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				13B07FAE1A68108700A75B9A /* EmojiPainter */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				B6AC883F9A17056D19F8A6B2 /* Pods */,
+				A7158A4397A69EDF7ACC50F4 /* ExpoModulesProviders */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* EmojiPainter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9B53EF06A9B489E109D0166E /* EmojiPainter */ = {
+			isa = PBXGroup;
+			children = (
+				62B3AC124C03F8035C2644CA /* ExpoModulesProvider.swift */,
+			);
+			name = EmojiPainter;
+			sourceTree = "<group>";
+		};
+		A7158A4397A69EDF7ACC50F4 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				9B53EF06A9B489E109D0166E /* EmojiPainter */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		A7FDA9C772DD59678113D452 /* MultiPainter */ = {
+			isa = PBXGroup;
+			children = (
+				F53D93B5160D6B95663879F9 /* ContentView.swift */,
+				79D197A7DB7BD68BEEE0EF4B /* Views */,
+				BF9F9A2ED5B8CAD98C77CE31 /* Components */,
+				2E9414694BA11BC55E076EE2 /* Models */,
+				1C12048F2CC39F6E25B2FBDD /* State */,
+				20344758AA93395099530CFF /* Services */,
+				0736C68B348C68B15681FB9B /* Managers */,
+				D609FC09B23A6107ABA249CF /* Utilities */,
+				E42C472F2C158EC26D24EB5F /* ViewModels */,
+				4BC90292E457B65B5011B9A4 /* Extensions */,
+				90B6D8E4BF4876570991BEED /* vrtlfinale1.ttf */,
+				AE202195AADCE65678EF1387 /* LoaderFrames */,
+				BF483715BEC14575B928A15A /* CustomEmoji */,
+				E24A431F6491AD7693F7E1E0 /* Assets.xcassets */,
+			);
+			name = MultiPainter;
+			path = EmojiPainter/MultiPainter;
+			sourceTree = SOURCE_ROOT;
+		};
+		AE202195AADCE65678EF1387 /* LoaderFrames */ = {
+			isa = PBXGroup;
+			children = (
+				3666D917E9739DA33A04C4A6 /* frame_01.jpg */,
+				DE462C62BF31193FA50C95AE /* frame_02.jpg */,
+				FC99DEB847D47A939550516F /* frame_03.jpg */,
+				DA4F2D42DD205A9BFFA0D21F /* frame_04.jpg */,
+				C841BB234C226BE59AF41290 /* frame_05.jpg */,
+				861D26E57228CE53EDFAB496 /* frame_06.jpg */,
+				2F078E5EA9AA83EDB67500CA /* frame_07.jpg */,
+				2D7380C45B8683067C80A76A /* frame_08.jpg */,
+				32EF3D029C567277AFFC59FB /* frame_09.jpg */,
+				D26BD9B5837D41E634E12595 /* frame_10.jpg */,
+				02A24C477B5D6CDC9CF5BC2C /* frame_11.jpg */,
+				1FD9EB586087B93836458B6B /* frame_12.jpg */,
+				B88D092679163EACD692491E /* frame_13.jpg */,
+				982F7BBF12D5E764B6FAB2F5 /* frame_14.jpg */,
+				553411D816C7027B68517D80 /* frame_15.jpg */,
+				B15B94B4A11D726C7CE6611F /* frame_16.jpg */,
+				26036D65961B0F733AA1374C /* frame_17.jpg */,
+				B8031BE86ACEE4C1CCB08668 /* frame_18.jpg */,
+				588BC47C08A4B2FDC1D64A7B /* frame_19.jpg */,
+				20148FF17DDA9FA38A1F2A08 /* frame_20.jpg */,
+				564394F3FD23FF2FCC5F4E4B /* frame_21.jpg */,
+				C886D080DCF6EE7603C2425F /* frame_22.jpg */,
+				41365220B565914A010288DD /* frame_23.jpg */,
+				E54DB07D7B13DCBBE7469310 /* frame_24.jpg */,
+				83BC84D8071435B64203CD54 /* frame_25.jpg */,
+				F040CFA0FBF533091DA59400 /* frame_26.jpg */,
+				92D8FC1FEF3E4292B8BBADA3 /* frame_27.jpg */,
+				C16FB0AC1A3DE05595E33E3D /* frame_28.jpg */,
+				198AFC3C821F6AB82AF307BB /* frame_29.jpg */,
+			);
+			name = LoaderFrames;
+			path = EmojiPainter/MultiPainter/Resources/LoaderFrames;
+			sourceTree = SOURCE_ROOT;
+		};
+		B6AC883F9A17056D19F8A6B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F04BFEE80CCC5DAE3857BA6 /* Pods-EmojiPainter.debug.xcconfig */,
+				DE907F08D4BA8E2C3A7E1E0F /* Pods-EmojiPainter.release.xcconfig */,
+				ED3E37B068AFFDA29CB3385E /* Pods-EmojiPainter.release-lite.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B8B49EBB7577FE1D3D1B3C34 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7FF562CF621391951211F772 /* Color+Hex.swift */,
+			);
+			name = Extensions;
+			path = EmojiPainter/MultiPainter/Extensions;
+			sourceTree = SOURCE_ROOT;
+		};
+		BB2F792B24A3F905000567C9 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				BB2F792C24A3F905000567C9 /* Expo.plist */,
+			);
+			name = Supporting;
+			path = EmojiPainter/Supporting;
+			sourceTree = "<group>";
+		};
+		BF483715BEC14575B928A15A /* CustomEmoji */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CustomEmoji;
+			path = EmojiPainter/MultiPainter/CustomEmoji;
+			sourceTree = SOURCE_ROOT;
+		};
+		BF9F9A2ED5B8CAD98C77CE31 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6671793673DBF0C182D05DA1 /* CloseButton.swift */,
+				43E6C17807FD70DB7F02C00E /* CustomEmojiView.swift */,
+			);
+			name = Components;
+			path = EmojiPainter/MultiPainter/Views/Components;
+			sourceTree = SOURCE_ROOT;
+		};
+		CF5BB45ED68D72EC978FA27F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				118F36DAB97B02BEDDE3FC37 /* GameManager.swift */,
+			);
+			name = Managers;
+			path = EmojiPainter/MultiPainter/Managers;
+			sourceTree = SOURCE_ROOT;
+		};
+		D609FC09B23A6107ABA249CF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DFCBABE2F574CA3272A7C919 /* AppFont.swift */,
+				FBDDA8BD35FFAB7B48D65249 /* CustomEmojiStore.swift */,
+				A295301B9D2CA3B68993D6A9 /* EmojiData.swift */,
+				3B66A954EFBD4FD310CEF1E4 /* EmojiSetManager.swift */,
+				A16F9133A6FE2439EC75F092 /* GameLanguage.swift */,
+				411F398FF2E87D111E5FDFB3 /* OverlayTransitions.swift */,
+				4F808EAE10F5F113DF623A4B /* RandomNameGenerator.swift */,
+				1CD123617F84E5170F104C3F /* UserPreferences.swift */,
+			);
+			name = Utilities;
+			path = EmojiPainter/MultiPainter/Utilities;
+			sourceTree = SOURCE_ROOT;
+		};
+		DB6C74B356AEF2220BE3B020 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4D7437968E3F8FE9CF615485 /* AnimatedLoaderView.swift */,
+				B0FB1A17AC857D03B39349FC /* CanvasView.swift */,
+				83C71AB380FACC7B66AA32DC /* ChatView.swift */,
+				0FF3090E2E6A81F60C7DA8A8 /* ColorPickerView.swift */,
+				767D3E1C345AD1AB6B7F00BF /* ConnectionView.swift */,
+				4BD498351006A9F461FD37AE /* EmojiSetSettingsView.swift */,
+				4229B67F46C83A67648FFF04 /* EnhancedMainMenuView.swift */,
+				3F58E9F6BCF5E959BBD57477 /* EnhancedOverlays.swift */,
+				978E6A9317A3AC1B95D01D57 /* EnhancedSettingsOverlay.swift */,
+				F8281CD6A5742C54DD772363 /* FullscreenTimelapsePlayer.swift */,
+				0127C4CAD9502D6C07CBB2EE /* GameView.swift */,
+				4B67F88224F9BF4B35456F27 /* LeaderboardView.swift */,
+				6F01F6653BC24493FDDEE11B /* LobbyScreenView.swift */,
+				B95AA32C13C16125A3CD6FC4 /* LobbyView.swift */,
+				5A128F0B20586816BE8B6369 /* MovementOverlay.swift */,
+				7AE1C4B4BA2B9628C7734F4E /* MyMomentsView.swift */,
+				7844E32081980F6389F21C56 /* NewCanvasView.swift */,
+				B401BD4D33BA5B6C703B2074 /* NewGameView.swift */,
+				71133097B2C56A22ED8B14C0 /* NewLobbyView.swift */,
+				DCB45163D86D1E4785FF2901 /* NewLobbyViewExtras.swift */,
+				01277AF65A8C2C7E92BFF12E /* ProfileEditorView.swift */,
+				2FB02E60273C618EF697D9ED /* ProfileStatsOverlay.swift */,
+				30E71D7619E706D2C93A0CEA /* TimelapseChooserView.swift */,
+				98165D4E9B6BE803C68B8AE2 /* TimelapseViewerView.swift */,
+			);
+			name = Views;
+			path = EmojiPainter/MultiPainter/Views;
+			sourceTree = SOURCE_ROOT;
+		};
+		E2B6DDD712D18C9CE364D666 /* MultiPainter */ = {
+			isa = PBXGroup;
+			children = (
+				B9074CA5F781F89143A7140B /* ContentView.swift */,
+				DB6C74B356AEF2220BE3B020 /* Views */,
+				3A26D6C91E5B2D05DCF86904 /* Components */,
+				5087959CE48BFAB7CDFA1961 /* Models */,
+				E635EC99E4E645CBFF4D46A8 /* State */,
+				58B9DA813DA2535B804E23A7 /* Services */,
+				CF5BB45ED68D72EC978FA27F /* Managers */,
+				F3A5DB19062C99D0AFD15C45 /* Utilities */,
+				B8B49EBB7577FE1D3D1B3C34 /* Extensions */,
+				C8CC6747378863DAF4159343 /* vrtlfinale1.ttf */,
+				E8712943EB87183F93FCC431 /* LoaderFrames */,
+				3D664F2764B53A4D7EF3DDDF /* Assets.xcassets */,
+			);
+			name = MultiPainter;
+			path = EmojiPainter/MultiPainter;
+			sourceTree = SOURCE_ROOT;
+		};
+		E42C472F2C158EC26D24EB5F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModels;
+			path = EmojiPainter/MultiPainter/ViewModels;
+			sourceTree = SOURCE_ROOT;
+		};
+		E635EC99E4E645CBFF4D46A8 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				47F8566F1986CCB454D0ACAC /* GameState.swift */,
+			);
+			name = State;
+			path = EmojiPainter/MultiPainter/State;
+			sourceTree = SOURCE_ROOT;
+		};
+		E8712943EB87183F93FCC431 /* LoaderFrames */ = {
+			isa = PBXGroup;
+			children = (
+				93580580BDD42B0B9389025C /* frame_01.jpg */,
+				70656054C47B40674AEF063C /* frame_02.jpg */,
+				9E0714E3A08A79D84A66EF29 /* frame_03.jpg */,
+				0BE6C70EE04EFBF4415DE577 /* frame_04.jpg */,
+				F0F35E640790174AA149D7C9 /* frame_05.jpg */,
+				DA4012E4154574DD217FDB2D /* frame_06.jpg */,
+				9B311B4D978835DF3546F31C /* frame_07.jpg */,
+				CD1173AC56C7A4F16E2A4C82 /* frame_08.jpg */,
+				AF9B938C3DD7D61B88E69A0B /* frame_09.jpg */,
+				60EEF25633FE6267A2D935CA /* frame_10.jpg */,
+				CBE2CE75BEB1C60A14AB11F7 /* frame_11.jpg */,
+				360488B714130E7E920B1EF4 /* frame_12.jpg */,
+				42FF5BDC381BF7E5AA04D2E8 /* frame_13.jpg */,
+				AA7ECF1DF542E93792161701 /* frame_14.jpg */,
+				C16A1EF2E970D2F0FA11DD3E /* frame_15.jpg */,
+				EDBA74FEB29A98B3EFBD4DC6 /* frame_16.jpg */,
+				E4D37E7D110211F5E810BDC6 /* frame_17.jpg */,
+				7CE4588698DADBC676ECCBB0 /* frame_18.jpg */,
+				40A879153D80F8410E5B6BF1 /* frame_19.jpg */,
+				5962C7FFC8A1B073E1A5B80F /* frame_20.jpg */,
+				2728FF0AC419717D92C6C6E5 /* frame_21.jpg */,
+				9DFCA1788ECF036C1450DCD5 /* frame_22.jpg */,
+				03736A4CE32AC477EE8FC778 /* frame_23.jpg */,
+				47AB1BB8667963949D0ECA3C /* frame_24.jpg */,
+				359DBAAAE5DA430ADECA5C3F /* frame_25.jpg */,
+				74C43E400EAD96293AB3463A /* frame_26.jpg */,
+				1AE91A6DACCEBE96D6652731 /* frame_27.jpg */,
+				62CE48AB325F2BEA94F35D56 /* frame_28.jpg */,
+				B1A8546E1DF3863B5EB2703D /* frame_29.jpg */,
+			);
+			name = LoaderFrames;
+			path = EmojiPainter/MultiPainter/Resources/LoaderFrames;
+			sourceTree = SOURCE_ROOT;
+		};
+		F3A5DB19062C99D0AFD15C45 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				20BEA617D734B4B48054FCBC /* AppFont.swift */,
+				C33FAF6B4D85BA678817442B /* CustomEmojiStore.swift */,
+				1D14794DEF49BE1777E1D460 /* EmojiData.swift */,
+				BFD77FA110DEB67B9A0FDAC5 /* EmojiSetManager.swift */,
+				C3392B0FD066C3B96341CBB1 /* GameLanguage.swift */,
+				F428A6DB5BB86B024521C8DD /* OverlayTransitions.swift */,
+				1F0E55E8862A132DF6FE78D5 /* RandomNameGenerator.swift */,
+				C491F85CB08E4F823EF0D934 /* UserPreferences.swift */,
+			);
+			name = Utilities;
+			path = EmojiPainter/MultiPainter/Utilities;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		13B07F861A680F5B00A75B9A /* EmojiPainter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "EmojiPainter" */;
+			buildPhases = (
+				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
+				3FED8DD3100E9E5239030671 /* [Expo] Configure project */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
+				C7AB1E18FC38E68C050E3051 /* [CP] Embed Pods Frameworks */,
+				53869762A502404A816E2B55 /* Upload Debug Symbols to Sentry */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EmojiPainter;
+			productName = EmojiPainter;
+			productReference = 13B07F961A680F5B00A75B9A /* EmojiPainter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				TargetAttributes = {
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1250;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "EmojiPainter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* EmojiPainter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+				2F45D16705C5157A2B209538 /* PrivacyInfo.xcprivacy in Resources */,
+				54668AEACB362036E22C113E /* vrtlfinale1.ttf in Resources */,
+				D8B0AA3E5D3F00691B655F81 /* frame_01.jpg in Resources */,
+				B147259C518AC1DA2A6EBADD /* frame_02.jpg in Resources */,
+				D1494D0238FDB493EE774C5D /* frame_03.jpg in Resources */,
+				368F188784D54603075F0676 /* frame_04.jpg in Resources */,
+				DB4FD1D9E41EF7160B89F0A3 /* frame_05.jpg in Resources */,
+				D8770FB28880399C2B2E9999 /* frame_06.jpg in Resources */,
+				F7A22E3CBF89BA83E6308414 /* frame_07.jpg in Resources */,
+				F9E42C582A72E8FBEBDA83C2 /* frame_08.jpg in Resources */,
+				0BCB67B8FF513F399D5AE4A7 /* frame_09.jpg in Resources */,
+				3EBC3251A1E43C57B55762B4 /* frame_10.jpg in Resources */,
+				7AF2B1C319F0EB44825ED66B /* frame_11.jpg in Resources */,
+				A22625E07210FF677D4A86DC /* frame_12.jpg in Resources */,
+				1B5C93C6B112153CD5B0A0C7 /* frame_13.jpg in Resources */,
+				1A48F1414116B03E15AFF23E /* frame_14.jpg in Resources */,
+				896D2C0242C60F753AA7E5E0 /* frame_15.jpg in Resources */,
+				CADDADFA1E3277FC008CC6C3 /* frame_16.jpg in Resources */,
+				0693E126D0AE40C6F0EFC045 /* frame_17.jpg in Resources */,
+				1A6A9204FF8460661B8AA552 /* frame_18.jpg in Resources */,
+				B549FC64CB1759C42412AA0F /* frame_19.jpg in Resources */,
+				F6639C4ED8C7FDF84387DF99 /* frame_20.jpg in Resources */,
+				02CB8A1C9094800D94888E0F /* frame_21.jpg in Resources */,
+				1B036DE68CBCFF6F37C5275F /* frame_22.jpg in Resources */,
+				4C041D0B0A38F52C44985CEC /* frame_23.jpg in Resources */,
+				066C3775E9D8AA64D7420D74 /* frame_24.jpg in Resources */,
+				18F42C6A2766133B2C98E949 /* frame_25.jpg in Resources */,
+				3759BE4B76C4D0C855FD8FC7 /* frame_26.jpg in Resources */,
+				468D36F99FD3AA88EDA9E66D /* frame_27.jpg in Resources */,
+				4395A4253958DCFEB6150F8F /* frame_28.jpg in Resources */,
+				BC5889FA9DEF750B5C6207C6 /* frame_29.jpg in Resources */,
+				FEB71E9D3ACE7609FA9BDE0E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env",
+				"$(SRCROOT)/.xcode.env.local",
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ \"$CONFIGURATION\" = *Lite* ]]; then\n  export EXPO_PUBLIC_LITE_BUILD=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli', { paths: [require.resolve('expo/package.json')] })\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n# Source .xcode.env.updates if it exists to allow\n# SKIP_BUNDLING to be unset if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.updates\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.updates\"\nfi\n# Source local changes to allow overrides\n# if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# No sentry.properties org/project configured for local builds — skip upload.\n# EAS cloud builds supply credentials via env vars and upload there instead.\nexport SENTRY_DISABLE_AUTO_UPLOAD=true\nexport SENTRY_COPY_OPTIONS_FILE=false\n\n/bin/sh `\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('@sentry/react-native/package.json')) + '/scripts/sentry-xcode.sh'\"` `\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n\n";
+		};
+		08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EmojiPainter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FED8DD3100E9E5239030671 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env",
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/EmojiPainter/EmojiPainter.entitlements",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-EmojiPainter/expo-configure-project.sh",
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Pods/Target Support Files/Pods-EmojiPainter/ExpoModulesProvider.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-EmojiPainter/expo-configure-project.sh\"\n";
+		};
+		53869762A502404A816E2B55 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_DISABLE_AUTO_UPLOAD=true\nexport SENTRY_ALLOW_FAILURE=true\n/bin/sh `${NODE_BINARY:-node} --print \"require('path').dirname(require.resolve('@sentry/react-native/package.json')) + '/scripts/sentry-xcode-debug-files.sh'\"`\n";
+		};
+		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EmojiPainter/Pods-EmojiPainter-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXApplication/ExpoApplication_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXNotifications/ExpoNotifications_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoLocalization/ExpoLocalization_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoMediaLibrary/ExpoMediaLibrary_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly/RCT-Folly_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Sentry/Sentry.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/boost/boost_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/emoji-ar/EmojiArAssets.bundle",
+				"${PODS_ROOT}/../../modules/emojipaint-exporter/ios/Shaders.metal",
+				"${PODS_CONFIGURATION_BUILD_DIR}/glog/glog_privacy.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoApplication_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoConstants_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoNotifications_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoFileSystem_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoLocalization_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoMediaLibrary_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCT-Folly_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-Core_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-cxxreact_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDWebImage.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Sentry.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/boost_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EmojiArAssets.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Shaders.metal",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/glog_privacy.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EmojiPainter/Pods-EmojiPainter-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7AB1E18FC38E68C050E3051 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EmojiPainter/Pods-EmojiPainter-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EmojiPainter/Pods-EmojiPainter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
+				EA13C2187093F38DEE6CF6E3 /* ExpoModulesProvider.swift in Sources */,
+				2062988DCC49B5AD778E44F4 /* MultiPainterBridge.swift in Sources */,
+				D5CB10396D234E8188BBD229 /* MultiPainterBridge.m in Sources */,
+				B3955F4AAFC3F000183FA084 /* ContentView.swift in Sources */,
+				775AE98714F4B7EF821130FD /* AnimatedLoaderView.swift in Sources */,
+				319CDA1850CD3C03ED407D4C /* CanvasView.swift in Sources */,
+				3B7FCC0F1A2C810C378D9F9C /* ChatView.swift in Sources */,
+				CD7CFD5AD50A95E687541AE3 /* ColorPickerView.swift in Sources */,
+				3EE8A211B8A12621F4A9E7BC /* ConnectionView.swift in Sources */,
+				212BB1E8A26C6F5517FB258C /* EmojiSetSettingsView.swift in Sources */,
+				3B83D3507DCD5C30A87779D5 /* EnhancedMainMenuView.swift in Sources */,
+				74DFE78BEC1243D0DE800BAF /* EnhancedOverlays.swift in Sources */,
+				8F361803007712EDFE53F61B /* EnhancedSettingsOverlay.swift in Sources */,
+				8A368C91BDBB02FE45879CBF /* FullscreenTimelapsePlayer.swift in Sources */,
+				0E0A139C5BBDF3F9CBDA6543 /* GameView.swift in Sources */,
+				CECBEDAAC1DE5FC07A4CB374 /* LeaderboardView.swift in Sources */,
+				BB3C543EEB15B979D662F8B2 /* LobbyScreenView.swift in Sources */,
+				F6438E0E1EF40A33B468FDC9 /* LobbyView.swift in Sources */,
+				019AC5B62E7619F8A955BD3C /* MovementOverlay.swift in Sources */,
+				A096E1D21DCBD590E8BD57D2 /* MyMomentsView.swift in Sources */,
+				7EDAC43EDA0FAA28129C80D6 /* NewCanvasView.swift in Sources */,
+				F1DE819AFFE68640805669C6 /* NewGameView.swift in Sources */,
+				FACA9A36170F3B394FFB4C44 /* NewLobbyView.swift in Sources */,
+				88E6A8E7DA905E786A004B79 /* NewLobbyViewExtras.swift in Sources */,
+				DC78D9D11E06ED6ABD7ABA13 /* ProfileEditorView.swift in Sources */,
+				FF8BC3E6F3315BF6B6BE8D3E /* ProfileStatsOverlay.swift in Sources */,
+				B2046D34D51C8758B9A09F37 /* TimelapseChooserView.swift in Sources */,
+				6123C95C0E0EE16D52872451 /* TimelapseViewerView.swift in Sources */,
+				202D0EA0759BC1ED436622EA /* CloseButton.swift in Sources */,
+				A8353D50BB5B4D9997DE397F /* CustomEmojiView.swift in Sources */,
+				AA2AE42AFFAAD880528937F8 /* EnhancedModelsExtensions.swift in Sources */,
+				56BCD1E5AA0270D1050B7BD8 /* MessageModels.swift in Sources */,
+				DD672701BB7B600012ECE4DF /* Player.swift in Sources */,
+				A34D30E074D072F90FC6CFD9 /* Stroke.swift in Sources */,
+				E7D825A3EABDB6CD70AD1653 /* Tile.swift in Sources */,
+				4C555632F507CBABCA1CC657 /* GameState.swift in Sources */,
+				0EB478228A978D7FBE29C711 /* APIClient.swift in Sources */,
+				8AA457669D7E948983FD4698 /* NetworkMonitor.swift in Sources */,
+				FE768865259E21DAB862F26F /* WebSocketClient.swift in Sources */,
+				A582ABFFE41E20590DB66C4B /* WebSocketService.swift in Sources */,
+				89D0D62A2D7BE11CA0BE6349 /* GameManager.swift in Sources */,
+				35E8824C68AB67DF8DDCB2EA /* AppFont.swift in Sources */,
+				755E309E25AB0D055F4776D7 /* CustomEmojiStore.swift in Sources */,
+				B2A635A31B2228A5BE76C221 /* EmojiData.swift in Sources */,
+				F2F0E85797DB5DBE57A5FF81 /* EmojiSetManager.swift in Sources */,
+				873D2D728A740DC459A6E7B1 /* GameLanguage.swift in Sources */,
+				AD1E4E449550951A30527FE5 /* OverlayTransitions.swift in Sources */,
+				2298B6064E8530B734FC5678 /* RandomNameGenerator.swift in Sources */,
+				3B0EF4BD28263A9B71975994 /* UserPreferences.swift in Sources */,
+				77857416E2905719749898B0 /* Color+Hex.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F04BFEE80CCC5DAE3857BA6 /* Pods-EmojiPainter.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EmojiPainter/EmojiPainter.entitlements;
+				CURRENT_PROJECT_VERSION = 894;
+				DEVELOPMENT_TEAM = GQR55UUY8N;
+				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"FB_SONARKIT_ENABLED=1",
+				);
+				INFOPLIST_FILE = EmojiPainter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 9.7.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emojipaint.mobile;
+				PRODUCT_NAME = EmojiPainter;
+				SWIFT_OBJC_BRIDGING_HEADER = "EmojiPainter/EmojiPainter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE907F08D4BA8E2C3A7E1E0F /* Pods-EmojiPainter.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EmojiPainter/EmojiPainter.entitlements;
+				CURRENT_PROJECT_VERSION = 894;
+				DEVELOPMENT_TEAM = GQR55UUY8N;
+				INFOPLIST_FILE = EmojiPainter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 9.7.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emojipaint.mobile;
+				PRODUCT_NAME = EmojiPainter;
+				SWIFT_OBJC_BRIDGING_HEADER = "EmojiPainter/EmojiPainter-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+				USE_HERMES = true;
+			};
+			name = Debug;
+		};
+		83CBBA211A601CBA00E9B192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
+				SDKROOT = iphoneos;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+				USE_HERMES = true;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AC000000000000000000LITE1 /* Release-Lite */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED3E37B068AFFDA29CB3385E /* Pods-EmojiPainter.release-lite.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EmojiPainter/EmojiPainter.entitlements;
+				CURRENT_PROJECT_VERSION = 894;
+				DEVELOPMENT_TEAM = GQR55UUY8N;
+				INFOPLIST_FILE = EmojiPainter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 9.7.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.emojipaint.mobile;
+				PRODUCT_NAME = EmojiPainter;
+				SWIFT_OBJC_BRIDGING_HEADER = "EmojiPainter/EmojiPainter-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = "Release-Lite";
+		};
+		AC000000000000000000LITE2 /* Release-Lite */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
+				SDKROOT = iphoneos;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+				USE_HERMES = true;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-Lite";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "EmojiPainter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
+				AC000000000000000000LITE1 /* Release-Lite */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "EmojiPainter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
+				AC000000000000000000LITE2 /* Release-Lite */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}

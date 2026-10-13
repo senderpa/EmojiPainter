@@ -1,0 +1,9 @@
+{
+  "name": "metal-paint",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "description": "MetalPaint Expo Module — native Metal live painting canvas for EmojiPaint",
+  "author": "EmojiPaint",
+  "homepage": "https://github.com/emojipaint/mobile",
+  "license": "MIT"
+}

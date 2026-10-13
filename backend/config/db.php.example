@@ -1,0 +1,43 @@
+<?php
+/**
+ * Database Configuration for Gesser Feature
+ *
+ * IMPORTANT: Copy this file to db.php and update with your actual credentials.
+ * DO NOT commit db.php to version control!
+ *
+ * File location: /api/gesser/../config/db.php
+ */
+
+// Database credentials
+$db_host = 'localhost';           // Database host
+$db_name = 'your_database_name';  // Database name
+$db_user = 'your_username';       // Database username
+$db_pass = 'your_password';       // Database password
+$db_charset = 'utf8mb4';          // Character set
+
+// PDO options for security and performance
+$pdo_options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,    // Throw exceptions on errors
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,          // Fetch associative arrays
+    PDO::ATTR_EMULATE_PREPARES   => false,                     // Use real prepared statements
+    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES {$db_charset}"  // Set character set
+];
+
+// Create PDO connection
+try {
+    $dsn = "mysql:host={$db_host};dbname={$db_name};charset={$db_charset}";
+    $pdo = new PDO($dsn, $db_user, $db_pass, $pdo_options);
+} catch (PDOException $e) {
+    // Log error (don't expose details in production)
+    error_log('Database connection failed: ' . $e->getMessage());
+
+    // Return generic error
+    http_response_code(500);
+    header('Content-Type: application/json');
+    echo json_encode([
+        'ok' => false,
+        'error' => 'Database connection failed'
+    ]);
+    exit;
+}
+?>

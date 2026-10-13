@@ -1,0 +1,65 @@
+# dependencies
+node_modules/
+
+# Expo / Metro
+.expo/
+dist/
+web-build/
+*.tsbuildinfo
+
+# native build output
+ios/build/
+ios/Pods/
+android/build/
+android/app/build/
+android/.gradle/
+build/
+
+# backups / archives (large, regenerable)
+backups/
+*.tar.gz
+*.xcarchive/
+*.ipa
+
+# editor / OS junk
+.DS_Store
+**/.DS_Store
+*.swp
+*.swo
+*~
+*.orig
+*.log
+
+# committed source backups (dead duplicates)
+*.bak
+*.bak2
+*.backup
+*.backup-*
+*.pre_*.bak
+*.beforelightui
+
+# secrets / local env
+.env
+.env.local
+backend/config/db.php
+
+# signing material — never commit
+*.p8
+*.p12
+*.pem
+*.mobileprovision
+*.cer
+*.keystore
+*.jks
+
+# test coverage output
+coverage/
+
+# private maintainer material in the prepared public export
+AGENTS.md
+EmojiPainter_Research_Application_Pascal_Schwendener.docx
+EmojiPainter_Research_Application_Pascal_Schwendener.pdf
+testplan/
+
+# local Xcode configuration
+ios/.xcode.env

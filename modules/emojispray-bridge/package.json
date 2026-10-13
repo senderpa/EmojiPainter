@@ -1,0 +1,9 @@
+{
+  "name": "emojispray-bridge",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "description": "EmojisprayBridge Expo Module for EmojiPaint",
+  "author": "EmojiPaint",
+  "homepage": "https://github.com/emojipaint/mobile",
+  "license": "MIT"
+}
