@@ -32,8 +32,8 @@
 
 EmojiPainter is a real-time mobile painting engine, reimagined around emoji as a brush medium
 instead of flat color. It's a working reference implementation for several things that don't
-usually live in one open-source project: a tile-cached GPU 2D canvas, touch/stylus smudge and
-compositing, an infinite vector canvas, frame-based animation, and genuine spatial painting —
+usually live in one open-source project: a Skia 2D canvas with incremental stroke rendering,
+touch/stylus smudge and compositing, an infinite vector canvas, frame-based animation, and genuine spatial painting —
 painting directly onto real walls and rooms in AR, including a native RoomPlan-driven 3D room
 inspector.
 
@@ -121,27 +121,32 @@ agentic coding tools to build further than a solo self-taught developer could ot
 
 ## What's actually in this repository
 
-Everything below is verified against the source in this repo — nothing here is aspirational.
+The repository includes the following implementations. Platform support and export capabilities
+vary; the public build uses replacement media where production assets are excluded.
 
-- **2D painting engine** — tile-cached GPU canvas (`src/engine/`, `src/workspace/`), built for
-  real-time high-density stamping without frame drops.
+- **2D painting engine** (`src/engine/`, `src/workspace/`) — incremental Skia rendering with
+  tile snapshots for undo, plus an experimental native Metal renderer (`modules/metal-paint/`).
+  Metal rendering and supported live smudge paths use the GPU; the tile engine stamps onto a
+  CPU raster surface displayed by Skia.
 - **AR / spatial painting** (`modules/emoji-ar/`) — paint directly onto real walls and surfaces via
   ARKit + RealityKit; on LiDAR devices, Apple RoomPlan captures the room and a native SceneKit
   "dollhouse" inspector lets you orbit the captured room with your painted strokes rendered on it
   at true scale, with shadow-casting lighting.
-- **Vector mode** (`src/vector/`, `VectorDocumentCore/`) — an infinite Skia vector canvas backed by
-  a dedicated Swift Package document core.
+- **Vector mode** (`src/vector/`) — an infinite Skia vector canvas with TypeScript document
+  persistence. `VectorDocumentCore/` is a separate reusable Swift Package for document schema,
+  camera math, and timeline evaluation; it is not yet wired into the app.
 - **Frame animator** (`src/animation/`, `src/animator/`, `src/framer/`) — timeline-based animation
   over painted strokes.
 - **Smudge/compositing brush engine** — GPU-assisted smudging carries real canvas color rather than
   applying a visual filter, with a CPU fallback for unsupported paths.
 - **Front-camera face painting** (`modules/emoji-ar/` face module) — on-device ARKit face tracking;
-  no camera frames or face geometry ever leave the device.
+  tracking runs locally. See [privacy notes](PRIVACY_NOTES.md) for networked app features.
 - **Daily/mystery painting challenges + gallery** (`src/gesser/`, `backend/`, `.website_work/`) —
   a human-authored daily topic system (plus a "mystery" surprise-topic mode) with a public gallery
   and social/profile features, backed by the included PHP reference server.
-- **Export** — finished paintings export as images/GIFs/video from the actual stroke data (not a
-  fragile screen capture), so exports stay correct even for the native Metal/AR canvases.
+- **Export** — image, GIF, stroke-replay video, and screen-recording implementations are included.
+  Available formats depend on the canvas and native platform; legacy FFmpeg-based transcoding
+  paths are disabled in this source build.
 - **Collaborative multiplayer canvas** (`src/multiplayer/`, `multi/`) — a standalone Node.js server
   for shared real-time canvases.
 
@@ -154,9 +159,9 @@ Full breakdown of what's included vs. intentionally excluded (and why):
 flowchart TB
   App["React Native / Expo app (src/)"]
 
-  App --> Canvas["2D Painting Engine<br/>Skia + GPU tile cache"]
+  App --> Canvas["2D Painting Engine<br/>Skia raster backing + tile undo<br/>Experimental native Metal renderer"]
   App --> AR["AR / Spatial Painting<br/>modules/emoji-ar (ARKit + RealityKit + RoomPlan)"]
-  App --> Vector["Vector Mode<br/>VectorDocumentCore (Swift Package)"]
+  App --> Vector["Vector Mode<br/>TypeScript + Skia"]
   App --> Animator["Frame Animator"]
   App --> Community["Community client<br/>src/gesser, src/social, src/multiplayer"]
 
@@ -165,17 +170,19 @@ flowchart TB
   Community --> MultiServer["Collaborative canvas server<br/>multi/ (Node.js)"]
 ```
 
-The tile renderer turns a saved stroke into repeated emoji stamps, caches the affected canvas
-tiles, and redraws only the tiles touched by a change. The current `TilePaintCanvas` example covers
+The tile renderer stamps each new committed stroke onto one backing raster surface. Before drawing,
+it saves the affected tile regions for undo; Skia displays a snapshot of the whole surface with a
+live preview on top. History replacements can require a replay. The `TilePaintCanvas` example covers
 ordinary emoji strokes; smudge strokes are handled by a separate renderer in the app.
 
 ```mermaid
 flowchart LR
   Gesture[Touch or stylus points] --> Stroke[Stroke data: emoji, size, opacity]
   Stroke --> Stamps[Positioned emoji stamps]
-  Stamps --> Tiles[Tile cache]
-  Tiles --> Canvas[Skia canvas]
-  Canvas --> Export[Image or animation export]
+  Stamps --> Surface[Backing raster surface]
+  Surface --> Undo[Tile snapshots for undo]
+  Surface --> Snapshot[Whole-surface snapshot]
+  Snapshot --> Canvas[Skia canvas + live preview]
 ```
 
 More detail: [`ARCHITECTURE.md`](ARCHITECTURE.md).
@@ -185,7 +192,7 @@ More detail: [`ARCHITECTURE.md`](ARCHITECTURE.md).
 ```bash
 git clone https://github.com/senderpa/EmojiPainter.git
 cd EmojiPainter
-npm install
+npm ci
 npx expo run:ios      # or: npx expo run:android
 ```
 

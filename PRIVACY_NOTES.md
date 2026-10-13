@@ -1,34 +1,31 @@
-# Privacy Notes (for this codebase)
+# Privacy notes for this source tree
 
-This describes how the **code in this repository** handles data. It is not a legal privacy policy
-for the live emojipainter.com service (that lives at emojipainter.com and is out of scope for this
-repo).
+These notes describe implementation boundaries, not the privacy policy for the released apps or
+live service. A fork needs a privacy policy appropriate to its own configuration and deployment.
 
-## On-device by default
+## Local processing
 
-- Front-camera face tracking (ARKit `ARFaceAnchor`) and RoomPlan room-mesh capture run entirely
-  on-device. The native AR modules do not transmit raw camera frames or face geometry anywhere.
-- The 2D canvas, vector mode, and animator never touch the network unless the user explicitly
-  saves/uploads/exports.
+ARKit face tracking and RoomPlan capture are processed by the native iOS modules. Painting,
+vector-document persistence, and animation rendering operate locally. This does not make the
+whole app offline: community screens and background refreshes can make network requests.
 
-## What leaves the device, and when
+## Networked features
 
-Only explicit user actions produce outbound data, and only to the backend you configure (see
-`docs/BUILDING.md`):
-- Taking a selfie for the face-paint feature
-- Saving/uploading a painting to the gallery
-- Saving a room (RoomPlan capture + strokes) for later reopening
-- Social actions (follow, profile updates) if the community backend is configured
+- Gallery and challenge clients load posts, topics, and media. Some requests can happen while a
+  screen loads or its cache refreshes, without a separate upload action.
+- Gallery uploads and profile/social actions send their relevant content and identity data.
+  Exporting or sharing can pass selected content to another app or destination.
+- Several URLs are hardcoded to `emojipainter.com`. A fork must review and replace them; see
+  [`docs/BUILDING.md`](docs/BUILDING.md). An empty upload secret does not disable network access.
+- Crash reporting is disabled unless `EXPO_PUBLIC_SENTRY_DSN` is configured for a release build.
+  The reporting wrapper disables screenshots, view hierarchies, and default PII collection, but
+  custom error context and device identity can still be included when reporting is enabled.
+  Development and Lite builds disable this reporting path.
 
-## Identity model
+## Identity
 
-Users are identified by a locally-generated, locally-persisted device identifier (not an
-email/password account). If you deploy your own backend, you're responsible for how you store and
-protect that data, and for your own user-facing privacy policy — this file only describes what the
-open-source client code does.
+Community features use a locally persisted device identifier and profile information. A device
+identifier is not proof of authorization. Operators are responsible for server-side access
+controls, retention, deletion handling, and the disclosures required by their deployment.
 
-## Children
-
-This app has no account requirement and no age gate in the client code. If you deploy a public
-instance, you are responsible for evaluating your own regulatory obligations (e.g. COPPA) — this
-repository makes no claims about compliance.
+This document is not a complete privacy or security audit.

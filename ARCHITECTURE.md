@@ -7,8 +7,10 @@ EmojiPainter is a React Native / Expo app (`src/`). Screens and workspace UI liv
 
 ## Painting engines
 
-- **2D canvas** (`src/engine/`) — a Skia-backed canvas with tile-based GPU caching so dense
-  emoji-stamp strokes stay real-time instead of re-rasterizing the whole canvas per frame.
+- **2D canvas** (`src/engine/`) — new strokes are stamped incrementally onto one CPU raster
+  surface (`Skia.Surface.Make`). Affected tile regions are saved for undo. Skia displays a
+  whole-surface snapshot plus the live preview; changed history can trigger a full replay.
+  `modules/metal-paint/` provides a separate experimental GPU renderer using native Metal.
 - **AR / spatial painting** (`modules/emoji-ar/`, native Swift) — an Expo native module wrapping
   ARKit `ARView`/`ARSCNView` sessions:
   - `WallPaintView.swift` — world-tracking AR session; raycasts touches onto detected planes/mesh
@@ -22,9 +24,9 @@ EmojiPainter is a React Native / Expo app (`src/`). Screens and workspace UI liv
     snapshot thumbnail, so the thumbnail and the live inspector never drift apart.
   - `FaceFilterView.swift` — ARKit face tracking; blendshapes drive a rigged head / face-mesh
     paint canvas, entirely on-device.
-- **Vector mode** (`src/vector/` + `VectorDocumentCore/`) — the document model (`Schema.swift`,
-  `TimelineEvaluator.swift`, `CameraMath.swift`) is a standalone Swift Package so it's testable in
-  isolation from the app; `src/vector/` is the RN/Skia canvas + UI on top of it.
+- **Vector mode** (`src/vector/`) — RN/Skia canvas and UI with TypeScript document persistence.
+  `VectorDocumentCore/` is a separate Swift Package (`Schema.swift`, `TimelineEvaluator.swift`,
+  `CameraMath.swift`) that builds and tests independently. App integration remains future work.
 - **Animator** (`src/animation/`, `src/animator/`, `src/framer/`) — frame timing sits alongside
   strokes; native AR playback uses a `CADisplayLink`-driven clock (not a JS timer) so animation
   timing doesn't stall when JS is busy.

@@ -8,6 +8,6 @@
     "skipLibCheck": true,
     "types": ["react", "react-native", "jest"]
   },
-  "include": ["src"],
+  "include": ["src", "examples"],
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "src/**/__tests__/**", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

@@ -6,10 +6,8 @@
  * package is installed, full crash reporting is active automatically in production
  * builds.
  *
- * SETUP REQUIRED:
- *   1. npm install @sentry/react-native   (run once)
- *   2. Replace 'YOUR_SENTRY_DSN_HERE' below with the DSN from your Sentry project
- *      (Project → Settings → Client Keys (DSN))
+ * OPTIONAL SETUP: set EXPO_PUBLIC_SENTRY_DSN to your own Sentry project's client DSN.
+ * Public source builds leave diagnostics disabled unless explicitly configured.
  */
 
 import { IS_LITE_BUILD } from '../config/buildVariant';
@@ -64,7 +62,7 @@ export function initCrashReporting(): void {
     return;
   }
 
-  const DSN: string = 'https://6f8b71e7283d43b20a6541605fded735@o4511512090705920.ingest.de.sentry.io/4511512094638160';
+  const DSN: string = process.env.EXPO_PUBLIC_SENTRY_DSN?.trim() ?? '';
   if (!DSN || DSN.startsWith('YOUR_SENTRY')) {
     return;
   }

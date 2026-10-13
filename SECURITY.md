@@ -16,10 +16,22 @@ This repository's own code — the mobile app, native modules, and the reference
 its own deployment with its own credentials, separate from what's in this repo; if you find an
 issue against the *live site* specifically, report it the same way.
 
-## Known non-issues
+## Public build and reference backend
 
-- The reference backend's example config (`backend/config/db.php.example`) contains placeholder
-  values, not real credentials — this is intentional.
-- `src/lib/dailyPaintSecrets.ts` reads its secret from an environment variable that's empty by
-  default in this public repo — the upload-auth feature simply won't authenticate until you
-  configure your own value. This is intentional, not a bug.
+- `backend/config/db.php.example` contains placeholders. Keep your configured database credentials
+  out of version control.
+- `EXPO_PUBLIC_DAILY_PAINT_SECRET` is embedded in the app bundle; the gallery's equivalent is
+  visible in browser source. This legacy shared value is **not a confidential credential** and
+  cannot authenticate a trusted client by itself. Server-issued authorization and abuse controls
+  are needed before operating your own public backend.
+- The upload secret defaults to empty, but several client URLs still point at the production
+  service. Review and replace them before testing a fork's community features. See
+  [`docs/BUILDING.md`](docs/BUILDING.md).
+- Diagnostics require an explicitly configured `EXPO_PUBLIC_SENTRY_DSN` in release builds.
+
+## Dependency maintenance
+
+Run `npm audit` for the current dependency report. Outstanding advisories remain in the Expo /
+React Native toolchain and related packages. Passing CI does not mean the dependency tree has no
+advisories. Framework upgrades need compatibility checks; avoid applying `npm audit fix --force`
+without reviewing the resulting version changes.

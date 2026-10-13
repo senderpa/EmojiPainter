@@ -1,11 +1,10 @@
 /**
  * TilePaintCanvas — PaintCanvas-compatible renderer backed by TilePaintEngine.
  *
- * Committed strokes are mirrored into a tile grid by the engine (incremental: only touched tiles
- * re-render per commit; undo restores tile snapshots). The on-screen <Canvas> draws one <Image> per
- * tile (so an unchanged tile's image is reused frame-to-frame) plus the live/hover preview on top —
- * no full-canvas snapshot per stroke. Smudge paintings are routed to legacy EmojiCanvas upstream, so
- * this engine only sees non-smudge strokes.
+ * Committed strokes are stamped incrementally onto one backing raster surface. The engine saves
+ * affected tile regions for undo and exposes a whole-surface snapshot. The on-screen <Canvas>
+ * draws that single <Image> plus the live/hover preview. Smudge paintings are routed to legacy
+ * EmojiCanvas upstream, so this engine only sees non-smudge strokes.
  */
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';

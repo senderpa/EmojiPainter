@@ -1,5 +1,9 @@
 # Server Upload Fix
 
+> Historical deployment note. Paths and schema details below describe an earlier maintainer
+> deployment, not a clean-install procedure. Use your own server and review the current code and
+> migrations before applying changes; see [the build guide](../docs/BUILDING.md).
+
 ## Problem
 The server's `storage.php` was trying to INSERT into a `frame_urls` column that doesn't exist in your live database yet, causing this error:
 ```

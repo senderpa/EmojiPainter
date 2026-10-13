@@ -9,11 +9,11 @@ the honest, specific answer to "what did you actually open source."
 ## Included (Apache-2.0, this repository)
 
 **Core painting engines**
-- `src/engine/`, `src/workspace/` — the 2D painting canvas (Skia-based, tile-cached GPU rendering)
+- `src/engine/`, `src/workspace/` — the 2D painting canvas (Skia display, incremental raster backing, tile snapshots for undo)
 - `modules/emoji-ar/` — native ARKit/RealityKit iOS module: wall painting in AR, RoomPlan room
   capture, the native SceneKit 3D room inspector, face-tracked front-camera painting
 - `modules/metal-paint/` — experimental native Metal live-canvas engine
-- `src/vector/`, `VectorDocumentCore/` — the infinite vector canvas (Swift Package + TS bridge)
+- `src/vector/`, `VectorDocumentCore/` — the TypeScript vector canvas and a separate Swift document-core package
 - `src/animation/`, `src/animator/`, `src/framer/` — the frame-based paint animator
 - `modules/screen-recorder/`, `src/capture/` — in-app guided screen recording
 
@@ -46,14 +46,16 @@ the honest, specific answer to "what did you actually open source."
 
 ## What works out of the box vs. what needs your own backend
 
-The **painting engines are fully standalone** — 2D canvas, AR wall/room painting, vector mode, and
-the animator all work with zero backend, because painting itself never left the device.
+The **painting operations run locally** — the 2D canvas, AR wall/room painting, vector mode, and
+animator do not require a backend to render strokes. They remain integrated into the app and have
+native platform requirements; they are not separately published JavaScript libraries.
 
 **Daily challenges, the public gallery, social/profile, and multiplayer** talk to a backend
 (`backend/`, `.website_work/`, `multi/`) that you'd need to deploy yourself and point the app at —
-this repo includes that backend's source, but not a hosted instance or its credentials. Without a
-configured backend, those specific screens degrade gracefully (see `SECURITY.md`) rather than
-crashing or silently hitting the maintainer's production server.
+this repo includes reference server code, not production credentials or a turnkey deployment.
+**Several client URLs still point to `emojipainter.com`**, so gallery reads and other requests can
+reach the live service. Before running community features on a fork, review and replace those URLs
+as described in [`BUILDING.md`](BUILDING.md). An empty upload secret does not disable networking.
 
 ## License
 

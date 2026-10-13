@@ -14,7 +14,7 @@
 ```bash
 git clone https://github.com/senderpa/EmojiPainter.git
 cd EmojiPainter
-npm install
+npm ci
 ```
 
 `postinstall` runs `patch-package` automatically (see `patches/`).
@@ -55,19 +55,35 @@ engine, vector mode, and animator are cross-platform.
 
 ## Community features (optional)
 
-Daily challenges, the gallery, and social features need the reference PHP backend
-(`backend/`, `.website_work/`) deployed somewhere with a MySQL database:
+Daily challenges, the gallery, and social features use reference PHP code in `backend/`,
+`.website_work/`, and `server-fix/`. These folders contain deployment-specific scripts and schema
+migrations, not a single automatic installer. Review them against your own PHP/MySQL deployment.
 
-1. Copy `backend/config/db.php.example` → `backend/config/db.php` and fill in your own database
-   credentials — **never commit `db.php`**.
-2. Run the `.sql` migration files under `backend/gesser/` and `.website_work/gesser-schema.sql`.
-3. Point the app at your backend's base URL (see `src/lib/` for the API base constant).
-4. Set `EXPO_PUBLIC_DAILY_PAINT_SECRET` to a value you generate (`openssl rand -hex 32`) and match
-   in `.website_work/gallery.html`'s `DAILY_PAINT_SHARED_SECRET` and `server-fix/storage.php`'s
-   server-side check.
+1. Copy `backend/config/db.php.example` to `backend/config/db.php` and provide your own database
+   credentials. Never commit the configured file.
+2. Review the SQL migrations for the features you intend to host, including `backend/migrations/`,
+   `backend/gesser/`, and `.website_work/gesser-schema.sql`.
+3. Replace the production URLs before using community features on a fork. Main client entry points
+   include `src/lib/dailyPaintGallery.ts`, `src/lib/dailyPaintUpload.ts`,
+   `src/lib/profileAuth.ts`, and `src/gesser/api/gesserClient.ts`. Find the remaining references with:
+   ```bash
+   rg -n 'https://emojipainter\.com' src .website_work backend server-fix
+   ```
+4. Legacy upload/vote signing reads `EXPO_PUBLIC_DAILY_PAINT_SECRET`. For local integration work,
+   use your own value and matching server configuration. **Any `EXPO_PUBLIC_*` value is embedded in
+   the client, and a value in `.website_work/gallery.html` is visible to visitors. Neither is a
+   private server credential.** A public deployment needs server-side authorization, validation,
+   and abuse controls; the shared client value alone cannot establish a trusted caller.
 
-Without a configured backend, these features degrade gracefully — painting itself needs none of
-this.
+The current source still contains production URLs. An unset upload secret does not disconnect
+community screens from the live service. Painting operations themselves need no backend.
+
+## Optional diagnostics
+
+Crash reporting is disabled by default in the public source build. To enable it for your own
+release build, set `EXPO_PUBLIC_SENTRY_DSN` to your project's client DSN and review
+`src/lib/crashReporting.ts`. Development and Lite builds keep reporting disabled. Never use a
+Sentry auth token as the client DSN.
 
 The standalone multiplayer canvas server (`multi/`) is a separate Node.js app; see `multi/README.md`.
 

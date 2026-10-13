@@ -1,52 +1,55 @@
-# Third-Party Notices
+# Third-party notices
 
-Dependency license summary, generated with `npx license-checker --summary` against this project's
-`package.json` (764 resolved packages across dependencies + devDependencies).
+Dependency license metadata snapshot from `package-lock.json`, updated October 13, 2026.
+Includes development tools and optional packages for all platforms; these counts are not a list
+of binaries shipped in the apps. Local linked modules are excluded from this dependency inventory.
+The packages' own license files remain authoritative.
 
-## Summary
+## Lockfile summary
 
-| License | Count |
-|---|---|
-| MIT | 936 |
-| ISC | 58 |
-| BSD-3-Clause | 28 |
-| Apache-2.0 | 25 |
-| BSD-2-Clause | 22 |
-| BlueOak-1.0.0 | 11 |
-| (MIT OR CC0-1.0) | 4 |
-| FSL-1.1-MIT | 2 |
+1188 package entries (different installed paths are counted separately).
+
+| Recorded license | Entries |
+|---|---:|
+| MIT | 938 |
+| ISC | 86 |
+| Apache-2.0 | 40 |
+| BSD-3-Clause | 27 |
+| BSD-2-Clause | 23 |
+| FSL-1.1-MIT | 18 |
+| BlueOak-1.0.0 | 13 |
+| MPL-2.0 | 12 |
+| LGPL-3.0-or-later | 8 |
+| Not recorded | 4 |
+| Python-2.0 | 3 |
+| (MIT OR CC0-1.0) | 3 |
+| Apache-2.0 AND LGPL-3.0-or-later | 2 |
 | Unlicense | 2 |
-| MPL-2.0 | 2 |
-| LGPL-3.0-or-later | 1 |
-| Python-2.0 | 1 |
+| 0BSD | 2 |
+| Apache-2.0 AND LGPL-3.0-or-later AND MIT | 1 |
 | CC-BY-4.0 | 1 |
-| 0BSD | 1 |
 | Public Domain | 1 |
 | (MIT OR GPL-3.0-or-later) | 1 |
 | (BSD-3-Clause OR GPL-2.0) | 1 |
 | (MIT AND Zlib) | 1 |
 | (BSD-2-Clause OR MIT OR Apache-2.0) | 1 |
 
-(Counts add up to slightly more than 764 due to license-checker's per-package breakdown; two rows
-in the raw output — "UNLICENSED" for `emojipaint-mobile` itself and "UNKNOWN" for the local
-`screen-recorder` module — are this project's *own* local packages with no `license` field set
-locally, not third-party dependencies. Both are covered by this repo's own Apache-2.0 license.)
+## Dependencies with additional license terms
 
-## Apache-2.0 compatibility
+- Sentry CLI packages record `FSL-1.1-MIT`. These are native build/upload tooling pulled in by
+  `@sentry/react-native`, which is an app dependency; they are not all declared as dev dependencies.
+- Optional `sharp` / libvips platform packages record LGPL terms. `sharp` is a development
+  dependency used by the asset-generation scripts.
+- Some packages record MPL-2.0 or alternative license expressions. Preserve the corresponding
+  package notices when distributing dependencies; this source repository's Apache-2.0 license
+  does not replace their licenses.
 
-Everything above is a standard permissive license (MIT/ISC/BSD/Apache/BlueOak/Unlicense/0BSD/
-Public Domain/CC0/CC-BY) **except** the four flagged below — none of them block Apache-2.0 use:
+Entries without license metadata in the lockfile:
 
-- **`@sentry/cli` / `@sentry/cli-darwin`** (FSL-1.1-MIT — Sentry's "Functional Source License,"
-  not OSI-approved but source-available) — a **build-time-only** devDependency used to upload
-  source maps on release builds (already gated off by `SENTRY_DISABLE_AUTO_UPLOAD=true` in
-  `scripts/build-ios.sh`). Not distributed with the app.
-- **`@img/sharp-libvips-darwin-arm64`** (LGPL-3.0-or-later) — a native binary for `sharp`, used only
-  by the icon/logo-generation build scripts (`npm run gen:icons`). Not distributed with the app.
-- **`jszip`** (dual MIT/GPL-3.0) — used under the MIT option.
-- **`node-forge`** (dual BSD-3-Clause/GPL-2.0) — used under the BSD-3-Clause option.
-
-No GPL/AGPL code is bundled into the shipped app or the reference backend.
+- `node_modules/base-64` (0.1.0)
+- `node_modules/exit` (0.1.2)
+- `node_modules/qrcode-terminal` (0.11.0)
+- `node_modules/requireg` (0.2.2)
 
 ## Assets
 
@@ -56,9 +59,8 @@ their gallery posts; see `docs/OPEN_SOURCE_BOUNDARY.md` for attribution. The ful
 including licensed fonts and in-app media, is not included. See `TRADEMARKS.md` for platform emoji
 and trademark notes.
 
-## Regenerating this report
+## Refreshing the inventory
 
-```bash
-npx license-checker --summary   # this table
-npx license-checker --json      # full per-package detail
-```
+Read each non-link `node_modules/` entry in `package-lock.json` and group its `license` field,
+using “Not recorded” where absent. Inspect individual package license files for full terms.
+This inventory is a metadata summary, not a complete redistribution notice bundle.

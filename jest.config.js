@@ -29,14 +29,5 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/e2e/'],
   transformIgnorePatterns: [
     'node_modules/(?!(react-native|@react-native|expo|@react-navigation|@shopify|react-native-reanimated)/)'
-  ],
-  globals: {
-    'ts-jest': {
-      tsconfig: {
-        jsx: 'react',
-        esModuleInterop: true,
-        allowSyntheticDefaultImports: true
-      }
-    }
-  }
+  ]
 };
