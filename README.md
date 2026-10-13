@@ -44,8 +44,9 @@ agentic coding tools to build further than a solo self-taught developer could ot
 > below to open its community gallery post.
 
 <p align="center">
-  <a href="https://emojipainter.com/public/gallery.html?post=64&guess=1"><strong>🕵️ Try a live mystery painting challenge ↗</strong></a><br/>
-  <sub>Open a real community painting in the browser and guess its hidden topic.</sub>
+  <a href="https://emojipainter.com/public/gallery.html?post=64&guess=1"><img src=".github/images/mystery-painting-preview.jpg" width="250" alt="A community mystery painting; open the challenge to guess its hidden topic" /></a><br/>
+  <a href="https://emojipainter.com/public/gallery.html?post=64&guess=1"><strong>🕵️ Try this live mystery painting challenge ↗</strong></a><br/>
+  <sub>May 29, 2026 · by Pascal · 10 min · 1 like</sub>
 </p>
 
 ### 2026 community gallery highlights
@@ -88,12 +89,32 @@ agentic coding tools to build further than a solo self-taught developer could ot
 <table>
   <tr>
     <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html?post=32"><img src=".github/images/community-ruins-of-yourself.jpg" width="240" alt="Die Ruinen deiner Selbst, by digitaldoodler39" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=32">Dec 30, 2025 · Die Ruinen deiner Selbst · digitaldoodler39 · 10 min · 1 like ↗</a></sub>
+    </td>
+    <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html?post=30"><img src=".github/images/community-transparent-gameboy.jpg" width="240" alt="Transparenter Gameboy, by digitaldoodler39" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=30">Dec 29, 2025 · Transparenter Gameboy · digitaldoodler39 · 8 min · 0 likes ↗</a></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
       <a href="https://emojipainter.com/public/gallery.html?post=29"><img src=".github/images/community-molten-umbrella.jpg" width="240" alt="Molten Umbrella, painted by digitaldoodler39 on December 17, 2025" /></a><br/>
       <sub><a href="https://emojipainter.com/public/gallery.html?post=29">Dec 17, 2025 · Molten Umbrella · digitaldoodler39 · 17 min · 1 like ↗</a></sub>
     </td>
     <td align="center" width="50%">
       <a href="https://emojipainter.com/public/gallery.html?post=28"><img src=".github/images/community-mechanical-canister.jpg" width="240" alt="Mechanical Canister, painted by an anonymous artist on December 14, 2025" /></a><br/>
       <sub><a href="https://emojipainter.com/public/gallery.html?post=28">Dec 14, 2025 · Mechanical Canister · anonymous · 16 min · 2 likes ↗</a></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html?post=27"><img src=".github/images/community-warte-kurz.jpg" width="240" alt="Warte kurz!, by brushbuff75" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=27">Dec 11, 2025 · Warte kurz! · brushbuff75 · 11 min · 2 likes ↗</a></sub>
+    </td>
+    <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html?post=23"><img src=".github/images/community-flower-compass.jpg" width="240" alt="Blumenkompass, by Coolemojier" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=23">Dec 5, 2025 · Blumenkompass · Coolemojier · 8 min · 2 likes ↗</a></sub>
     </td>
   </tr>
 </table>
