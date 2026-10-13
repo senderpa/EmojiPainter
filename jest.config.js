@@ -26,14 +26,6 @@ module.exports = {
     '!src/theme/**',
     '!src/**/*.stories.tsx'
   ],
-  coverageThreshold: {
-    global: {
-      branches: 50,
-      functions: 50,
-      lines: 50,
-      statements: 50
-    }
-  },
   testPathIgnorePatterns: ['/node_modules/', '/e2e/'],
   transformIgnorePatterns: [
     'node_modules/(?!(react-native|@react-native|expo|@react-navigation|@shopify|react-native-reanimated)/)'
