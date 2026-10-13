@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/images/icon.png" width="96" alt="EmojiPainter app icon" />
+</p>
+
 <h1 align="center">EmojiPainter</h1>
 <p align="center"><strong>A creative painting platform, not just an emoji app.</strong></p>
 
@@ -13,6 +17,10 @@
   <a href="https://emojipainter.com/public/gallery.html">🖼️ Community gallery</a> ·
   <a href="https://apps.apple.com/us/app/emoji-painter/id6753342820">📱 iPhone / iPad — Free</a> ·
   <a href="https://apps.apple.com/us/app/emoji-paint/id6753338528">💻 Mac — Free</a>
+</p>
+
+<p align="center">
+  <a href="https://emojipainter.com/"><img src=".github/images/brand-animation.gif" width="280" alt="EmojiPainter animated logo" /></a>
 </p>
 
 ---
@@ -67,6 +75,29 @@ agentic coding tools to build further than a solo self-taught developer could ot
     <td align="center" colspan="2">
       <img src=".github/images/example-artwork.jpg" width="240" alt="Example artwork painted in EmojiPainter" />
     </td>
+  </tr>
+</table>
+
+### The Icon, Reimagined
+
+Nine randomly selected animated looks from the EmojiPainter icon lab. Each loops; open the
+[live homepage](https://emojipainter.com/) for a different random selection.
+
+<table>
+  <tr>
+    <td align="center" width="33%"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-9.gif" width="170" alt="Animated EmojiPainter icon look 9" /></a></td>
+    <td align="center" width="33%"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-19.gif" width="170" alt="Animated EmojiPainter icon look 19" /></a></td>
+    <td align="center" width="33%"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-21.gif" width="170" alt="Animated EmojiPainter icon look 21" /></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-23.gif" width="170" alt="Animated EmojiPainter icon look 23" /></a></td>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-28.gif" width="170" alt="Animated EmojiPainter icon look 28" /></a></td>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-32.gif" width="170" alt="Animated EmojiPainter icon look 32" /></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-57.gif" width="170" alt="Animated EmojiPainter icon look 57" /></a></td>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-75.gif" width="170" alt="Animated EmojiPainter icon look 75" /></a></td>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-127.gif" width="170" alt="Animated EmojiPainter icon look 127" /></a></td>
   </tr>
 </table>
 
