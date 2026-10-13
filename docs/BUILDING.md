@@ -2,8 +2,8 @@
 
 ## Requirements
 
-- Node.js 18+ (developed against Node 20/26; `package.json` requires `>=18.0.0`)
-- macOS + Xcode (current stable) for iOS — this project targets iOS 15.1+
+- Node.js 20.19.4 or newer (required by Expo SDK 54)
+- macOS + Xcode 16.1 or newer for iOS — this project targets iOS 15.1+
 - CocoaPods (installed automatically via `npx expo run:ios` / `pod install`)
 - Android Studio + JDK for Android
 - An Apple Developer account (free tier is enough) to run on a physical iOS device — AR/RoomPlan

@@ -50,8 +50,11 @@ No GPL/AGPL code is bundled into the shipped app or the reference backend.
 
 ## Assets
 
-No third-party or system-supplied assets (platform emoji artwork, licensed fonts) are included in
-this repository — see `docs/OPEN_SOURCE_BOUNDARY.md` and `TRADEMARKS.md`.
+Small project and community-art previews are included under `.github/images/` for the README. The
+community submissions remain the artists' work, are not relicensed by this repository, and link to
+their gallery posts; see `docs/OPEN_SOURCE_BOUNDARY.md` for attribution. The full app asset library,
+including licensed fonts and in-app media, is not included. See `TRADEMARKS.md` for platform emoji
+and trademark notes.
 
 ## Regenerating this report
 

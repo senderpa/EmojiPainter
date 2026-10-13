@@ -43,6 +43,11 @@ agentic coding tools to build further than a solo self-taught developer could ot
 > The browser pilot is the quickest way to try painting and timelapse replay. Click a painting
 > below to open its community gallery post.
 
+<p align="center">
+  <a href="https://emojipainter.com/public/gallery.html?post=64&guess=1"><strong>🕵️ Try a live mystery painting challenge ↗</strong></a><br/>
+  <sub>Open a real community painting in the browser and guess its hidden topic.</sub>
+</p>
+
 ### 2026 community gallery highlights
 
 <table>
@@ -162,6 +167,19 @@ flowchart TB
   Community --> MultiServer["Collaborative canvas server<br/>multi/ (Node.js)"]
 ```
 
+The tile renderer turns a saved stroke into repeated emoji stamps, caches the affected canvas
+tiles, and redraws only the tiles touched by a change. The current `TilePaintCanvas` example covers
+ordinary emoji strokes; smudge strokes are handled by a separate renderer in the app.
+
+```mermaid
+flowchart LR
+  Gesture[Touch or stylus points] --> Stroke[Stroke data: emoji, size, opacity]
+  Stroke --> Stamps[Positioned emoji stamps]
+  Stamps --> Tiles[Tile cache]
+  Tiles --> Canvas[Skia canvas]
+  Canvas --> Export[Image or animation export]
+```
+
 More detail: [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
 ## Getting started
@@ -175,6 +193,12 @@ npx expo run:ios      # or: npx expo run:android
 
 Full setup (Xcode/Android Studio requirements, native module notes, backend setup for the
 community features): [`docs/BUILDING.md`](docs/BUILDING.md).
+
+To embed the existing renderer in another React Native screen, start with
+[`docs/REUSING_THE_ENGINE.md`](docs/REUSING_THE_ENGINE.md) and its small component example. The
+renderer is currently source code inside this Expo app, not a separately published package.
+
+Read [VISION.md](VISION.md) for the artistic motivation and future direction.
 
 ## Status & roadmap
 

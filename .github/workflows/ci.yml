@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.19.4
           cache: npm
 
       - name: Install dependencies
@@ -35,13 +35,13 @@ jobs:
   # locally with Xcode. This job only verifies the native project + JS bundle
   # resolve correctly, without signing or archiving.
   ios-unsigned-build-check:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.19.4
           cache: npm
 
       - name: Install dependencies

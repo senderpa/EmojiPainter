@@ -5,13 +5,13 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "TODO_SET_AFTER_GITHUB_REPO_CREATED"
+    "url": "https://github.com/senderpa/EmojiPainter.git"
   },
   "homepage": "https://emojipainter.com",
   "private": false,
   "main": "index.js",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.19.4"
   },
   "scripts": {
     "start": "expo start",
