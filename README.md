@@ -41,12 +41,21 @@ agentic coding tools to build further than a solo self-taught developer could ot
 <table>
   <tr>
     <td align="center" width="50%">
-      <a href="https://emojipainter.com/public/gallery.html"><img src=".github/images/community-gallery.jpg" width="250" alt="A painting in the EmojiPainter community gallery" /></a><br/>
-      <sub><a href="https://emojipainter.com/public/gallery.html">Open the live community gallery ↗</a></sub>
+      <a href="https://emojipainter.com/public/gallery.html?post=94"><img src=".github/images/gallery-wasp-nest-city.gif" width="240" alt="Animated community painting: Wasp-Nest City, by Kakaduuu" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=94">Wasp-Nest City · GIF · by Kakaduuu ↗</a></sub>
     </td>
     <td align="center" width="50%">
-      <img src=".github/images/example-artwork.jpg" width="250" alt="Example artwork painted in EmojiPainter" /><br/>
-      <sub>Emoji art made with brush strokes, not stickers.</sub>
+      <a href="https://emojipainter.com/public/gallery.html?post=93"><img src=".github/images/community-ice-clown.jpg" width="240" alt="Community gallery artwork: Ice Clown" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html?post=93">Ice Clown · community gallery ↗</a></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://emojipainter.com/public/gallery.html"><img src=".github/images/community-gallery.jpg" width="240" alt="A painting in the EmojiPainter community gallery" /></a><br/>
+      <sub><a href="https://emojipainter.com/public/gallery.html">Browse the live community gallery ↗</a></sub>
+    </td>
+    <td align="center" width="50%">
+      <img src=".github/images/example-artwork.jpg" width="240" alt="Example artwork painted in EmojiPainter" />
     </td>
   </tr>
 </table>
