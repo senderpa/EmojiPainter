@@ -470,9 +470,9 @@ export async function exportAsMOV(
 
     // Verify ALL frame files exist and are valid PNGs before passing to native module
     console.log('[EXPORT MOV] Verifying frame files exist and are valid (parallel validation)...');
-    const missingFrames = [];
-    const corruptFrames = [];
-    const invalidPNGFrames = [];
+    const missingFrames: number[] = [];
+    const corruptFrames: number[] = [];
+    const invalidPNGFrames: number[] = [];
 
     // Validate frames in parallel batches for speed
     const validationBatchSize = 50;
@@ -736,8 +736,8 @@ export async function exportAsMOVFromPaths(
 
     // Verify frame files exist before passing to native module
     console.log('[EXPORT MOV STREAM] Verifying frame files exist...');
-    const missingFrames = [];
-    const corruptFrames = [];
+    const missingFrames: number[] = [];
+    const corruptFrames: number[] = [];
     for (let i = 0; i < Math.min(framePaths.length, 20); i++) { // Check first 20 frames
       try {
         const info = await FileSystem.getInfoAsync(framePaths[i]);

@@ -133,8 +133,8 @@ Everything below is verified against the source in this repo — nothing here is
   a dedicated Swift Package document core.
 - **Frame animator** (`src/animation/`, `src/animator/`, `src/framer/`) — timeline-based animation
   over painted strokes.
-- **Smudge/compositing brush engine** — CPU pixel smudging that carries real canvas color, not a
-  filter.
+- **Smudge/compositing brush engine** — GPU-assisted smudging carries real canvas color rather than
+  applying a visual filter, with a CPU fallback for unsupported paths.
 - **Front-camera face painting** (`modules/emoji-ar/` face module) — on-device ARKit face tracking;
   no camera frames or face geometry ever leave the device.
 - **Daily/mystery painting challenges + gallery** (`src/gesser/`, `backend/`, `.website_work/`) —

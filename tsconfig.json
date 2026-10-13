@@ -9,5 +9,5 @@
     "types": ["react", "react-native", "jest"]
   },
   "include": ["src"],
-  "exclude": ["node_modules", "babel.config.js", "metro.config.js"]
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "src/**/__tests__/**", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

@@ -1,16 +1,16 @@
-import { StyleSheet, TextStyle } from 'react-native';
+import { Platform, StyleSheet, TextStyle } from 'react-native';
 
-export const BASE_FONT_FAMILY = 'vrtlfinal';
+// The licensed project font is supplied separately from this public source export.
+// Use the platform system font in a clean clone instead of referencing a missing file.
+export const BASE_FONT_FAMILY = Platform.select({ ios: 'System', android: 'sans-serif' }) ?? 'sans-serif';
 const LEGACY_FONT_FAMILY = 'vrtlfinale1';
-
-const fontSource = require('../../assets/fonts/vrtlfinale1.ttf');
 
 export const FONT_VARIANTS = {
   regular: BASE_FONT_FAMILY,
-  medium: `${BASE_FONT_FAMILY}-medium`,
-  semibold: `${BASE_FONT_FAMILY}-semibold`,
-  bold: `${BASE_FONT_FAMILY}-bold`,
-  extrabold: `${BASE_FONT_FAMILY}-extrabold`
+  medium: BASE_FONT_FAMILY,
+  semibold: BASE_FONT_FAMILY,
+  bold: BASE_FONT_FAMILY,
+  extrabold: BASE_FONT_FAMILY
 } as const;
 
 const WEIGHT_TO_VARIANT: Record<string, keyof typeof FONT_VARIANTS> = {
@@ -27,24 +27,7 @@ const WEIGHT_TO_VARIANT: Record<string, keyof typeof FONT_VARIANTS> = {
   bold: 'bold'
 };
 
-const registerFontFamily = (acc: Record<string, number>, family: string): void => {
-  acc[family] = fontSource;
-};
-
-export const FONT_ASSETS: Record<string, number> = Object.values(FONT_VARIANTS).reduce(
-  (acc, family) => {
-    registerFontFamily(acc, family);
-
-    // Register legacy aliases (so existing style declarations keep working)
-    const legacyFamily = family.replace(BASE_FONT_FAMILY, LEGACY_FONT_FAMILY);
-    if (legacyFamily !== family) {
-      registerFontFamily(acc, legacyFamily);
-    }
-
-    return acc;
-  },
-  { [LEGACY_FONT_FAMILY]: fontSource } as Record<string, number>
-);
+export const FONT_ASSETS: Record<string, number> = {};
 
 const resolveWeightKey = (weight?: TextStyle['fontWeight']): keyof typeof FONT_VARIANTS => {
   if (!weight) {
@@ -64,13 +47,11 @@ export const normalizeTextStyle = <T extends TextStyle | undefined | null>(style
   }
 
   const { fontWeight, fontFamily, ...rest } = style as TextStyle;
-  const sanitizedFontFamily =
-    fontFamily && fontFamily.startsWith(LEGACY_FONT_FAMILY)
-      ? fontFamily.replace(LEGACY_FONT_FAMILY, BASE_FONT_FAMILY)
-      : fontFamily;
+  const usesProjectFont = fontFamily?.startsWith(LEGACY_FONT_FAMILY) || fontFamily?.startsWith('vrtlfinal');
   const next: TextStyle = {
     ...rest,
-    fontFamily: sanitizedFontFamily ?? resolveFontFamily(fontWeight)
+    fontFamily: usesProjectFont ? BASE_FONT_FAMILY : (fontFamily ?? resolveFontFamily(fontWeight)),
+    fontWeight
   };
 
   return next as T;
@@ -81,7 +62,10 @@ const normalizeStyleDefinition = (entry: unknown): unknown => {
     return entry;
   }
 
-  if (!('fontWeight' in entry) || !(entry as TextStyle).fontWeight) {
+  const textStyle = entry as TextStyle;
+  const usesProjectFont = textStyle.fontFamily?.startsWith(LEGACY_FONT_FAMILY)
+    || textStyle.fontFamily?.startsWith('vrtlfinal');
+  if ((!('fontWeight' in entry) || !textStyle.fontWeight) && !usesProjectFont) {
     return entry;
   }
 

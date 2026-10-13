@@ -6,9 +6,9 @@
 
 import React, { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
-import type { Stroke, StrokePoint } from '../types/storedPainting';
+import type { Stroke, StrokePoint } from '../state/PaintingContext';
 import * as MetalCanvas from '../native/metal';
-import { adaptiveResamplePoints } from '../lib/strokeProcessing';
+import { adaptiveDecimatePoints } from '../lib/strokeProcessing';
 
 export interface MetalEmojiCanvasProps {
   width: number;
@@ -194,7 +194,7 @@ const MetalEmojiCanvas = forwardRef<MetalEmojiCanvasHandle, MetalEmojiCanvasProp
       }
 
       // Resample points for optimal stamp density
-      const resampledPoints = adaptiveResamplePoints(stroke.points, stroke.spacing ?? 0.5);
+      const resampledPoints = adaptiveDecimatePoints(stroke.points, stroke.size, stroke.spacing ?? 0.5, stroke.stampSpan);
 
       // Handle emoji sequences (spray mode)
       const emojis = stroke.emojiSequence && stroke.emojiSequence.length > 0

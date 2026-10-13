@@ -13,8 +13,8 @@ const OUTPUT_FILE = path.join(__dirname, '../src/lib/logoManifest.ts');
 
 function scanLogosDirectory() {
   if (!fs.existsSync(LOGOS_DIR)) {
-    console.error(`❌ Logos directory not found: ${LOGOS_DIR}`);
-    process.exit(1);
+    console.warn(`⚠️  Logos directory not found: ${LOGOS_DIR} (using the public project icon)`);
+    return [];
   }
 
   const subfolders = fs.readdirSync(LOGOS_DIR)
@@ -135,6 +135,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 ${imports.join('\n')}
 
+const FALLBACK_LOGO_SET: Extract<LogoSet, { type: 'image' }> = {
+  id: 'public-project-icon',
+  type: 'image',
+  baseIcon: require('../../.github/images/icon.png'),
+  frames: []
+};
+
 export type LogoSet = {
   id: string;
   type: 'image';
@@ -146,9 +153,11 @@ export type LogoSet = {
   videoSource: any;
 };
 
-export const LOGO_SETS: LogoSet[] = [
+const generatedLogoSets: LogoSet[] = [
 ${setDefinitions.join(',\n')}
 ];
+
+export const LOGO_SETS: LogoSet[] = generatedLogoSets.length > 0 ? generatedLogoSets : [FALLBACK_LOGO_SET];
 
 const USED_VIDEOS_KEY = '@logoManifest:usedVideos';
 
@@ -186,12 +195,12 @@ async function resetUsedVideoLogos(): Promise<void> {
 }
 
 export function getRandomLogoSet(): LogoSet {
-  return LOGO_SETS[Math.floor(Math.random() * LOGO_SETS.length)] || LOGO_SETS[0];
+  return LOGO_SETS[Math.floor(Math.random() * LOGO_SETS.length)] ?? FALLBACK_LOGO_SET;
 }
 
-export function getRandomImageLogoSet(): LogoSet {
-  const imageSets = LOGO_SETS.filter(set => set.type === 'image');
-  return imageSets[Math.floor(Math.random() * imageSets.length)] || LOGO_SETS[0];
+export function getRandomImageLogoSet(): Extract<LogoSet, { type: 'image' }> {
+  const imageSets = LOGO_SETS.filter((set): set is Extract<LogoSet, { type: 'image' }> => set.type === 'image');
+  return imageSets[Math.floor(Math.random() * imageSets.length)] ?? FALLBACK_LOGO_SET;
 }
 
 export function getLogoSetById(id: string): LogoSet | undefined {
@@ -204,6 +213,9 @@ export async function getRandomLogoSetWithTracking(): Promise<LogoSet> {
 
   // Filter to video logos only
   const videoLogos = LOGO_SETS.filter(set => set.type === 'video');
+  if (videoLogos.length === 0) {
+    return getRandomImageLogoSet();
+  }
 
   // Filter out already-used videos
   const unusedVideoLogos = videoLogos.filter(logo => !usedLogos.has(logo.id));
@@ -234,11 +246,6 @@ function main() {
 
   const logoSets = scanLogosDirectory();
   const videoSets = scanVideosDirectory();
-
-  if (logoSets.length === 0 && videoSets.length === 0) {
-    console.error('❌ No logo sets or videos found!');
-    process.exit(1);
-  }
 
   const code = generateManifestCode(logoSets, videoSets);
 

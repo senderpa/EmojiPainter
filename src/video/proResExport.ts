@@ -246,12 +246,12 @@ export async function exportCompositionWithFFmpeg(
     }
 
     const failStackTrace = await session.getAllLogsAsString();
-    console.error(`[ProResExport] FFmpeg export failed. Return code: ${returnCode?.getValue() ?? "unknown"}`);
+    console.error(`[ProResExport] FFmpeg export failed. Return code: ${String(returnCode ?? "unknown")}`);
     console.error(`[ProResExport] FFmpeg logs:\n${failStackTrace}`);
 
     throw new Error(
       `ffmpeg export failed (primary path). ReturnCode=${
-        returnCode?.getValue() ?? "unknown"
+        String(returnCode ?? "unknown")
       }\n${failStackTrace}`
     );
   } catch (error) {
@@ -412,12 +412,12 @@ export async function exportCompositionWithFallbackCapture(
     }
 
     const failStackTrace = await session.getAllLogsAsString();
-    console.error(`[ProResExport] FFmpeg stitching failed. Return code: ${returnCode?.getValue() ?? "unknown"}`);
+    console.error(`[ProResExport] FFmpeg stitching failed. Return code: ${String(returnCode ?? "unknown")}`);
     console.error(`[ProResExport] FFmpeg logs:\n${failStackTrace}`);
 
     throw new Error(
       `ffmpeg export failed (fallback capture). ReturnCode=${
-        returnCode?.getValue() ?? "unknown"
+        String(returnCode ?? "unknown")
       }\n${failStackTrace}`
     );
   } catch (error) {

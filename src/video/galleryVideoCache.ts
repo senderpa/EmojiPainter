@@ -7,7 +7,6 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as FileSystem from 'expo-file-system/legacy';
-import { NetInfo } from '@react-native-firebase/app';
 import * as Network from 'expo-network';
 
 const GALLERY_VIDEO_CACHE_DIR = `${FileSystem.documentDirectory}gallery-cache/`;

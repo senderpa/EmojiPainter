@@ -331,7 +331,7 @@ export const renderComposition = async ({
     const progressInterval = setInterval(async () => {
       const statistics = await session.getLastReceivedStatistics();
       if (statistics) {
-        const currentTime = statistics.getTime();
+        const currentTime = Number((statistics as { getTime?: () => number } | null)?.getTime?.() ?? 0);
         if (currentTime > 0 && durationSeconds > 0) {
           // Convert time from milliseconds to seconds and calculate percentage
           const currentSeconds = currentTime / 1000;

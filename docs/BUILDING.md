@@ -35,6 +35,15 @@ RoomPlan and full LiDAR wall-mesh painting require a LiDAR-equipped device (iPho
 Pro 2020+); everything else (2D canvas, vector mode, animator, AR plane painting without RoomPlan)
 runs on any ARKit-capable device.
 
+## Media assets in the public source export
+
+Some production artwork, fonts, and tutorial media are excluded because their redistribution rights
+are unclear. The Metro resolver uses the project-owned icon, a short logo animation, silent audio,
+and the system font when those files are absent, so a clean clone can still bundle. If you have the
+rights to the original media, place it at its existing path under `assets/`; present files take
+precedence over the fallback. These previews keep the source buildable but do not reproduce the
+finished apps' full media library.
+
 ## Run — Android
 
 ```bash

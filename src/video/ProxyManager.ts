@@ -1,15 +1,12 @@
 /**
  * ProxyManager
  *
- * Generates and manages low-resolution proxy files for heavy HEVC+alpha master clips.
- * Proxies use H.264 with lower resolution for lighter decode load during editing.
- * Final export still uses master files.
+ * Manages optional low-resolution proxy files for heavy clips.
+ * The public build returns the master clip directly because it does not bundle FFmpeg transcoding.
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as FileSystem from 'expo-file-system/legacy';
-import { FFmpegKit, ReturnCode } from 'ffmpeg-kit-react-native';
-import { Platform } from 'react-native';
 
 const PROXY_STORAGE_KEY = '@video_editor_proxies';
 const PROXY_DIR = `${FileSystem.documentDirectory}video_proxies/`;
@@ -25,51 +22,6 @@ export interface ProxyMetadata {
 
 interface ProxyMap {
   [masterUri: string]: ProxyMetadata;
-}
-
-/**
- * Simple string hash function (Java's String.hashCode() algorithm)
- */
-function simpleHash(str: string): string {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return Math.abs(hash).toString(36);
-}
-
-/**
- * Calculate a hash for a master file to detect if it's changed
- */
-async function calculateMasterHash(uri: string): Promise<string> {
-  try {
-    const fileUri = uri.startsWith('file://') ? uri.substring(7) : uri;
-    const info = await FileSystem.getInfoAsync(fileUri);
-
-    if (!info.exists) {
-      throw new Error('File does not exist');
-    }
-
-    // Hash based on path + size + modification time
-    const hashInput = `${fileUri}:${info.size}:${info.modificationTime}`;
-    return simpleHash(hashInput);
-  } catch (error) {
-    console.error('[ProxyManager] Failed to calculate hash:', error);
-    throw error;
-  }
-}
-
-/**
- * Ensure proxy directory exists
- */
-async function ensureProxyDir(): Promise<void> {
-  const dirInfo = await FileSystem.getInfoAsync(PROXY_DIR);
-  if (!dirInfo.exists) {
-    await FileSystem.makeDirectoryAsync(PROXY_DIR, { intermediates: true });
-    console.log('[ProxyManager] Created proxy directory:', PROXY_DIR);
-  }
 }
 
 /**
@@ -97,104 +49,19 @@ async function saveProxyMap(map: ProxyMap): Promise<void> {
 }
 
 /**
- * Generate a proxy file for a master clip
- * Uses H.264 at 720p with alpha preserved if possible
- */
-async function generateProxy(
-  masterUri: string,
-  onProgress?: (progress: number) => void
-): Promise<string> {
-  const fileUri = masterUri.startsWith('file://') ? masterUri.substring(7) : masterUri;
-
-  // Ensure file exists
-  const info = await FileSystem.getInfoAsync(fileUri);
-  if (!info.exists) {
-    throw new Error(`Master file does not exist: ${fileUri}`);
-  }
-
-  await ensureProxyDir();
-
-  const masterHash = await calculateMasterHash(masterUri);
-  const proxyFilename = `proxy_${masterHash}.mp4`;
-  const proxyPath = `${PROXY_DIR}${proxyFilename}`;
-  const proxyUri = `file://${proxyPath}`;
-
-  console.log('[ProxyManager] Generating proxy for:', masterUri);
-  console.log('[ProxyManager] Output:', proxyUri);
-
-  // FFmpeg command to create H.264 proxy at 720p
-  // Using H.264 instead of ProRes for better compatibility and smaller size
-  // -vf scale maintains aspect ratio and adds alpha if source has it
-  const command = `-i ${fileUri} -vf "scale=720:-2:flags=lanczos" -c:v libx264 -preset fast -crf 23 -pix_fmt yuv420p -an -y ${proxyPath}`;
-
-  console.log('[ProxyManager] FFmpeg command:', command);
-
-  const session = await FFmpegKit.execute(command);
-  const returnCode = await session.getReturnCode();
-
-  if (!ReturnCode.isSuccess(returnCode)) {
-    const output = await session.getOutput();
-    console.error('[ProxyManager] FFmpeg failed:', output);
-    throw new Error('Proxy generation failed');
-  }
-
-  // Verify proxy was created
-  const proxyInfo = await FileSystem.getInfoAsync(proxyPath);
-  if (!proxyInfo.exists || !proxyInfo.size) {
-    throw new Error('Proxy file was not created');
-  }
-
-  console.log('[ProxyManager] ✅ Proxy generated successfully:', proxyUri, 'Size:', proxyInfo.size);
-
-  // Save to proxy map
-  const proxyMap = await loadProxyMap();
-  proxyMap[masterUri] = {
-    masterUri,
-    masterHash,
-    proxyUri,
-    proxySize: proxyInfo.size,
-    createdAt: Date.now(),
-    resolution: '720p'
-  };
-  await saveProxyMap(proxyMap);
-
-  return proxyUri;
-}
-
-/**
  * Get proxy URI for a master clip, generating if needed
  */
 export async function getProxyUri(
   masterUri: string,
   onProgress?: (progress: number) => void
 ): Promise<string> {
-  // Check if proxy already exists and is valid
-  const proxyMap = await loadProxyMap();
-  const existing = proxyMap[masterUri];
-
-  if (existing) {
-    // Verify proxy file still exists
-    const proxyPath = existing.proxyUri.startsWith('file://')
-      ? existing.proxyUri.substring(7)
-      : existing.proxyUri;
-
-    const proxyInfo = await FileSystem.getInfoAsync(proxyPath);
-
-    if (proxyInfo.exists) {
-      // Verify master hasn't changed
-      const currentHash = await calculateMasterHash(masterUri);
-      if (currentHash === existing.masterHash) {
-        console.log('[ProxyManager] Using existing proxy:', existing.proxyUri);
-        return existing.proxyUri;
-      }
-      console.log('[ProxyManager] Master file changed, regenerating proxy');
-    } else {
-      console.log('[ProxyManager] Proxy file missing, regenerating');
-    }
-  }
-
-  // Generate new proxy
-  return await generateProxy(masterUri, onProgress);
+  // Proxy transcoding is optional in the public build. Return the original clip
+  // so video editing remains usable without an extra FFmpeg native package.
+  const path = masterUri.startsWith('file://') ? masterUri.slice(7) : masterUri;
+  const info = await FileSystem.getInfoAsync(path);
+  if (!info.exists) throw new Error(`Master file does not exist: ${masterUri}`);
+  onProgress?.(100);
+  return masterUri;
 }
 
 /**

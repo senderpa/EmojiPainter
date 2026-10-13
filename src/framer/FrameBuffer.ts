@@ -5,8 +5,6 @@
  * Uses delta updates and stroke duration instead of layer-per-frame for better performance.
  */
 
-import type { StrokeData } from '../lib/StrokeTypes';
-
 export type StrokeLayerId = number;
 
 export interface StrokePoint {

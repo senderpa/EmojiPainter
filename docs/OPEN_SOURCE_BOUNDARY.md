@@ -38,7 +38,7 @@ the honest, specific answer to "what did you actually open source."
 |---|---|
 | `assets/` (fonts, in-app art, 100+ marketing/UI videos) | Not source code; some assets have unclear or non-redistributable rights (system emoji artwork, licensed fonts); keeping the repo small and code-focused. Selected project-owned previews for the README live under `.github/images/`. See `THIRD_PARTY_NOTICES.md`. |
 | Community gallery preview artwork and animation under `.github/images/` | Community submissions remain owned by their creators and are included only as attributed README previews. Each preview links to its gallery post. Wasp-Nest City, Disco Wizard, and Adrift, pleasantly are credited to Kakaduuu; Molten Umbrella, Die Ruinen deiner Selbst, and Transparenter Gameboy to digitaldoodler39; Warte kurz! to brushbuff75; Blumenkompass to Coolemojier; the mystery painting to Pascal; Mechanical Canister is anonymous. The Apache-2.0 license does not grant rights to reuse these works elsewhere. |
-| Production secrets (`DAILY_PAINT_SECRET`, backend tokens) | Real credentials for the live `emojipainter.com` backend — never belong in a public repo. Placeholders + setup instructions are included instead; see `SECURITY_AUDIT.md`. |
+| Production secrets (`DAILY_PAINT_SECRET`, backend tokens) | Real credentials for the live `emojipainter.com` backend — never belong in a public repo. Placeholders + setup instructions are included instead; see `SECURITY.md`. |
 | Apple signing/provisioning material | Never existed in version control to begin with — nothing to strip. |
 | `src.backup.*/`, `ios.backup.*/`, `coverage/`, `.xcodebuild-release-lite/`, build outputs | Accidental snapshots and generated artifacts in the working repo, not source. |
 | `infos/` (informal private dev notes) | Not written for a public audience. |
@@ -52,7 +52,7 @@ the animator all work with zero backend, because painting itself never left the 
 **Daily challenges, the public gallery, social/profile, and multiplayer** talk to a backend
 (`backend/`, `.website_work/`, `multi/`) that you'd need to deploy yourself and point the app at —
 this repo includes that backend's source, but not a hosted instance or its credentials. Without a
-configured backend, those specific screens degrade gracefully (see `SECURITY_AUDIT.md`) rather than
+configured backend, those specific screens degrade gracefully (see `SECURITY.md`) rather than
 crashing or silently hitting the maintainer's production server.
 
 ## License

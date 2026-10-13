@@ -130,24 +130,13 @@ const CustomBrushRow: React.FC<CustomBrushRowProps> = ({
   }, [onSelectBrush]);
 
   const handleDeleteBrush = useCallback((brush: CustomBrush) => {
-    CustomOverlayHelper.alert(
+    CustomOverlayHelper.delete(
       'Delete Custom Brush',
       `Remove "${brush.name || 'Custom brush'}" from your collection?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: () => {
-            void (async () => {
-              const success = await deleteCustomBrush(brush.id);
-              if (success) {
-                await loadBrushes();
-              }
-            })();
-          },
-        },
-      ]
+      async () => {
+        const success = await deleteCustomBrush(brush.id);
+        if (success) await loadBrushes();
+      }
     );
   }, [loadBrushes]);
 

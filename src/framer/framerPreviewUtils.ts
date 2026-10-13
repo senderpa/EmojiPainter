@@ -8,7 +8,7 @@ import * as FileSystem from 'expo-file-system/legacy';
 import { exportMp4FromFrames } from '../native/exporter';
 
 export interface MiniPreviewOptions {
-  frameCount: number;
+  frameCount?: number;
   maxFrames?: number; // Limit preview to N frames (default: 8 for speed)
   fps?: number; // Frames per second (default: 10 for low bitrate)
   quality?: 'low'; // Only low quality for speed
@@ -44,7 +44,6 @@ export async function generateMiniMOVPreview(
     fps = 10,
     quality = 'low',
     sizePixels = 128,
-    format = 'mov',
   } = options;
 
   try {
@@ -83,31 +82,23 @@ export async function generateMiniMOVPreview(
 
 
     // Export MOV using native exporter
-    const result = await exportMp4FromFrames(
-      frameDataUris,
-      {
-        format: 'mov',
-        quality: quality as any,
-        fps: fps,
-        startFrame: 0,
-        endFrame: frameDataUris.length - 1,
-        width: sizePixels,
-        height: sizePixels,
-        loopCount: 0, // Infinite loop for preview
-      },
-      outputPath
-    );
+    await exportMp4FromFrames(frameDataUris, outputPath, {
+      fps,
+      width: sizePixels,
+      height: sizePixels,
+      quality
+    });
 
     // Check file size
     try {
       const fileInfo = await FileSystem.getInfoAsync(outputPath);
-      const fileSizeKB = (fileInfo.size || 0) / 1024;
+      const fileSize = fileInfo.exists && !fileInfo.isDirectory ? fileInfo.size : 0;
       const durationSeconds = frameDataUris.length / fps;
 
 
       return {
         uri: outputPath,
-        size: fileInfo.size || 0,
+        size: fileSize,
         generatedAt: new Date().toISOString(),
         duration: durationSeconds,
       };

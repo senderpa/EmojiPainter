@@ -423,7 +423,7 @@ export async function getVideosInFolder(folderPath: string): Promise<VideoMetada
         if (metadata) {
           width = metadata.width;
           height = metadata.height;
-          duration = metadata.duration;
+          duration = metadata.durationMs / 1000;
         }
       } catch (error) {
         console.warn('[VideoStorage] Failed to probe video metadata for', file, error);

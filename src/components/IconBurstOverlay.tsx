@@ -102,7 +102,7 @@ const IconBurstOverlay: React.FC = () => {
 
   // Clean up old logo set images from memory
   const cleanupOldLogoSet = useCallback(async (logoSet: LogoSet | null) => {
-    if (!logoSet) return;
+    if (!logoSet || logoSet.type !== 'image') return;
 
     try {
       // Unload base icon (only if queryCache is available)
@@ -339,6 +339,7 @@ const IconBurstOverlay: React.FC = () => {
 
   const triggerFrameBurst = useCallback(
     async (context: BurstContext, logoSet: LogoSet, isSpecial: boolean = false) => {
+      if (logoSet.type !== 'image') return;
       // Now we have 10 frames available (0-9)
       const frameOptions = context === 'startup'
         ? [5, 7, 10]      // Startup: 5, 7, or all 10 frames

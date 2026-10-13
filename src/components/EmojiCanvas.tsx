@@ -428,7 +428,7 @@ export const makeEmojiStamp = (emoji: string, px: number): SkImage | null => {
         for (let i = 0; i < binaryString.length; i++) {
           bytes[i] = binaryString.charCodeAt(i);
         }
-        image = Skia.Image.MakeImageFromEncoded(bytes);
+        image = Skia.Image.MakeImageFromEncoded((Skia.Data as any).fromBytes(bytes));
       }
 
       if (!image) {

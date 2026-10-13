@@ -167,7 +167,7 @@ export async function exportCompositionWithFFmpeg(
   const failStackTrace = await session.getAllLogsAsString();
   throw new Error(
     `ffmpeg export failed (primary path). ReturnCode=${
-      returnCode?.getValue() ?? "unknown"
+      String(returnCode ?? "unknown")
     }\n${failStackTrace}`
   );
 }
@@ -269,7 +269,7 @@ export async function exportCompositionWithFallbackCapture(
       const logs = await session.getAllLogsAsString();
       throw new Error(
         `Failed to extract frame ${i} at ${timeSec}s. ReturnCode=${
-          returnCode?.getValue() ?? "unknown"
+          String(returnCode ?? "unknown")
         }\n${logs}`
       );
     }
@@ -331,7 +331,7 @@ export async function exportCompositionWithFallbackCapture(
   const failStackTrace = await session.getAllLogsAsString();
   throw new Error(
     `ffmpeg export failed (fallback capture). ReturnCode=${
-      returnCode?.getValue() ?? "unknown"
+      String(returnCode ?? "unknown")
     }\n${failStackTrace}`
   );
 }

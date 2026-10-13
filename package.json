@@ -34,6 +34,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "@expo/vector-icons": "^15.1.1",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/slider": "5.0.1",
     "@react-navigation/native": "^7.1.17",
@@ -41,6 +42,7 @@
     "@sentry/react-native": "^8.13.0",
     "@shopify/react-native-skia": "2.2.12",
     "babel-preset-expo": "~54.0.9",
+    "emoji-ar": "file:modules/emoji-ar",
     "emojibase-data": "^16.0.3",
     "emojispray-bridge": "file:modules/emojispray-bridge",
     "expo": "~54.0.31",
@@ -50,6 +52,7 @@
     "expo-crypto": "~15.0.7",
     "expo-document-picker": "~14.0.8",
     "expo-file-system": "~19.0.15",
+    "expo-font": "~14.0.12",
     "expo-haptics": "~15.0.8",
     "expo-image-manipulator": "~14.0.8",
     "expo-image-picker": "~17.0.10",
@@ -67,6 +70,7 @@
     "expo-video-thumbnails": "~10.0.8",
     "js-sha256": "^0.11.1",
     "jszip": "^3.10.1",
+    "metal-paint": "file:modules/metal-paint",
     "nanoid": "^5.1.6",
     "react": "19.1.0",
     "react-native": "0.81.5",
@@ -80,9 +84,7 @@
     "react-native-webview": "^13.15.0",
     "react-native-worklets": "^0.5.1",
     "react-native-zoom-toolkit": "5.0.1",
-    "screen-recorder": "file:modules/screen-recorder",
-    "emoji-ar": "file:modules/emoji-ar",
-    "metal-paint": "file:modules/metal-paint"
+    "screen-recorder": "file:modules/screen-recorder"
   },
   "devDependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",

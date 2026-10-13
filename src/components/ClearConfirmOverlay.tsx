@@ -152,7 +152,7 @@ const ClearConfirmOverlay: React.FC<ClearConfirmOverlayProps> = ({
 
       if (bounceCount > 0) {
         // Bouncing animation
-        const bounces = [];
+        const bounces: Animated.CompositeAnimation[] = [];
         let currentY = 0;
         const totalFallDistance = SCREEN_HEIGHT + 200;
         const bounceHeight = 150 + Math.random() * 200;

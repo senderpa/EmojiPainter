@@ -47,6 +47,8 @@ interface LoadingSession {
 
 const activeSessions = new Map<number, LoadingSession>();
 
+const isSessionFull = (session: LoadingSession): boolean => session.currentStage === 'full';
+
 /**
  * Load video progressively
  */
@@ -116,7 +118,7 @@ export async function loadVideoProgressively(
           videoId,
           currentStage: 'full',
           fullVideoUri: fullPath,
-          cached: opts.autoCache,
+          cached: opts.autoCache ?? true,
           progress: 100,
           thumbnailUri
         };
@@ -149,7 +151,7 @@ export async function loadVideoProgressively(
             videoId,
             currentStage: 'full',
             fullVideoUri: fullPath,
-            cached: opts.autoCache,
+            cached: opts.autoCache ?? true,
             progress: 100,
             thumbnailUri
           };
@@ -177,7 +179,7 @@ export async function loadVideoProgressively(
                   videoId,
                   currentStage: 'full',
                   fullVideoUri: path,
-                  cached: opts.autoCache,
+                  cached: opts.autoCache ?? true,
                   progress: 100,
                   thumbnailUri
                 };
@@ -211,7 +213,7 @@ export async function loadVideoProgressively(
 
           await Promise.race([fullPromise, timeoutPromise]);
         } catch (error) {
-          if (!abortController.signal.aborted && session.currentStage !== 'full') {
+          if (!abortController.signal.aborted && !isSessionFull(session)) {
             console.warn(`[ProgressiveVideoLoader] Progressive load failed:`, error);
             session.currentStage = 'failed';
             session.result = {
