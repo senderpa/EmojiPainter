@@ -98,29 +98,6 @@ agentic coding tools to build further than a solo self-taught developer could ot
   </tr>
 </table>
 
-### The Icon, Reimagined
-
-Nine randomly selected animated looks from the EmojiPainter icon lab. Each loops; open the
-[live homepage](https://emojipainter.com/) for a different random selection.
-
-<table>
-  <tr>
-    <td align="center" width="33%"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-9.gif" width="170" alt="Animated EmojiPainter icon look 9" /></a></td>
-    <td align="center" width="33%"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-19.gif" width="170" alt="Animated EmojiPainter icon look 19" /></a></td>
-    <td align="center" width="33%"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-21.gif" width="170" alt="Animated EmojiPainter icon look 21" /></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-23.gif" width="170" alt="Animated EmojiPainter icon look 23" /></a></td>
-    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-28.gif" width="170" alt="Animated EmojiPainter icon look 28" /></a></td>
-    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-32.gif" width="170" alt="Animated EmojiPainter icon look 32" /></a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-57.gif" width="170" alt="Animated EmojiPainter icon look 57" /></a></td>
-    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-75.gif" width="170" alt="Animated EmojiPainter icon look 75" /></a></td>
-    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-127.gif" width="170" alt="Animated EmojiPainter icon look 127" /></a></td>
-  </tr>
-</table>
-
 ## What's actually in this repository
 
 Everything below is verified against the source in this repo — nothing here is aspirational.
@@ -223,3 +200,28 @@ production app. Modern agentic coding tools materially expanded what was buildab
 
 Apache License 2.0 — see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE). Third-party dependency
 licenses: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+
+---
+
+### The Icon, Reimagined
+
+Nine randomly selected animated looks from the EmojiPainter icon lab. Each loops; open the
+[live homepage](https://emojipainter.com/) for a different random selection.
+
+<table>
+  <tr>
+    <td align="center" width="33%"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-9.gif" width="170" alt="Animated EmojiPainter icon look 9" /></a></td>
+    <td align="center" width="33%"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-19.gif" width="170" alt="Animated EmojiPainter icon look 19" /></a></td>
+    <td align="center" width="33%"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-21.gif" width="170" alt="Animated EmojiPainter icon look 21" /></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-23.gif" width="170" alt="Animated EmojiPainter icon look 23" /></a></td>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-28.gif" width="170" alt="Animated EmojiPainter icon look 28" /></a></td>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-32.gif" width="170" alt="Animated EmojiPainter icon look 32" /></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-57.gif" width="170" alt="Animated EmojiPainter icon look 57" /></a></td>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-75.gif" width="170" alt="Animated EmojiPainter icon look 75" /></a></td>
+    <td align="center"><a href="https://emojipainter.com/"><img src=".github/images/icon-lab/icon-127.gif" width="170" alt="Animated EmojiPainter icon look 127" /></a></td>
+  </tr>
+</table>
